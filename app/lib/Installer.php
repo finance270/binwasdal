@@ -206,8 +206,8 @@ class Installer
     private static function insertChildren(int $sectionId, int $parentId, array $children, int $level, string $prefix, int &$ord): void
     {
         foreach ($children as $i => $c) {
-            $label = self::label($level, $i);
-            $code  = $prefix . '.' . rtrim($label, '.)');
+            $label = (string) ($c['label'] ?? '');
+            $code  = $prefix . '.' . self::kodeDariLabel($label, $i);
             $id = DB::insert('items', [
                 'section_id' => $sectionId,
                 'parent_id'  => $parentId,
@@ -223,29 +223,120 @@ class Installer
         }
     }
 
-    /** Penomoran ala Word: a.  1)  (a) */
-    private static function label(int $level, int $index): string
+    /**
+     * Potongan kode penomoran untuk membentuk jalur seperti "3.k.7"
+     * (dipakai pada nama folder Google Drive). Label bullet diganti nomor urut.
+     */
+    private static function kodeDariLabel(string $label, int $index): string
     {
-        if ($level === 1) {
-            return self::alpha($index) . '.';
-        }
-        if ($level === 2) {
-            return ($index + 1) . ')';
-        }
-        return '(' . self::alpha($index) . ')';
+        $k = trim($label, " \t.)(-•·o");
+        return $k !== '' ? $k : (string) ($index + 1);
     }
 
-    private static function alpha(int $i): string
+    /**
+     * Menyelaraskan penomoran DAN susunan bertingkat poin pada pemasangan yang
+     * sudah berjalan dengan dokumen Word terbaru. Hanya kolom label, code,
+     * level, dan parent_id yang disentuh — jawaban, dokumen, dan folder aman
+     * karena tetap menunjuk id poin yang sama.
+     *
+     * @return array{diperbarui:int,dilewati:int,pesan:string}
+     */
+    public static function perbaruiPenomoran(array $cfg): array
     {
-        $s = '';
-        $i++;
-        while ($i > 0) {
-            $i--;
-            $s = chr(97 + ($i % 26)) . $s;
-            $i = intdiv($i, 26);
+        $master = json_decode(file_get_contents($cfg['app']['root'] . '/db/master.json'), true);
+        if (!$master) {
+            return ['diperbarui' => 0, 'dilewati' => 0, 'pesan' => 'db/master.json tidak dapat dibaca.'];
         }
-        return $s;
+
+        // Susun ulang urutan persis seperti saat pemasangan (telusur mendalam).
+        $rencana = [];
+        $ord = 0;
+        $ratakan = function (array $anak, string $prefix, int $level, ?int $indukOrd)
+            use (&$ratakan, &$rencana, &$ord) {
+            foreach ($anak as $i => $c) {
+                $label = (string) ($c['label'] ?? '');
+                $code  = $prefix . '.' . self::kodeDariLabel($label, $i);
+                $rencana[++$ord] = [
+                    'label' => $label, 'code' => $code, 'title' => $c['text'],
+                    'level' => $level, 'indukOrd' => $indukOrd,
+                ];
+                $ordSaya = $ord;
+                if (!empty($c['children'])) {
+                    $ratakan($c['children'], $code, $level + 1, $ordSaya);
+                }
+            }
+        };
+        foreach ($master['sections'] as $sec) {
+            foreach ($sec['items'] as $ii => $item) {
+                $no = $item['no'] !== '' ? $item['no'] : (string) ($ii + 1);
+                $rencana[++$ord] = [
+                    'label' => $no . '.', 'code' => $no, 'title' => $item['title'],
+                    'level' => 0, 'indukOrd' => null,
+                ];
+                $ratakan($item['children'], $no, 1, $ord);
+            }
+        }
+
+        $baris = DB::all('SELECT id, ordering, title, label, code, level, parent_id FROM items ORDER BY ordering');
+        if (count($baris) !== count($rencana)) {
+            return [
+                'diperbarui' => 0,
+                'dilewati'   => count($baris),
+                'pesan'      => 'Jumlah poin di database (' . count($baris) . ') berbeda dengan dokumen ('
+                    . count($rencana) . '). Struktur tidak diubah — pasang ulang master untuk menyelaraskan.',
+            ];
+        }
+
+        // Semua judul harus cocok sebelum apa pun diubah.
+        $idPerOrdering = [];
+        foreach ($baris as $b) {
+            $r = $rencana[(int) $b['ordering']] ?? null;
+            if (!$r || $r['title'] !== $b['title']) {
+                return [
+                    'diperbarui' => 0,
+                    'dilewati'   => count($baris),
+                    'pesan'      => 'Susunan poin di database berbeda dengan dokumen (poin ke-'
+                        . $b['ordering'] . '). Struktur tidak diubah.',
+                ];
+            }
+            $idPerOrdering[(int) $b['ordering']] = (int) $b['id'];
+        }
+
+        $diperbarui = 0;
+        DB::pdo()->beginTransaction();
+        try {
+            foreach ($baris as $b) {
+                $r = $rencana[(int) $b['ordering']];
+                $indukId = $r['indukOrd'] !== null ? ($idPerOrdering[$r['indukOrd']] ?? null) : null;
+                if (
+                    $r['label'] === $b['label'] && $r['code'] === $b['code']
+                    && (int) $r['level'] === (int) $b['level']
+                    && $indukId === ($b['parent_id'] !== null ? (int) $b['parent_id'] : null)
+                ) {
+                    continue;
+                }
+                DB::q(
+                    'UPDATE items SET label = ?, code = ?, level = ?, parent_id = ? WHERE id = ?',
+                    [$r['label'], $r['code'], $r['level'], $indukId, (int) $b['id']]
+                );
+                $diperbarui++;
+            }
+            DB::pdo()->commit();
+        } catch (Throwable $e) {
+            DB::pdo()->rollBack();
+            return ['diperbarui' => 0, 'dilewati' => 0, 'pesan' => 'Gagal menyelaraskan: ' . $e->getMessage()];
+        }
+
+        Settings::set('master_penomoran', self::PENOMORAN_VERSI);
+        return [
+            'diperbarui' => $diperbarui,
+            'dilewati'   => 0,
+            'pesan'      => $diperbarui . ' poin diselaraskan dengan penomoran dan susunan dokumen Word.',
+        ];
     }
+
+    /** Dinaikkan bila penomoran master berubah, memicu penyelarasan otomatis. */
+    public const PENOMORAN_VERSI = '3';
 
     private static function splitStatements(string $sql): array
     {

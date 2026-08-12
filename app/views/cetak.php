@@ -30,11 +30,13 @@ require __DIR__ . '/partials/head.php';
         <?php endforeach; ?>
         <option value="sdm" <?= $bagian === 'sdm' ? 'selected' : '' ?>>SDM &amp; Ketenagaan</option>
     </select>
-    <button class="btn utama" onclick="window.print()">🖨️ Cetak / Simpan sebagai PDF</button>
+    <button class="btn utama" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+    <a class="btn" href="?p=unduh&amp;bagian=<?= e((string) $bagian) ?>">📄 Unduh Word (.docx)</a>
     <a class="btn" href="?p=beranda">← Kembali</a>
 </div>
 
 <div class="pesan info no-print">
+    <b>Unduh Word (.docx)</b> menghasilkan berkas Word asli yang bisa diedit dan ditandatangani.
     Untuk menyimpan sebagai PDF: tekan tombol di atas (atau <b>Ctrl + P</b>), lalu pilih tujuan
     <b>“Save as PDF” / “Microsoft Print to PDF”</b>. Ukuran kertas <b>A4</b>, margin <b>Default</b>,
     dan centang <b>Background graphics</b> agar arsiran tabel ikut tercetak.

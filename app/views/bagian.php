@@ -26,6 +26,7 @@ require __DIR__ . '/partials/head.php';
         <option value="ada_berkas">Sudah ada berkas</option>
     </select>
     <a class="btn" href="?p=cetak&amp;bagian=<?= (int) $sec['id'] ?>" target="_blank">🖨️ Cetak bagian ini</a>
+    <a class="btn" href="?p=unduh&amp;bagian=<?= (int) $sec['id'] ?>">📄 Word</a>
 </div>
 
 <div class="pesan info no-print" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">

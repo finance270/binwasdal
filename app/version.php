@@ -6,7 +6,7 @@
  * berkas yang berjalan di server benar-benar sudah yang terbaru.
  */
 return [
-    'versi'   => '1.3.0',
+    'versi'   => '1.4.0',
     'tanggal' => '2026-08-12',
-    'catatan' => 'Pengisian poin lewat jendela popup',
+    'catatan' => 'Penomoran sesuai dokumen asli + unduh Word',
 ];

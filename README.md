@@ -13,10 +13,15 @@ di Wilayah Kota Administrasi Jakarta Pusat**, lengkap dengan:
   Tautan yang muncul di aplikasi adalah **tautan folder** yang dapat diakses siapa saja yang memilikinya.
 - **Status** per poin (Ada / Sesuai, Sebagian, Belum Ada, Tidak Berlaku) beserta keterangan bebas.
 - **Cetak & simpan PDF** langsung dari browser dengan tata letak dokumen resmi.
+- **Unduh Word (.docx)** — berkas Word asli (A4, Arial, tabel bergaris, tautan folder Drive
+  dapat diklik) yang masih bisa diedit dan ditandatangani.
 - Rekap **kemajuan pengisian** per bagian dan **daftar seluruh tautan folder** untuk dilampirkan.
 
 Seluruh isi dokumen (63 poin utama, **920 poin & sub-poin**, 253 baris tabel profil) diambil
-langsung dari dokumen Word resmi, termasuk penomoran bertingkat `1 → a. → 1) → (a)`.
+langsung dari dokumen Word resmi. **Penomoran tiap poin dibaca dari definisi penomoran
+dokumen aslinya** (`word/numbering.xml`), sehingga daftar yang di dokumen bernomor
+`1) 2) 3)` tidak berubah menjadi `a. b. c.` — termasuk daftar berbutir `-` dan
+penomoran yang berlanjut lintas halaman.
 
 ---
 
@@ -186,6 +191,7 @@ Pengaturan akan memindahkan berkas-berkas tersebut (25 berkas per klik).
 | **Penilaian Mandiri** (6 bagian) | Seluruh poin self assessment — status, keterangan, unggah dokumen |
 | **SDM & Ketenagaan** | Tabel ketenagaan, rekapitulasi SDM, blok tanda tangan |
 | **Cetak / Simpan PDF** | Pratinjau dokumen utuh siap cetak |
+| **Unduh Word (.docx)** | Berkas Word asli — seluruh dokumen atau per bagian |
 | **Daftar Tautan Folder** | Rekap seluruh tautan folder Drive, bisa disalin sekaligus |
 | **Pengaturan** | Versi aplikasi &amp; muat ulang kode, Google Drive, periode penilaian, pengguna, log aktivitas |
 
@@ -216,6 +222,16 @@ Buka **Cetak / Simpan PDF** → tombol **🖨️ Cetak**, atau `Ctrl + P`. Pada 
 
 Tombol/kotak isian otomatis disembunyikan; yang tercetak adalah teks keterangan, status,
 nama berkas, dan alamat tautan folder Drive.
+
+### Mengunduh berkas Word
+
+Tombol **📄 Unduh Word (.docx)** tersedia di beranda, menu samping, halaman cetak, dan pada
+tiap halaman bagian (untuk mengunduh satu bagian saja). Berkas yang dihasilkan adalah
+dokumen Word asli — bukan HTML yang disamarkan — sehingga dapat langsung diedit di
+Microsoft Word, LibreOffice, atau Google Docs. Tautan folder Google Drive di dalamnya
+tetap bisa diklik.
+
+Fitur ini memerlukan ekstensi PHP `zip` (sudah tersedia pada image `webdevops/php-apache`).
 
 ---
 
@@ -249,10 +265,13 @@ app/
     GoogleDrive.php    Klien Drive API v3 (OAuth / service account)
     Storage.php        Folder & berkas (Drive atau lokal)
     Render.php         Komponen tampilan (sel ringkas, tabel, baris poin)
+    DocxWriter.php     Penulis berkas .docx (OOXML) tanpa pustaka luar
+    EksporWord.php     Menyusun dokumen Word dari data periode penilaian
   views/               Halaman
 db/
   schema.sql           Skema MariaDB
   master.json          Struktur dokumen hasil ekstraksi dokumen Word resmi
+  ekstrak_dokumen.py   Skrip yang menghasilkan master.json dari berkas .docx asli
 data/uploads/          Penyimpanan lokal (cadangan bila Drive nonaktif)
 ```
 

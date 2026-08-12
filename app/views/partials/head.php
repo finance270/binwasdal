@@ -62,6 +62,7 @@ $pesanKilat = flash();
 
     <div class="grup">Keluaran</div>
     <a href="?p=cetak" class="<?= ($page ?? '') === 'cetak' ? 'aktif' : '' ?>">🖨️ Cetak / Simpan PDF</a>
+    <a href="?p=unduh&amp;bagian=all">📄 Unduh Word (.docx)</a>
     <a href="?p=tautan" class="<?= ($page ?? '') === 'tautan' ? 'aktif' : '' ?>">🔗 Daftar Tautan Folder</a>
     <a href="?p=pengaturan" class="<?= ($page ?? '') === 'pengaturan' ? 'aktif' : '' ?>">⚙️ Pengaturan</a>
 

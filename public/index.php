@@ -57,6 +57,19 @@ if ($page === 'logout') {
 
 Auth::require();
 
+// Penyelarasan penomoran poin bila master dokumen diperbarui
+// (mis. setelah mengunggah versi aplikasi yang lebih baru).
+if (Settings::get('master_penomoran') !== Installer::PENOMORAN_VERSI) {
+    try {
+        $hasil = Installer::perbaruiPenomoran($CFG);
+        if ($hasil['diperbarui'] > 0) {
+            Log::write('sistem', 'penomoran', $hasil['pesan']);
+        }
+    } catch (Throwable $e) {
+        // jangan sampai menggagalkan permintaan halaman
+    }
+}
+
 $assessment = Assessment::current();
 $storage    = new Storage($CFG);
 
@@ -217,6 +230,31 @@ if (str_starts_with($page, 'api_')) {
         default:
             json_out(['ok' => false, 'pesan' => 'Endpoint tidak dikenal.'], 404);
     }
+}
+
+// ---------------------------------------------------------------------
+// Unduh dokumen Word (.docx)
+// ---------------------------------------------------------------------
+if ($page === 'unduh') {
+    $bagian = (string) ($_GET['bagian'] ?? 'all');
+    if (!class_exists('ZipArchive')) {
+        http_response_code(500);
+        exit('Ekstensi PHP "zip" belum aktif di server, sehingga berkas Word tidak dapat dibuat.');
+    }
+    try {
+        $hasil = EksporWord::buat($assessment, $bagian);
+    } catch (Throwable $e) {
+        http_response_code(500);
+        exit('Gagal membuat dokumen Word: ' . e($e->getMessage()));
+    }
+    Log::write(Auth::username(), 'unduh_word', $hasil['nama']);
+    header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    header('Content-Length: ' . strlen($hasil['isi']));
+    header('Content-Disposition: attachment; filename="' . str_replace('"', '', $hasil['nama']) . '"; '
+        . "filename*=UTF-8''" . rawurlencode($hasil['nama']));
+    header('Cache-Control: no-store');
+    echo $hasil['isi'];
+    exit;
 }
 
 // ---------------------------------------------------------------------

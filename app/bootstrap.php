@@ -21,9 +21,11 @@ require __DIR__ . '/lib/Forms.php';
 require __DIR__ . '/lib/Installer.php';
 require __DIR__ . '/lib/GoogleDrive.php';
 require __DIR__ . '/lib/Storage.php';
+require __DIR__ . '/lib/DocxWriter.php';
 require __DIR__ . '/lib/Assessment.php';
 require __DIR__ . '/helpers.php';
 require __DIR__ . '/lib/Render.php';
+require __DIR__ . '/lib/EksporWord.php';
 
 DB::init($CFG['db']);
 Auth::start();

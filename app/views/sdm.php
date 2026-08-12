@@ -8,6 +8,7 @@ require __DIR__ . '/partials/head.php';
 <div class="aksi-atas no-print">
     <div class="judul">Sumber Daya Manusia / Ketenagakerjaan RS</div>
     <a class="btn" href="?p=cetak&amp;bagian=sdm" target="_blank">🖨️ Cetak bagian ini</a>
+    <a class="btn" href="?p=unduh&amp;bagian=sdm">📄 Word</a>
 </div>
 
 <div class="pesan info no-print">

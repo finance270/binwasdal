@@ -11,6 +11,7 @@ require __DIR__ . '/partials/head.php';
 <div class="aksi-atas no-print">
     <div class="judul">Data Dasar &amp; Profil Rumah Sakit</div>
     <a class="btn" href="?p=cetak&amp;bagian=profil" target="_blank">🖨️ Cetak bagian ini</a>
+    <a class="btn" href="?p=unduh&amp;bagian=profil">📄 Word</a>
 </div>
 
 <div class="pesan info no-print">

@@ -11,6 +11,7 @@ require __DIR__ . '/partials/head.php';
 <div class="aksi-atas no-print">
     <div class="judul">Beranda &amp; Rekapitulasi</div>
     <a class="btn utama" href="?p=cetak" target="_blank">🖨️ Cetak / Simpan PDF</a>
+    <a class="btn" href="?p=unduh&amp;bagian=all">📄 Unduh Word (.docx)</a>
 </div>
 
 <?php if (!$driveAktif): ?>
