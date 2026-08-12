@@ -1,5 +1,6 @@
 /data/uploads/*
 !/data/uploads/.gitkeep
+!/data/uploads/.htaccess
 /data/mariadb/
 .env
 *.log
