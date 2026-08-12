@@ -130,6 +130,7 @@
 
     function tampilkanFolder(wrap, folder) {
         if (!folder) return;
+        var ringkas = wrap.getAttribute('data-ringkas') === '1';
         var kendali = wrap.querySelector('.kendali');
         var chip = wrap.querySelector('.chip-folder');
         if (!chip) {
@@ -146,11 +147,13 @@
         }
         if (folder.lokal) {
             chip.className = 'chip-folder lokal';
-            chip.textContent = '📁 Tersimpan lokal (Drive belum aktif)';
+            chip.textContent = ringkas ? '📁 Lokal' : '📁 Tersimpan lokal (Drive belum aktif)';
+            chip.title = 'Google Drive belum aktif — berkas tersimpan di server';
             chip.removeAttribute('href');
         } else {
             chip.className = 'chip-folder';
-            chip.textContent = '📂 Buka folder Google Drive';
+            chip.textContent = ringkas ? '📂 Folder Drive' : '📂 Buka folder Google Drive';
+            chip.title = 'Buka folder Google Drive';
             chip.href = folder.link;
         }
     }
@@ -159,12 +162,14 @@
         var ul = kotakBerkas(wrap);
         var li = document.createElement('li');
         li.setAttribute('data-doc', b.id);
-        li.innerHTML = '<span>' + b.ikon + '</span>'
-            + '<a href="' + b.link + '" target="_blank" rel="noopener"></a>'
-            + '<span class="ukuran"></span>'
+        li.innerHTML = b.ikon + ' '
+            + '<a target="_blank" rel="noopener"></a> '
+            + '<span class="ukuran"></span> '
             + '<button type="button" class="hapus no-print" title="Hapus berkas">✕</button>';
-        li.querySelector('a').textContent = b.nama;
-        li.querySelector('.ukuran').textContent = '(' + b.ukuran + ')';
+        var a = li.querySelector('a');
+        a.href = b.link;
+        a.textContent = b.nama;
+        li.querySelector('.ukuran').textContent = b.ukuran;
         ul.appendChild(li);
     }
 

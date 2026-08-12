@@ -30,10 +30,12 @@ class Render
         $folder    = $o['folder'] ?? null;
         $tampilStatus = $o['status_tampil'] ?? true;
         $tampilKet    = $o['ket_tampil'] ?? true;
+        $ringkas      = $o['ringkas'] ?? false;
         $bolehEdit = Auth::canEdit();
 
         $h = '<div class="kendali-wrap" data-owner-type="' . e($ownerType) . '" data-owner-key="' . e($ownerKey) . '"'
-            . ($itemId ? ' data-item="' . (int) $itemId . '"' : '') . '>';
+            . ($itemId ? ' data-item="' . (int) $itemId . '"' : '')
+            . ($ringkas ? ' data-ringkas="1"' : '') . '>';
         $h .= '<div class="kendali">';
 
         // status versi cetak (tampil hanya saat dicetak)
@@ -51,8 +53,9 @@ class Render
             $h .= '</select>';
         }
         if ($bolehEdit) {
-            $h .= '<button type="button" class="btn btn-unggah" title="Pilih satu atau beberapa berkas">⬆️ Unggah</button>';
-            $h .= '<button type="button" class="btn btn-folder kecil" title="Buat / buka folder Google Drive poin ini">📂 Folder</button>';
+            $kelas = $ringkas ? 'btn kecil' : 'btn';
+            $h .= '<button type="button" class="' . $kelas . ' btn-unggah" title="Pilih satu atau beberapa berkas">⬆️ Unggah</button>';
+            $h .= '<button type="button" class="btn kecil btn-folder" title="Buat / buka folder Google Drive untuk poin ini">📂 Folder</button>';
         }
         $h .= '</div>';
 
@@ -68,10 +71,12 @@ class Render
         $h .= '<div class="baris-kendali baris-folder">';
         if ($folder) {
             if (!empty($folder['drive_link'])) {
-                $h .= '<a class="chip-folder" href="' . e($folder['drive_link']) . '" target="_blank" rel="noopener">📂 Buka folder Google Drive</a>';
+                $teks = $ringkas ? '📂 Folder Drive' : '📂 Buka folder Google Drive';
+                $h .= '<a class="chip-folder" href="' . e($folder['drive_link']) . '" target="_blank" rel="noopener" title="Buka folder Google Drive">' . $teks . '</a>';
                 $h .= '<span class="tautan-cetak url-cetak">📂 ' . e($folder['drive_link']) . '</span>';
             } else {
-                $h .= '<span class="chip-folder lokal">📁 Tersimpan lokal (Drive belum aktif)</span>';
+                $h .= '<span class="chip-folder lokal" title="Google Drive belum aktif — berkas tersimpan di server">'
+                    . ($ringkas ? '📁 Lokal' : '📁 Tersimpan lokal (Drive belum aktif)') . '</span>';
             }
         }
         $h .= '</div>';
@@ -81,10 +86,10 @@ class Render
             $h .= '<ul class="berkas">';
             foreach ($docs as $d) {
                 $h .= '<li data-doc="' . (int) $d['id'] . '">'
-                    . '<span>' . ikonBerkas($d['nama_file']) . '</span>'
-                    . '<a href="' . e(tautanBerkas($d)) . '" target="_blank" rel="noopener">' . e($d['nama_file']) . '</a>'
-                    . '<span class="ukuran">(' . e(Storage::formatUkuran((int) $d['ukuran'])) . ')</span>'
-                    . ($bolehEdit ? '<button type="button" class="hapus no-print" title="Hapus berkas">✕</button>' : '')
+                    . ikonBerkas($d['nama_file']) . ' '
+                    . '<a href="' . e(tautanBerkas($d)) . '" target="_blank" rel="noopener">' . e($d['nama_file']) . '</a> '
+                    . '<span class="ukuran">' . e(Storage::formatUkuran((int) $d['ukuran'])) . '</span>'
+                    . ($bolehEdit ? ' <button type="button" class="hapus no-print" title="Hapus berkas">✕</button>' : '')
                     . '</li>';
             }
             $h .= '</ul>';
@@ -127,12 +132,14 @@ class Render
             $w = $def['widths'][$c] ?? null;
             $judul = Assessment::headerLabel($code, $c, $assessmentId);
             $editableHeader = in_array($c, $def['header_editable'] ?? [], true);
-            $h .= '<th' . ($w ? ' style="width:' . $w . '%"' : '') . '>';
+            $kelasTh = ($def['align'][$c] ?? '') === 'center' ? ' class="tengah"' : '';
+            $h .= '<th' . $kelasTh . ($w ? ' style="width:' . $w . '%"' : '') . '>';
             $h .= $editableHeader ? self::sel($code, 0, $c, $judul, $label) : e($judul);
             $h .= '</th>';
         }
         if (!empty($def['upload'])) {
-            $h .= '<th style="width:26%">Dokumen Pendukung</th>';
+            $h .= '<th style="width:' . (int) ($def['upload_width'] ?? 30) . '%">'
+                . e($def['upload_title'] ?? 'Dokumen Pendukung') . '</th>';
         }
         $h .= '</tr></thead><tbody>';
 
@@ -157,6 +164,7 @@ class Render
                     'folder'        => $r['folder'],
                     'status_tampil' => false,
                     'ket_tampil'    => false,
+                    'ringkas'       => true,
                 ]) . '</td>';
             }
             $h .= '</tr>';
@@ -182,10 +190,13 @@ class Render
         $h .= '<table class="w"><thead><tr>';
         foreach ($cols as $c => $label) {
             $w = $def['widths'][$c] ?? null;
-            $h .= '<th' . ($w ? ' style="width:' . $w . '%"' : '') . '>' . e(Assessment::headerLabel($code, $c, $assessmentId)) . '</th>';
+            $kelasTh = ($def['align'][$c] ?? '') === 'center' ? ' class="tengah"' : '';
+            $h .= '<th' . $kelasTh . ($w ? ' style="width:' . $w . '%"' : '') . '>'
+                . e(Assessment::headerLabel($code, $c, $assessmentId)) . '</th>';
         }
         if (!empty($def['upload'])) {
-            $h .= '<th style="width:26%">Dokumen Pendukung</th>';
+            $h .= '<th style="width:' . (int) ($def['upload_width'] ?? 30) . '%">'
+                . e($def['upload_title'] ?? 'Dokumen Pendukung') . '</th>';
         }
         $h .= '</tr></thead><tbody>';
 
