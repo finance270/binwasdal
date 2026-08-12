@@ -19,6 +19,59 @@ require __DIR__ . '/partials/head.php';
 
 <div class="aksi-atas no-print"><div class="judul">Pengaturan</div></div>
 
+<!-- --------------------------------------------- Versi & pembaruan kode -->
+<?php
+$v = appInfo();
+$oc = function_exists('opcache_get_status') ? @opcache_get_status(false) : null;
+$ocAktif = is_array($oc) && !empty($oc['opcache_enabled']);
+$ocValidasi = (bool) ini_get('opcache.validate_timestamps');
+?>
+<div class="kartu">
+    <h2>🧾 Versi Aplikasi</h2>
+    <table class="rapi">
+        <tr>
+            <th style="width:230px">Versi</th>
+            <td><b><?= e($v['versi']) ?></b> — <?= e($v['catatan']) ?> (<?= e($v['tanggal']) ?>)</td>
+        </tr>
+        <?php foreach (berkasProgram() as $f => $t): ?>
+            <tr>
+                <th><code><?= e($f) ?></code></th>
+                <td><?= $t ? e(date('d/m/Y H:i:s', $t)) : '<span style="color:#b3261e">berkas tidak ditemukan</span>' ?></td>
+            </tr>
+        <?php endforeach; ?>
+        <tr>
+            <th>OPcache</th>
+            <td>
+                <?php if (!$ocAktif): ?>
+                    Tidak aktif — setiap perubahan berkas langsung berlaku.
+                <?php elseif ($ocValidasi): ?>
+                    Aktif, memeriksa perubahan berkas otomatis
+                    (<code>validate_timestamps=1</code>, <code>revalidate_freq=<?= e((string) ini_get('opcache.revalidate_freq')) ?></code>).
+                <?php else: ?>
+                    <b style="color:#b3261e">Aktif tanpa pemeriksaan perubahan berkas</b>
+                    (<code>validate_timestamps=0</code>) — berkas PHP yang baru diunggah
+                    <b>tidak akan berlaku</b> sampai kode dimuat ulang atau container di-restart.
+                <?php endif; ?>
+            </td>
+        </tr>
+    </table>
+
+    <p style="font-size:13px;color:#59616d;line-height:1.7;margin-bottom:8px">
+        Setelah mengunggah berkas hasil <b>Download ZIP</b> dari GitHub ke server, cocokkan
+        <b>waktu berkas</b> di atas dengan waktu Anda mengunggah. Bila waktunya masih lama,
+        berarti berkas belum tergantikan (biasanya karena tertaruh di folder lain).
+        Bila waktunya sudah baru tetapi tampilan belum berubah, tekan tombol di bawah ini.
+    </p>
+    <form method="post" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <input type="hidden" name="csrf" value="<?= e(Auth::csrf()) ?>">
+        <input type="hidden" name="aksi" value="muat_ulang_kode">
+        <button class="btn utama">🔄 Muat ulang kode program</button>
+        <span style="font-size:12.5px;color:#6b7481">
+            Mengosongkan cache OPcache — setara dengan me-restart container, tanpa perlu masuk ke terminal.
+        </span>
+    </form>
+</div>
+
 <!-- ------------------------------------------------------- Google Drive -->
 <div class="kartu">
     <h2>🔗 Google Drive</h2>

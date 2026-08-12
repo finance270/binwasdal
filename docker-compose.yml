@@ -20,6 +20,10 @@ services:
       PHP_UPLOAD_MAX_FILESIZE: 200M
       PHP_MAX_EXECUTION_TIME: 300
       PHP_MAX_FILE_UPLOADS: 40
+      # Wajib untuk pemasangan manual (unggah berkas lewat code-server):
+      # tanpa ini, berkas PHP yang baru diunggah tidak berlaku sampai container di-restart.
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+      PHP_OPCACHE_REVALIDATE_FREQ: 0
 
       # koneksi database
       DB_HOST: mariadb

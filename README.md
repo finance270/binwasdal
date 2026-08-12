@@ -79,6 +79,43 @@ Pastikan container `webdevops/php-apache:8.2` disetel seperti ini:
 > Jika `WEB_DOCUMENT_ROOT` tidak bisa diubah dan tetap `/app`, aplikasi tetap jalan —
 > berkas `.htaccess` di akar akan meneruskan permintaan ke `public/`.
 
+### c-bis. Memperbarui aplikasi tanpa git (unduh ZIP + unggah manual)
+
+Cara ini yang dipakai bila Anda mengunduh **Code → Download ZIP** dari GitHub lalu
+menyalin berkasnya lewat *code-server* di CasaOS.
+
+1. Di GitHub, pastikan branch yang tampil adalah branch aplikasi, lalu **Code → Download ZIP**.
+2. Buka ZIP-nya. Isinya berada di dalam satu folder pembungkus (mis. `binwasdal-main/`).
+   Yang disalin ke server adalah **isi** folder itu (`app/`, `public/`, `db/`, …),
+   bukan folder pembungkusnya.
+3. Salin menimpa ke folder aplikasi di server. Pastikan **semua** folder ikut tergantikan —
+   terutama `app/` dan `public/`.
+4. Buka aplikasi → menu **Pengaturan** → kartu **🧾 Versi Aplikasi**:
+   - Cocokkan **Versi** dengan yang tertulis di `app/version.php` pada ZIP.
+   - Cocokkan **waktu berkas** dengan waktu Anda menyalin. Kalau waktunya masih lama,
+     berarti berkas belum tergantikan — biasanya tersalin ke folder lain.
+5. Bila waktu berkas sudah baru tetapi tampilan belum berubah, klik
+   **🔄 Muat ulang kode program** pada kartu yang sama.
+
+> **Kenapa perlu langkah 5?** Image `webdevops/php-apache` memakai **OPcache**: hasil kompilasi
+> berkas PHP disimpan di memori. Bila `opcache.validate_timestamps=0`, berkas PHP yang baru
+> diunggah **diabaikan** sampai cache dikosongkan atau container di-restart — menekan
+> `Ctrl+Shift+R` di peramban tidak menolong karena masalahnya di sisi server, bukan peramban.
+>
+> Agar tidak berulang, setel environment berikut pada container aplikasi
+> (sudah disertakan di `docker-compose.yml`):
+>
+> | Variabel | Nilai |
+> |---|---|
+> | `PHP_OPCACHE_VALIDATE_TIMESTAMPS` | `1` |
+> | `PHP_OPCACHE_REVALIDATE_FREQ` | `0` |
+>
+> Kartu **Versi Aplikasi** menampilkan status OPcache yang sedang berlaku, sehingga
+> kondisi ini langsung terlihat.
+
+Berkas CSS dan JavaScript **tidak perlu** `Ctrl+Shift+R`: alamatnya otomatis membawa
+penanda waktu berkas, jadi peramban selalu mengambil versi terbaru begitu berkasnya berganti.
+
 ### d. Pemasangan awal
 
 Buka aplikasi di browser. Halaman **Pemasangan** akan muncul otomatis pada akses pertama.
@@ -150,7 +187,7 @@ Pengaturan akan memindahkan berkas-berkas tersebut (25 berkas per klik).
 | **SDM & Ketenagaan** | Tabel ketenagaan, rekapitulasi SDM, blok tanda tangan |
 | **Cetak / Simpan PDF** | Pratinjau dokumen utuh siap cetak |
 | **Daftar Tautan Folder** | Rekap seluruh tautan folder Drive, bisa disalin sekaligus |
-| **Pengaturan** | Google Drive, periode penilaian, pengguna, log aktivitas |
+| **Pengaturan** | Versi aplikasi &amp; muat ulang kode, Google Drive, periode penilaian, pengguna, log aktivitas |
 
 ### Mengisi sebuah poin
 
@@ -199,6 +236,7 @@ docker-compose.yml     Definisi 3 container (app, mariadb, phpmyadmin)
 public/                Document root — index.php + aset
 app/
   config.php           Konfigurasi (dibaca dari environment variable)
+  version.php          Nomor versi aplikasi (tampil di menu Pengaturan)
   bootstrap.php
   helpers.php
   lib/

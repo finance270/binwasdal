@@ -16,6 +16,56 @@ function url(array $params = []): string
     return '?' . http_build_query($params);
 }
 
+/**
+ * Penanda versi berkas aset (CSS/JS).
+ * Memakai waktu ubah berkas, sehingga peramban otomatis mengambil versi baru
+ * setiap kali berkas diperbarui — tanpa perlu menekan Ctrl+Shift+R.
+ */
+function asetVersi(string $relatif): string
+{
+    $path = dirname(__DIR__) . '/public/' . ltrim($relatif, '/');
+    $t = @filemtime($path);
+    return $t ? (string) $t : (string) time();
+}
+
+/** Informasi versi aplikasi dari app/version.php. */
+function appInfo(): array
+{
+    static $info = null;
+    if ($info === null) {
+        $info = require __DIR__ . '/version.php';
+    }
+    return $info;
+}
+
+/**
+ * Berkas program yang dipakai sebagai patokan "kapan aplikasi terakhir diunggah".
+ * @return array<string,int|false> jalur relatif => waktu ubah
+ */
+function berkasProgram(): array
+{
+    $root = dirname(__DIR__);
+    $daftar = [
+        'public/index.php',
+        'public/assets/css/app.css',
+        'public/assets/js/app.js',
+        'app/lib/Render.php',
+        'app/version.php',
+    ];
+    $out = [];
+    foreach ($daftar as $f) {
+        $out[$f] = @filemtime($root . '/' . $f);
+    }
+    return $out;
+}
+
+/** Waktu berkas program terbaru — untuk memastikan unggahan manual sudah masuk. */
+function waktuBerkasProgram(): int
+{
+    $t = array_filter(berkasProgram());
+    return $t ? max($t) : 0;
+}
+
 function json_out($data, int $code = 200): void
 {
     http_response_code($code);

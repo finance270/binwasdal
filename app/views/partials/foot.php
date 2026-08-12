@@ -46,6 +46,6 @@
     </footer>
 </div>
 
-<script src="assets/js/app.js?v=9"></script>
+<script src="assets/js/app.js?v=<?= asetVersi('assets/js/app.js') ?>"></script>
 </body>
 </html>

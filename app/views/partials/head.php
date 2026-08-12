@@ -11,7 +11,7 @@ $pesanKilat = flash();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf" content="<?= e(Auth::csrf()) ?>">
 <title><?= e($judul ?? $CFG['app']['name']) ?></title>
-<link rel="stylesheet" href="assets/css/app.css?v=9">
+<link rel="stylesheet" href="assets/css/app.css?v=<?= asetVersi('assets/css/app.css') ?>">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🏥</text></svg>">
 </head>
 <body>
@@ -64,6 +64,12 @@ $pesanKilat = flash();
     <a href="?p=cetak" class="<?= ($page ?? '') === 'cetak' ? 'aktif' : '' ?>">🖨️ Cetak / Simpan PDF</a>
     <a href="?p=tautan" class="<?= ($page ?? '') === 'tautan' ? 'aktif' : '' ?>">🔗 Daftar Tautan Folder</a>
     <a href="?p=pengaturan" class="<?= ($page ?? '') === 'pengaturan' ? 'aktif' : '' ?>">⚙️ Pengaturan</a>
+
+    <?php $__v = appInfo(); $__t = waktuBerkasProgram(); ?>
+    <div class="versi-app" title="Waktu berkas program di server — berubah bila unggahan manual berhasil">
+        Versi <b><?= e($__v['versi']) ?></b><br>
+        berkas server: <?= $__t ? e(date('d/m/Y H:i', $__t)) : '—' ?>
+    </div>
 </div>
 
 <div class="konten">

@@ -385,6 +385,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !str_starts_with($page, 'api_')) {
         redirect(url(['p' => 'pengaturan']));
     }
 
+    if ($aksi === 'muat_ulang_kode') {
+        if (!Auth::isAdmin()) {
+            http_response_code(403);
+            exit('Hanya admin.');
+        }
+        if (function_exists('opcache_reset') && @opcache_reset()) {
+            flash('Cache kode program dikosongkan. Muat ulang halaman untuk melihat versi terbaru.');
+        } elseif (!function_exists('opcache_get_status') || !@opcache_get_status(false)['opcache_enabled']) {
+            flash('OPcache tidak aktif — berkas terbaru sudah langsung dipakai.');
+        } else {
+            flash('Gagal mengosongkan OPcache (fungsi opcache_reset dinonaktifkan). '
+                . 'Restart container aplikasi untuk memuat berkas terbaru.', 'galat');
+        }
+        Log::write(Auth::username(), 'muat_ulang_kode', 'Reset OPcache');
+        redirect(url(['p' => 'pengaturan']));
+    }
+
     if ($aksi === 'sinkron_drive') {
         Auth::requireEdit();
         $res = $storage->sinkronKeDrive($assessment);

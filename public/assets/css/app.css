@@ -94,6 +94,16 @@ a { color: var(--biru); }
 .sidebar a.aktif { background: var(--biru-muda); border-left-color: var(--biru); font-weight: 600; color: var(--biru-tua); }
 .sidebar a .mini { display: block; font-size: 11px; color: #78828f; font-weight: 400; margin-top: 2px; }
 
+.versi-app {
+    margin: 16px 14px 22px;
+    padding-top: 12px;
+    border-top: 1px solid var(--garis);
+    font-size: 11px;
+    line-height: 1.6;
+    color: #8a929e;
+}
+.versi-app b { color: #59616d; }
+
 .konten { margin: 52px 0 0 var(--sidebar); padding: 22px 18px 80px; }
 
 /* ---------------------------------------------------------- kertas Word */
