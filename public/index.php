@@ -67,11 +67,24 @@ if (str_starts_with($page, 'api_')) {
     if (!Auth::checkCsrf($_POST['csrf'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null)) {
         json_out(['ok' => false, 'pesan' => 'Sesi kedaluwarsa, muat ulang halaman.'], 419);
     }
-    if (!Auth::canEdit()) {
+    // hanya api_detail yang boleh diakses akun "viewer"
+    if ($page !== 'api_detail' && !Auth::canEdit()) {
         json_out(['ok' => false, 'pesan' => 'Akun Anda hanya dapat melihat.'], 403);
     }
 
     switch ($page) {
+        // --- isi jendela popup sebuah poin --------------------------
+        case 'api_detail':
+            $type = (string) ($_POST['owner_type'] ?? 'item');
+            $key  = (string) ($_POST['owner_key'] ?? '');
+            $detail = Assessment::detailPoin((int) $assessment['id'], $type, $key);
+            if (!$detail) {
+                json_out(['ok' => false, 'pesan' => 'Poin tidak ditemukan.'], 404);
+            }
+            $detail['ok'] = true;
+            $detail['boleh_edit'] = Auth::canEdit();
+            json_out($detail);
+
         // --- simpan jawaban poin checklist -------------------------
         case 'api_jawaban':
             $itemId = (int) ($_POST['item_id'] ?? 0);

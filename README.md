@@ -4,10 +4,14 @@ Aplikasi PHP untuk mengisi **Dokumen Self Assessment Pembinaan dan Pengawasan Ru
 di Wilayah Kota Administrasi Jakarta Pusat**, lengkap dengan:
 
 - Tampilan **menyerupai dokumen Word** (kertas A4, Arial 11pt, tabel bergaris) — bukan formulir web biasa.
+  Kolom hasil hanya menampilkan penanda ringkas (**Ada / Belum Ada / kosong**), sehingga tabel tetap bersih
+  seperti dokumen aslinya.
+- **Jendela popup per poin** untuk memilih status, menulis keterangan, mengunggah dokumen, dan melihat
+  berkas yang sudah terkirim — dibuka dengan mengklik kolom hasil pada baris mana pun.
 - **Unggah banyak dokumen sekaligus** pada tiap poin penilaian (seperti aplikasi akreditasi).
 - **Folder Google Drive dibuat otomatis** per poin, di dalam folder induk yang Anda tentukan.
   Tautan yang muncul di aplikasi adalah **tautan folder** yang dapat diakses siapa saja yang memilikinya.
-- Kotak **keterangan / hasil self assessment** dan **status** (Ada / Sebagian / Tidak Ada / Tidak Berlaku) per poin.
+- **Status** per poin (Ada / Sesuai, Sebagian, Belum Ada, Tidak Berlaku) beserta keterangan bebas.
 - **Cetak & simpan PDF** langsung dari browser dengan tata letak dokumen resmi.
 - Rekap **kemajuan pengisian** per bagian dan **daftar seluruh tautan folder** untuk dilampirkan.
 
@@ -148,12 +152,22 @@ Pengaturan akan memindahkan berkas-berkas tersebut (25 berkas per klik).
 | **Daftar Tautan Folder** | Rekap seluruh tautan folder Drive, bisa disalin sekaligus |
 | **Pengaturan** | Google Drive, periode penilaian, pengguna, log aktivitas |
 
-Pada setiap poin:
+### Mengisi sebuah poin
 
-- **Kotak keterangan** — ketik langsung, tersimpan otomatis (tanpa tombol simpan).
-- **⬆️ Unggah** — pilih beberapa berkas sekaligus; bisa juga **seret & lepas** berkas ke barisnya.
-- **📂 Folder** — membuat/membuka folder Drive poin tersebut walau belum ada berkas.
-- Tautan folder dan daftar berkas langsung muncul di baris yang sama.
+Kolom **Hasil Self Assessment** sengaja dibuat ringkas: hanya berisi penanda status
+(*Ada / Sesuai*, *Sebagian*, *Belum Ada*, *Tidak Berlaku*), jumlah berkas terlampir, dan
+ringkasan keterangan. Poin yang belum diisi tampil kosong, persis seperti dokumen Word.
+
+Klik kolom tersebut pada baris mana pun untuk membuka **jendela pengisian**:
+
+- **Status** — pilih salah satu tombol; tersimpan otomatis.
+- **Keterangan** — ketik bebas, tersimpan otomatis beberapa saat setelah berhenti mengetik.
+- **Dokumen pendukung** — klik area bergaris putus-putus untuk memilih **beberapa berkas
+  sekaligus**, atau **seret & lepas** berkas ke area itu.
+- **Daftar berkas** — setiap berkas dapat dibuka atau dihapus (ikut terhapus dari Google Drive).
+- **Tautan folder Drive** poin tersebut muncul di jendela ini setelah unggahan pertama.
+
+Tekan **Esc** atau **Simpan & Tutup** untuk kembali. Penanda pada baris langsung diperbarui.
 
 ### Mencetak / menyimpan PDF
 
@@ -196,7 +210,7 @@ app/
     Assessment.php     Query periode, pohon poin, rekap kemajuan
     GoogleDrive.php    Klien Drive API v3 (OAuth / service account)
     Storage.php        Folder & berkas (Drive atau lokal)
-    Render.php         Komponen tampilan (kendali unggah, tabel, baris poin)
+    Render.php         Komponen tampilan (sel ringkas, tabel, baris poin)
   views/               Halaman
 db/
   schema.sql           Skema MariaDB

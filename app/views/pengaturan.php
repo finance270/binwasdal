@@ -256,7 +256,7 @@ document.getElementById('tombol-tes')?.addEventListener('click', function () {
     kotak.textContent = 'Menghubungi Google Drive…';
     var fd = new FormData();
     fd.append('csrf', document.querySelector('meta[name="csrf"]').content);
-    fetch('?p=api_tes_drive', { method: 'POST', body: fd, credentials: 'same-origin' })
+    fetch(window.location.pathname + '?p=api_tes_drive', { method: 'POST', body: fd, credentials: 'same-origin' })
         .then(function (r) { return r.json(); })
         .then(function (r) {
             kotak.className = 'pesan ' + (r.ok ? 'sukses' : 'galat');

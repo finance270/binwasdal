@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pemasangan — <?= e($CFG['app']['name']) ?></title>
-<link rel="stylesheet" href="assets/css/app.css?v=7">
+<link rel="stylesheet" href="assets/css/app.css?v=9">
 </head>
 <body style="background:#eef1f5">
 <div style="max-width:720px;margin:50px auto;padding:0 16px">

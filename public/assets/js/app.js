@@ -1,5 +1,8 @@
 /* =====================================================================
    Self Assessment Binwasdal RS — interaksi halaman
+
+   Kolom "Hasil Self Assessment" hanya menampilkan penanda ringkas.
+   Pengisian keterangan dan pengelolaan dokumen dilakukan lewat popup.
    ===================================================================== */
 (function () {
     'use strict';
@@ -7,7 +10,11 @@
     var CSRF = document.querySelector('meta[name="csrf"]');
     CSRF = CSRF ? CSRF.content : '';
 
-    // ------------------------------------------------------------ util
+    // Alamat titik-akhir AJAX selalu mengacu ke halaman aplikasi yang sedang
+    // dibuka, bukan URL relatif — agar tetap benar di sub-folder mana pun.
+    var ENDPOINT = window.location.pathname;
+
+    // ------------------------------------------------------------- util
     var statusEl = null;
 
     function toast(pesan, galat) {
@@ -21,7 +28,7 @@
         clearTimeout(statusEl._t);
         statusEl._t = setTimeout(function () {
             statusEl.className = 'simpan-status';
-        }, galat ? 6000 : 1600);
+        }, galat ? 6000 : 1800);
     }
 
     function post(page, data) {
@@ -30,8 +37,12 @@
             Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
         }
         fd.append('csrf', CSRF);
-        return fetch('?p=' + page, { method: 'POST', body: fd, credentials: 'same-origin' })
-            .then(function (r) { return r.json().catch(function () { return { ok: false, pesan: 'Balasan server tidak valid (HTTP ' + r.status + ').' }; }); });
+        return fetch(ENDPOINT + '?p=' + page, { method: 'POST', body: fd, credentials: 'same-origin' })
+            .then(function (r) {
+                return r.json().catch(function () {
+                    return { ok: false, pesan: 'Balasan server tidak valid (HTTP ' + r.status + ').' };
+                });
+            });
     }
 
     function debounce(fn, ms) {
@@ -43,26 +54,16 @@
         };
     }
 
-    function autosize(ta) {
-        ta.style.height = 'auto';
-        ta.style.height = (ta.scrollHeight + 2) + 'px';
+    function labelStatus(s) {
+        return {
+            ada: 'Ada / Sesuai',
+            sebagian: 'Sebagian',
+            tidak_ada: 'Belum Ada',
+            na: 'Tidak Berlaku'
+        }[s] || '';
     }
 
-    // -------------------------------------------------- simpan otomatis
-    var simpanJawaban = debounce(function (el) {
-        var wrap = el.closest('[data-item]');
-        var itemId = wrap.getAttribute('data-item');
-        var status = wrap.querySelector('select.status');
-        var ket = wrap.querySelector('textarea.ket');
-        post('api_jawaban', {
-            item_id: itemId,
-            status: status ? status.value : '',
-            keterangan: ket ? ket.value : ''
-        }).then(function (r) {
-            toast(r.ok ? 'Tersimpan ' + (r.waktu || '') : (r.pesan || 'Gagal menyimpan'), !r.ok);
-        }).catch(function () { toast('Gagal menghubungi server', true); });
-    }, 550);
-
+    // ------------------------------- isian langsung pada tabel profil
     var simpanSel = debounce(function (el) {
         post('api_sel', {
             table_code: el.getAttribute('data-tabel'),
@@ -85,20 +86,10 @@
 
     document.addEventListener('input', function (ev) {
         var t = ev.target;
-        if (t.matches('textarea.ket')) { autosize(t); simpanJawaban(t); }
-        else if (t.matches('.sel[data-tabel]')) { simpanSel(t); }
+        if (t.matches('.sel[data-tabel]')) { simpanSel(t); }
         else if (t.matches('.sel[data-profil]')) { simpanProfil(t); }
     });
 
-    document.addEventListener('change', function (ev) {
-        var t = ev.target;
-        if (t.matches('select.status')) {
-            t.className = 'status s-' + (t.value || 'kosong');
-            simpanJawaban(t);
-        }
-    });
-
-    // sel contenteditable: cegah tempel format & baris baru berlebihan
     document.addEventListener('paste', function (ev) {
         var t = ev.target;
         if (t.matches && t.matches('.sel')) {
@@ -114,189 +105,317 @@
         }
     });
 
-    // ------------------------------------------------------------ unggah
-    var input = document.getElementById('pemilih-berkas');
-    var targetAktif = null;
+    // =================================================================
+    //  Popup pengisian poin
+    // =================================================================
+    var latar    = document.getElementById('modal-latar');
+    var modal    = document.getElementById('modal-poin');
+    var input    = document.getElementById('pemilih-berkas');
+    if (!modal) { return; }
 
-    function kotakBerkas(wrap) {
-        var ul = wrap.querySelector('ul.berkas');
-        if (!ul) {
-            ul = document.createElement('ul');
-            ul.className = 'berkas';
-            wrap.querySelector('.kendali').appendChild(ul);
-        }
-        return ul;
+    var elJudul   = document.getElementById('modal-judul');
+    var elKonteks = document.getElementById('modal-konteks');
+    var elKet     = document.getElementById('modal-ket');
+    var elStatus  = document.getElementById('pilih-status');
+    var elBlok    = document.getElementById('blok-status');
+    var elZona    = document.getElementById('zona-unggah');
+    var elFolder  = document.getElementById('modal-folder');
+    var elBerkas  = document.getElementById('modal-berkas');
+    var elKosong  = document.getElementById('modal-kosong');
+    var elInfo    = document.getElementById('modal-info');
+
+    var aktif = null;      // { sel, ownerType, ownerKey, itemId, punyaStatus, status, berkas }
+    var berubah = false;
+
+    // ------------------------------------------------------- buka/tutup
+    function buka(sel) {
+        aktif = {
+            sel: sel,
+            ownerType: sel.getAttribute('data-owner-type'),
+            ownerKey: sel.getAttribute('data-owner-key'),
+            itemId: sel.getAttribute('data-item'),
+            punyaStatus: true,
+            status: '',
+            berkas: []
+        };
+        berubah = false;
+
+        elJudul.textContent = 'Memuat…';
+        elKonteks.textContent = '';
+        elKet.value = '';
+        elBerkas.innerHTML = '';
+        elFolder.innerHTML = '';
+        elKosong.style.display = 'none';
+        elInfo.textContent = '';
+        pilihStatus('');
+
+        latar.classList.add('tampil');
+        modal.classList.add('tampil');
+        document.body.style.overflow = 'hidden';
+
+        post('api_detail', { owner_type: aktif.ownerType, owner_key: aktif.ownerKey })
+            .then(function (r) {
+                if (!r.ok) { elJudul.textContent = r.pesan || 'Gagal memuat'; return; }
+                aktif.punyaStatus = !!r.punya_status;
+                aktif.status = r.status || '';
+                aktif.berkas = r.berkas || [];
+
+                elJudul.textContent = (r.kode ? r.kode + '. ' : '') + r.judul;
+                elKonteks.textContent = [r.bagian, r.induk].filter(Boolean).join(' › ');
+                elBlok.style.display = aktif.punyaStatus ? '' : 'none';
+                elKet.value = r.keterangan || '';
+                pilihStatus(aktif.status);
+                gambarFolder(r.folder);
+                gambarBerkas();
+
+                var bolehEdit = r.boleh_edit;
+                elZona.style.display = bolehEdit ? '' : 'none';
+                elKet.readOnly = !bolehEdit;
+                document.getElementById('modal-simpan').style.display = bolehEdit ? '' : 'none';
+            })
+            .catch(function () { elJudul.textContent = 'Gagal menghubungi server'; });
     }
 
-    function tampilkanFolder(wrap, folder) {
-        if (!folder) return;
-        var ringkas = wrap.getAttribute('data-ringkas') === '1';
-        var kendali = wrap.querySelector('.kendali');
-        var chip = wrap.querySelector('.chip-folder');
-        if (!chip) {
-            chip = document.createElement('a');
-            chip.target = '_blank';
-            chip.rel = 'noopener';
-            var baris = wrap.querySelector('.baris-folder');
-            if (!baris) {
-                baris = document.createElement('div');
-                baris.className = 'baris-kendali baris-folder';
-                kendali.appendChild(baris);
-            }
-            baris.appendChild(chip);
+    function tutup() {
+        if (berubah) { simpanJawaban(); }
+        latar.classList.remove('tampil');
+        modal.classList.remove('tampil');
+        document.body.style.overflow = '';
+        aktif = null;
+    }
+
+    latar.addEventListener('click', tutup);
+    document.getElementById('modal-x').addEventListener('click', tutup);
+    document.getElementById('modal-batal').addEventListener('click', tutup);
+    document.getElementById('modal-simpan').addEventListener('click', tutup);
+    document.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Escape' && modal.classList.contains('tampil')) { tutup(); }
+    });
+
+    // --------------------------------------------------------- status
+    function pilihStatus(nilai) {
+        Array.prototype.forEach.call(elStatus.children, function (b) {
+            b.classList.toggle('aktif', b.getAttribute('data-nilai') === nilai && nilai !== '');
+        });
+    }
+
+    elStatus.addEventListener('click', function (ev) {
+        var b = ev.target.closest('button');
+        if (!b || !aktif) { return; }
+        aktif.status = b.getAttribute('data-nilai');
+        pilihStatus(aktif.status);
+        berubah = true;
+        simpanJawaban();
+    });
+
+    elKet.addEventListener('input', function () {
+        berubah = true;
+        simpanKetTertunda();
+    });
+
+    var simpanKetTertunda = debounce(function () { simpanJawaban(); }, 700);
+
+    function simpanJawaban() {
+        if (!aktif || !aktif.itemId || !aktif.punyaStatus) { perbaruiSel(); return; }
+        var sel = aktif.sel, status = aktif.status, ket = elKet.value;
+        berubah = false;
+        post('api_jawaban', { item_id: aktif.itemId, status: status, keterangan: ket })
+            .then(function (r) {
+                if (r.ok) {
+                    elInfo.textContent = 'Tersimpan ' + (r.waktu || '');
+                    perbaruiSel(sel, status, ket);
+                } else {
+                    toast(r.pesan || 'Gagal menyimpan', true);
+                }
+            })
+            .catch(function () { toast('Gagal menghubungi server', true); });
+    }
+
+    /** Perbarui penanda ringkas pada baris tabel. */
+    function perbaruiSel(sel, status, ket) {
+        sel = sel || (aktif && aktif.sel);
+        if (!sel) { return; }
+        if (status === undefined) { status = sel.getAttribute('data-status') || ''; }
+        if (ket === undefined) {
+            var lama = sel.querySelector('.ket-ringkas');
+            ket = lama ? lama.innerText : '';
         }
-        if (folder.lokal) {
-            chip.className = 'chip-folder lokal';
-            chip.textContent = ringkas ? '📁 Lokal' : '📁 Tersimpan lokal (Drive belum aktif)';
-            chip.title = 'Google Drive belum aktif — berkas tersimpan di server';
-            chip.removeAttribute('href');
+        var jml = (aktif && aktif.berkas) ? aktif.berkas.length : parseInt(sel.getAttribute('data-berkas') || '0', 10);
+        ket = (ket || '').trim();
+
+        sel.setAttribute('data-status', status);
+        sel.setAttribute('data-berkas', jml);
+        var tr = sel.closest('tr');
+        if (tr) {
+            tr.setAttribute('data-status', status);
+            tr.setAttribute('data-berkas', jml);
+        }
+
+        var kosong = status === '' && ket === '' && jml === 0;
+        sel.classList.toggle('kosong', kosong);
+
+        var html = '<div class="ringkas-baris">';
+        if (status) {
+            html += '<span class="badge b-' + status + '">' + labelStatus(status) + '</span>';
+        }
+        if (jml > 0) {
+            html += '<span class="lampiran">📎 ' + jml + ' berkas</span>';
+        }
+        if (kosong) {
+            html += '<span class="isi-hint">＋ klik untuk mengisi</span>';
+        }
+        html += '</div>';
+        sel.innerHTML = html;
+
+        if (ket !== '') {
+            var d = document.createElement('div');
+            d.className = 'ket-ringkas';
+            d.textContent = ket;
+            sel.appendChild(d);
+        }
+    }
+
+    // --------------------------------------------------------- folder
+    function gambarFolder(folder) {
+        elFolder.innerHTML = '';
+        if (!folder) { return; }
+        if (folder.lokal || !folder.link) {
+            var s = document.createElement('span');
+            s.className = 'chip-folder lokal';
+            s.textContent = '📁 Tersimpan di server — Google Drive belum aktif';
+            elFolder.appendChild(s);
         } else {
-            chip.className = 'chip-folder';
-            chip.textContent = ringkas ? '📂 Folder Drive' : '📂 Buka folder Google Drive';
-            chip.title = 'Buka folder Google Drive';
-            chip.href = folder.link;
+            var a = document.createElement('a');
+            a.className = 'chip-folder';
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.href = folder.link;
+            a.textContent = '📂 Buka folder Google Drive poin ini';
+            elFolder.appendChild(a);
         }
     }
 
-    function tambahBerkas(wrap, b) {
-        var ul = kotakBerkas(wrap);
-        var li = document.createElement('li');
-        li.setAttribute('data-doc', b.id);
-        li.innerHTML = b.ikon + ' '
-            + '<a target="_blank" rel="noopener"></a> '
-            + '<span class="ukuran"></span> '
-            + '<button type="button" class="hapus no-print" title="Hapus berkas">✕</button>';
-        var a = li.querySelector('a');
-        a.href = b.link;
-        a.textContent = b.nama;
-        li.querySelector('.ukuran').textContent = b.ukuran;
-        ul.appendChild(li);
+    // --------------------------------------------------------- berkas
+    function gambarBerkas() {
+        elBerkas.innerHTML = '';
+        var daftar = (aktif && aktif.berkas) || [];
+        elKosong.style.display = daftar.length ? 'none' : '';
+        daftar.forEach(function (b) {
+            var li = document.createElement('li');
+            li.setAttribute('data-doc', b.id);
+            li.innerHTML = '<span>' + b.ikon + '</span>'
+                + '<span class="nama"><a target="_blank" rel="noopener"></a></span>'
+                + '<span class="ukuran"></span>'
+                + '<button type="button" class="hapus" title="Hapus berkas">✕</button>';
+            var a = li.querySelector('a');
+            a.href = b.link;
+            a.textContent = b.nama;
+            li.querySelector('.ukuran').textContent = b.ukuran;
+            elBerkas.appendChild(li);
+        });
     }
 
-    function unggah(wrap, files) {
-        if (!files || !files.length) return;
-        var fd = new FormData();
-        fd.append('owner_type', wrap.getAttribute('data-owner-type'));
-        fd.append('owner_key', wrap.getAttribute('data-owner-key'));
-        for (var i = 0; i < files.length; i++) fd.append('berkas[]', files[i]);
+    elBerkas.addEventListener('click', function (ev) {
+        var h = ev.target.closest('.hapus');
+        if (!h || !aktif) { return; }
+        var li = h.closest('li[data-doc]');
+        var id = parseInt(li.getAttribute('data-doc'), 10);
+        if (!confirm('Hapus berkas ini? Berkas juga dihapus dari Google Drive.')) { return; }
+        post('api_hapus_berkas', { id: id }).then(function (r) {
+            if (!r.ok) { toast(r.pesan, true); return; }
+            aktif.berkas = aktif.berkas.filter(function (b) { return b.id !== id; });
+            gambarBerkas();
+            perbaruiSel(aktif.sel, aktif.status, elKet.value);
+            toast('Berkas dihapus');
+        });
+    });
 
-        var tombol = wrap.querySelector('.btn-unggah');
-        var labelAsli = tombol ? tombol.innerHTML : '';
-        if (tombol) { tombol.disabled = true; tombol.innerHTML = '⏳ Mengunggah…'; }
-        toast('Mengunggah ' + files.length + ' berkas…');
+    // --------------------------------------------------------- unggah
+    function unggah(files) {
+        if (!files || !files.length || !aktif) { return; }
+        var fd = new FormData();
+        fd.append('owner_type', aktif.ownerType);
+        fd.append('owner_key', aktif.ownerKey);
+        for (var i = 0; i < files.length; i++) { fd.append('berkas[]', files[i]); }
+
+        var sel = aktif.sel;
+        elZona.classList.add('sibuk');
+        elInfo.textContent = 'Mengunggah ' + files.length + ' berkas…';
 
         post('api_unggah', fd).then(function (r) {
-            if (tombol) { tombol.disabled = false; tombol.innerHTML = labelAsli; }
-            if (r.folder) tampilkanFolder(wrap, r.folder);
-            (r.berkas || []).forEach(function (b) { tambahBerkas(wrap, b); });
+            elZona.classList.remove('sibuk');
+            if (!aktif) { return; }
+            (r.berkas || []).forEach(function (b) { aktif.berkas.push(b); });
+            gambarBerkas();
+            gambarFolder(r.folder);
+            perbaruiSel(sel, aktif.status, elKet.value);
             if (r.gagal && r.gagal.length) {
+                elInfo.textContent = '';
                 toast(r.gagal.join(' | '), true);
             } else {
-                toast(r.pesan || 'Selesai');
+                elInfo.textContent = r.pesan || 'Selesai';
+                toast(r.pesan || 'Berkas tersimpan');
             }
         }).catch(function () {
-            if (tombol) { tombol.disabled = false; tombol.innerHTML = labelAsli; }
+            elZona.classList.remove('sibuk');
+            elInfo.textContent = '';
             toast('Gagal mengunggah berkas', true);
         });
     }
 
-    document.addEventListener('click', function (ev) {
-        var t = ev.target.closest('.btn-unggah');
-        if (t) {
-            targetAktif = t.closest('[data-owner-key]');
-            input.value = '';
-            input.click();
-            return;
-        }
+    elZona.addEventListener('click', function () { input.value = ''; input.click(); });
+    input.addEventListener('change', function () { unggah(input.files); });
 
-        var f = ev.target.closest('.btn-folder');
-        if (f) {
-            var wrap = f.closest('[data-owner-key]');
-            f.disabled = true;
-            post('api_folder', {
-                owner_type: wrap.getAttribute('data-owner-type'),
-                owner_key: wrap.getAttribute('data-owner-key')
-            }).then(function (r) {
-                f.disabled = false;
-                if (r.ok) {
-                    tampilkanFolder(wrap, r.folder);
-                    if (r.folder.link) window.open(r.folder.link, '_blank', 'noopener');
-                    toast('Folder siap: ' + r.folder.nama);
-                } else {
-                    toast(r.pesan, true);
-                }
-            }).catch(function () { f.disabled = false; toast('Gagal membuat folder', true); });
-            return;
-        }
-
-        var h = ev.target.closest('.hapus');
-        if (h) {
-            var li = h.closest('li[data-doc]');
-            if (!confirm('Hapus berkas ini? Berkas juga dihapus dari Google Drive.')) return;
-            post('api_hapus_berkas', { id: li.getAttribute('data-doc') }).then(function (r) {
-                if (r.ok) { li.remove(); toast('Berkas dihapus'); }
-                else toast(r.pesan, true);
-            });
-        }
-    });
-
-    if (input) {
-        input.addEventListener('change', function () {
-            if (targetAktif) unggah(targetAktif, input.files);
-        });
-    }
-
-    // seret & lepas berkas ke baris poin
     ['dragenter', 'dragover'].forEach(function (t) {
-        document.addEventListener(t, function (ev) {
-            var w = ev.target.closest ? ev.target.closest('[data-owner-key]') : null;
-            if (!w) return;
-            ev.preventDefault();
-            w.classList.add('drop-aktif');
-        });
+        elZona.addEventListener(t, function (ev) { ev.preventDefault(); elZona.classList.add('aktif'); });
     });
-    document.addEventListener('dragleave', function (ev) {
-        var w = ev.target.closest ? ev.target.closest('[data-owner-key]') : null;
-        if (w) w.classList.remove('drop-aktif');
-    });
-    document.addEventListener('drop', function (ev) {
-        var w = ev.target.closest ? ev.target.closest('[data-owner-key]') : null;
-        if (!w) return;
+    elZona.addEventListener('dragleave', function () { elZona.classList.remove('aktif'); });
+    elZona.addEventListener('drop', function (ev) {
         ev.preventDefault();
-        w.classList.remove('drop-aktif');
-        unggah(w, ev.dataTransfer.files);
+        elZona.classList.remove('aktif');
+        unggah(ev.dataTransfer.files);
+    });
+    // cegah peramban membuka berkas bila dilepas di luar zona
+    ['dragover', 'drop'].forEach(function (t) {
+        document.addEventListener(t, function (ev) {
+            if (!ev.target.closest || !ev.target.closest('#zona-unggah')) { ev.preventDefault(); }
+        });
     });
 
-    // ------------------------------------------------- penyesuaian awal
-    document.querySelectorAll('textarea.ket').forEach(autosize);
+    // ------------------------------------------- membuka popup dari sel
+    document.addEventListener('click', function (ev) {
+        var sel = ev.target.closest('.poin-sel');
+        if (sel) { buka(sel); }
+    });
+    document.addEventListener('keydown', function (ev) {
+        if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.classList
+            && ev.target.classList.contains('poin-sel')) {
+            ev.preventDefault();
+            buka(ev.target);
+        }
+    });
 
-    // pencarian cepat di dalam bagian
+    // ------------------------------------------------- cari & saring
     var cari = document.getElementById('cari-poin');
-    if (cari) {
-        cari.addEventListener('input', debounce(function () {
-            var q = cari.value.toLowerCase().trim();
-            document.querySelectorAll('tr.poin').forEach(function (tr) {
-                if (!q) { tr.style.display = ''; return; }
-                tr.style.display = tr.innerText.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
-            });
-        }, 200));
-    }
-
-    // saring berdasarkan status
     var saring = document.getElementById('saring-status');
-    if (saring) {
-        saring.addEventListener('change', function () {
-            var v = saring.value;
-            document.querySelectorAll('tr.poin').forEach(function (tr) {
-                if (v === '') { tr.style.display = ''; return; }
-                var s = tr.querySelector('select.status');
-                var punyaBerkas = tr.querySelector('ul.berkas li');
-                var cocok;
-                if (v === 'belum') cocok = (!s || s.value === '') && !punyaBerkas;
-                else if (v === 'ada_berkas') cocok = !!punyaBerkas;
-                else cocok = s && s.value === v;
-                tr.style.display = cocok ? '' : 'none';
-            });
+
+    function terapkanSaringan() {
+        var q = cari ? cari.value.toLowerCase().trim() : '';
+        var v = saring ? saring.value : '';
+        document.querySelectorAll('tr.poin').forEach(function (tr) {
+            var tampil = true;
+            if (q) { tampil = tr.innerText.toLowerCase().indexOf(q) >= 0; }
+            if (tampil && v) {
+                var st = tr.getAttribute('data-status') || '';
+                var bk = parseInt(tr.getAttribute('data-berkas') || '0', 10);
+                if (v === 'belum') { tampil = st === '' && bk === 0; }
+                else if (v === 'ada_berkas') { tampil = bk > 0; }
+                else { tampil = st === v; }
+            }
+            tr.style.display = tampil ? '' : 'none';
         });
     }
+
+    if (cari) { cari.addEventListener('input', debounce(terapkanSaringan, 200)); }
+    if (saring) { saring.addEventListener('change', terapkanSaringan); }
 })();

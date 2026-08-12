@@ -6,98 +6,73 @@
 class Render
 {
     /**
+     * Sel ringkas pada kolom "Hasil Self Assessment".
+     * Hanya menampilkan penanda (Ada / Belum Ada / kosong) dan jumlah berkas.
+     * Pengisian dan daftar unggahan dibuka lewat jendela popup.
+     *
      * @param array $o {
-     *   owner_type : 'item'|'row'
-     *   owner_key  : id item atau "<table_code>:<row_no>"
-     *   item_id    : id item (bila owner_type = item) — dipakai untuk simpan jawaban
-     *   status     : status jawaban
-     *   keterangan : teks keterangan
-     *   documents  : daftar dokumen
-     *   folder     : baris drive_folders
-     *   status_tampil : tampilkan pilihan status (default true)
-     *   ket_tampil    : tampilkan kotak keterangan (default true)
-     *   ringkas       : mode ringkas (untuk baris tabel profil)
+     *   owner_type   : 'item'|'row'
+     *   owner_key    : id item atau "<table_code>:<row_no>"
+     *   item_id      : id item (bila owner_type = item)
+     *   status       : status jawaban
+     *   keterangan   : teks keterangan
+     *   documents    : daftar dokumen
+     *   folder       : baris drive_folders
+     *   punya_status : sel ini memakai status + keterangan (default true)
      * }
      */
-    public static function kendali(array $o): string
+    public static function selPoin(array $o): string
     {
         $ownerType = $o['owner_type'];
         $ownerKey  = (string) $o['owner_key'];
         $itemId    = $o['item_id'] ?? null;
         $status    = (string) ($o['status'] ?? '');
-        $ket       = (string) ($o['keterangan'] ?? '');
+        $ket       = trim((string) ($o['keterangan'] ?? ''));
         $docs      = $o['documents'] ?? [];
         $folder    = $o['folder'] ?? null;
-        $tampilStatus = $o['status_tampil'] ?? true;
-        $tampilKet    = $o['ket_tampil'] ?? true;
-        $ringkas      = $o['ringkas'] ?? false;
-        $bolehEdit = Auth::canEdit();
+        $punyaStatus = $o['punya_status'] ?? true;
 
-        $h = '<div class="kendali-wrap" data-owner-type="' . e($ownerType) . '" data-owner-key="' . e($ownerKey) . '"'
+        $jml = count($docs);
+        $kosong = $status === '' && $ket === '' && $jml === 0;
+
+        $h = '<div class="poin-sel' . ($kosong ? ' kosong' : '') . '"'
+            . ' data-owner-type="' . e($ownerType) . '"'
+            . ' data-owner-key="' . e($ownerKey) . '"'
             . ($itemId ? ' data-item="' . (int) $itemId . '"' : '')
-            . ($ringkas ? ' data-ringkas="1"' : '') . '>';
-        $h .= '<div class="kendali">';
+            . ' data-status="' . e($status) . '"'
+            . ' data-berkas="' . $jml . '"'
+            . ' role="button" tabindex="0"'
+            . ' title="Klik untuk mengisi keterangan dan mengunggah dokumen">';
 
-        // status versi cetak (tampil hanya saat dicetak)
-        if ($tampilStatus && $status !== '') {
-            $h .= '<div class="status-cetak">[' . e(statusLabel($status)) . ']</div>';
+        $h .= '<div class="ringkas-baris">';
+        if ($punyaStatus && $status !== '') {
+            $h .= '<span class="badge b-' . e($status) . '">' . e(statusLabel($status)) . '</span>';
         }
-
-        // baris 1: status + tombol
-        $h .= '<div class="baris-kendali no-print">';
-        if ($tampilStatus) {
-            $h .= '<select class="status s-' . e($status ?: 'kosong') . '"' . ($bolehEdit ? '' : ' disabled') . '>';
-            foreach (statusOptions() as $v => $label) {
-                $h .= '<option value="' . e($v) . '"' . ($v === $status ? ' selected' : '') . '>' . e($label) . '</option>';
-            }
-            $h .= '</select>';
+        if ($jml > 0) {
+            $h .= '<span class="lampiran">📎 ' . $jml . ' berkas</span>';
         }
-        if ($bolehEdit) {
-            $kelas = $ringkas ? 'btn kecil' : 'btn';
-            $h .= '<button type="button" class="' . $kelas . ' btn-unggah" title="Pilih satu atau beberapa berkas">⬆️ Unggah</button>';
-            $h .= '<button type="button" class="btn kecil btn-folder" title="Buat / buka folder Google Drive untuk poin ini">📂 Folder</button>';
+        if ($kosong) {
+            $h .= '<span class="isi-hint">＋ klik untuk mengisi</span>';
         }
         $h .= '</div>';
 
-        // baris 2: keterangan
-        if ($tampilKet) {
-            if ($bolehEdit) {
-                $h .= '<textarea class="ket no-print" rows="1" placeholder="Keterangan / hasil self assessment…">' . e($ket) . '</textarea>';
-            }
-            $h .= '<div class="ket-cetak" style="display:none">' . enl($ket) . '</div>';
+        if ($ket !== '') {
+            $h .= '<div class="ket-ringkas">' . enl($ket) . '</div>';
         }
 
-        // baris 3: tautan folder
-        $h .= '<div class="baris-kendali baris-folder">';
-        if ($folder) {
-            if (!empty($folder['drive_link'])) {
-                $teks = $ringkas ? '📂 Folder Drive' : '📂 Buka folder Google Drive';
-                $h .= '<a class="chip-folder" href="' . e($folder['drive_link']) . '" target="_blank" rel="noopener" title="Buka folder Google Drive">' . $teks . '</a>';
-                $h .= '<span class="tautan-cetak url-cetak">📂 ' . e($folder['drive_link']) . '</span>';
-            } else {
-                $h .= '<span class="chip-folder lokal" title="Google Drive belum aktif — berkas tersimpan di server">'
-                    . ($ringkas ? '📁 Lokal' : '📁 Tersimpan lokal (Drive belum aktif)') . '</span>';
-            }
+        // hanya muncul saat halaman ini dicetak langsung
+        if ($folder && !empty($folder['drive_link'])) {
+            $h .= '<div class="tautan-cetak url-cetak">📂 ' . e($folder['drive_link']) . '</div>';
         }
-        $h .= '</div>';
-
-        // baris 4: daftar berkas
         if ($docs) {
-            $h .= '<ul class="berkas">';
+            $h .= '<ul class="berkas-cetak">';
             foreach ($docs as $d) {
-                $h .= '<li data-doc="' . (int) $d['id'] . '">'
-                    . ikonBerkas($d['nama_file']) . ' '
-                    . '<a href="' . e(tautanBerkas($d)) . '" target="_blank" rel="noopener">' . e($d['nama_file']) . '</a> '
-                    . '<span class="ukuran">' . e(Storage::formatUkuran((int) $d['ukuran'])) . '</span>'
-                    . ($bolehEdit ? ' <button type="button" class="hapus no-print" title="Hapus berkas">✕</button>' : '')
-                    . '</li>';
+                $h .= '<li>' . e($d['nama_file']) . '</li>';
             }
             $h .= '</ul>';
-        } else {
-            $h .= '<ul class="berkas"></ul>';
         }
 
-        $h .= '</div></div>';
+        $h .= '</div>';
         return $h;
     }
 
@@ -157,14 +132,12 @@ class Render
                 $h .= '</td>';
             }
             if (!empty($def['upload'])) {
-                $h .= '<td>' . self::kendali([
-                    'owner_type'    => 'row',
-                    'owner_key'     => $code . ':' . $r['row_no'],
-                    'documents'     => $r['documents'],
-                    'folder'        => $r['folder'],
-                    'status_tampil' => false,
-                    'ket_tampil'    => false,
-                    'ringkas'       => true,
+                $h .= '<td>' . self::selPoin([
+                    'owner_type'   => 'row',
+                    'owner_key'    => $code . ':' . $r['row_no'],
+                    'documents'    => $r['documents'],
+                    'folder'       => $r['folder'],
+                    'punya_status' => false,
                 ]) . '</td>';
             }
             $h .= '</tr>';
@@ -250,7 +223,8 @@ class Render
             $kelas = 'poin ' . ($level === 0 ? 'utama' : 'anak');
             $ind = $level > 0 ? ' ind-' . min($level, 3) : '';
 
-            $h .= '<tr class="' . $kelas . '">';
+            $h .= '<tr class="' . $kelas . '" data-status="' . e((string) ($n['status'] ?? '')) . '"'
+                . ' data-berkas="' . count($n['documents']) . '">';
             $h .= '<td class="no">' . ($level === 0 ? e($n['label']) : '') . '</td>';
             $h .= '<td class="uraian' . $ind . '">';
             if ($level > 0) {
@@ -262,7 +236,7 @@ class Render
             if ($cetak) {
                 $h .= self::berkasCetak($n['documents'], $n['folder'], self::statusTeks($n) . (string) $n['keterangan']);
             } else {
-                $h .= self::kendali([
+                $h .= self::selPoin([
                     'owner_type' => 'item',
                     'owner_key'  => (string) $n['id'],
                     'item_id'    => (int) $n['id'],

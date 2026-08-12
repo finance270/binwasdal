@@ -48,14 +48,14 @@ function statusLabel(string $s): string
         ''          => 'Belum diisi',
         'ada'       => 'Ada / Sesuai',
         'sebagian'  => 'Sebagian',
-        'tidak_ada' => 'Tidak Ada',
+        'tidak_ada' => 'Belum Ada',
         'na'        => 'Tidak Berlaku',
     ][$s] ?? $s;
 }
 
 function statusOptions(): array
 {
-    return ['' => '— pilih —', 'ada' => 'Ada / Sesuai', 'sebagian' => 'Sebagian', 'tidak_ada' => 'Tidak Ada', 'na' => 'Tidak Berlaku'];
+    return ['' => '— pilih —', 'ada' => 'Ada / Sesuai', 'sebagian' => 'Sebagian', 'tidak_ada' => 'Belum Ada', 'na' => 'Tidak Berlaku'];
 }
 
 /** Format tanggal Indonesia: 12 Agustus 2026 */

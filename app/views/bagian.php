@@ -21,7 +21,7 @@ require __DIR__ . '/partials/head.php';
         <option value="belum">Belum diisi</option>
         <option value="ada">Ada / Sesuai</option>
         <option value="sebagian">Sebagian</option>
-        <option value="tidak_ada">Tidak Ada</option>
+        <option value="tidak_ada">Belum Ada</option>
         <option value="na">Tidak Berlaku</option>
         <option value="ada_berkas">Sudah ada berkas</option>
     </select>
@@ -29,9 +29,9 @@ require __DIR__ . '/partials/head.php';
 </div>
 
 <div class="pesan info no-print" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-    <span><b>Cara pakai:</b> isi keterangan langsung pada kolom kanan — tersimpan otomatis.</span>
-    <span>Klik <b>⬆️ Unggah</b> untuk memilih beberapa dokumen sekaligus, atau seret berkas ke barisnya.</span>
-    <span>Setelah unggah pertama, folder Google Drive poin tersebut dibuat otomatis dan tautannya muncul di baris itu.</span>
+    <span><b>Cara pakai:</b> klik kolom <b>Hasil Self Assessment</b> pada baris mana pun untuk membuka jendela pengisian.</span>
+    <span>Di jendela itu Anda memilih status, menulis keterangan, dan mengunggah beberapa dokumen sekaligus.</span>
+    <span>Folder Google Drive poin tersebut dibuat otomatis pada unggahan pertama.</span>
 </div>
 
 <div class="kertas">

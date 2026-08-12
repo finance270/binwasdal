@@ -14,8 +14,9 @@ require __DIR__ . '/partials/head.php';
 </div>
 
 <div class="pesan info no-print">
-    Klik langsung pada kolom isian untuk mengubah. Semua perubahan tersimpan otomatis.
-    Baris <b>Legalitas Perizinan</b> dan <b>Sarana Prasarana</b> memiliki tombol unggah dokumen tersendiri.
+    Klik langsung pada kolom isian untuk mengubah — tersimpan otomatis.
+    Pada tabel <b>Legalitas Perizinan</b> dan <b>Sarana Prasarana</b>, klik kolom
+    <b>Berkas Pendukung</b> untuk membuka jendela unggah dokumen.
 </div>
 
 <div class="kertas">

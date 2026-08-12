@@ -205,6 +205,99 @@ class Assessment
         ];
     }
 
+    /**
+     * Data lengkap satu poin untuk ditampilkan di jendela popup.
+     * $ownerType 'item'  -> $ownerKey berisi id item
+     * $ownerType 'row'   -> $ownerKey berisi "<table_code>:<row_no>"
+     */
+    public static function detailPoin(int $assessmentId, string $ownerType, string $ownerKey): ?array
+    {
+        if ($ownerType === 'item') {
+            $it = DB::one(
+                'SELECT i.id, i.code, i.title, i.level, s.title AS bagian,
+                        a.status, a.keterangan
+                   FROM items i
+                   JOIN sections s ON s.id = i.section_id
+              LEFT JOIN answers a ON a.item_id = i.id AND a.assessment_id = ?
+                  WHERE i.id = ?',
+                [$assessmentId, (int) $ownerKey]
+            );
+            if (!$it) {
+                return null;
+            }
+            $induk = self::jalurInduk((int) $ownerKey);
+            $info = [
+                'judul'        => $it['title'],
+                'kode'         => $it['code'],
+                'bagian'       => $it['bagian'],
+                'induk'        => $induk,
+                'punya_status' => true,
+                'status'       => (string) ($it['status'] ?? ''),
+                'keterangan'   => (string) ($it['keterangan'] ?? ''),
+            ];
+        } else {
+            [$tableCode, $rowNo] = array_pad(explode(':', $ownerKey, 2), 2, '');
+            $def = Forms::get($tableCode);
+            $row = DB::one('SELECT data FROM form_rows WHERE table_code = ? AND row_no = ?', [$tableCode, (int) $rowNo]);
+            if (!$def || !$row) {
+                return null;
+            }
+            $data = json_decode($row['data'], true) ?: [];
+            $labelCol = array_values(array_diff(array_keys($def['cols']), ['no']))[0] ?? 'no';
+            $info = [
+                'judul'        => trim((string) ($data[$labelCol] ?? '')),
+                'kode'         => (string) ($data['no'] ?? $rowNo),
+                'bagian'       => $def['title'],
+                'induk'        => '',
+                'punya_status' => false,
+                'status'       => '',
+                'keterangan'   => '',
+            ];
+        }
+
+        $folder = DB::one(
+            'SELECT nama, drive_id, drive_link FROM drive_folders WHERE assessment_id = ? AND owner_type = ? AND owner_key = ?',
+            [$assessmentId, $ownerType, $ownerKey]
+        );
+        $docs = DB::all(
+            'SELECT * FROM documents WHERE assessment_id = ? AND owner_type = ? AND owner_key = ? ORDER BY id',
+            [$assessmentId, $ownerType, $ownerKey]
+        );
+
+        $info['folder'] = $folder ? [
+            'nama'  => $folder['nama'],
+            'link'  => $folder['drive_link'],
+            'lokal' => empty($folder['drive_id']),
+        ] : null;
+
+        $info['berkas'] = array_map(fn($d) => [
+            'id'     => (int) $d['id'],
+            'nama'   => $d['nama_file'],
+            'ukuran' => Storage::formatUkuran((int) $d['ukuran']),
+            'link'   => tautanBerkas($d),
+            'ikon'   => ikonBerkas($d['nama_file']),
+        ], $docs);
+
+        return $info;
+    }
+
+    /** Rangkaian judul poin induk, untuk konteks di jendela popup. */
+    private static function jalurInduk(int $itemId): string
+    {
+        $jalur = [];
+        $id = (int) DB::val('SELECT parent_id FROM items WHERE id = ?', [$itemId], 0);
+        $batas = 0;
+        while ($id && $batas++ < 5) {
+            $p = DB::one('SELECT id, parent_id, label, title FROM items WHERE id = ?', [$id]);
+            if (!$p) {
+                break;
+            }
+            array_unshift($jalur, trim($p['label'] . ' ' . $p['title']));
+            $id = (int) $p['parent_id'];
+        }
+        return implode(' › ', $jalur);
+    }
+
     /** Daftar seluruh folder poin beserta tautannya (untuk rekap / lampiran). */
     public static function daftarTautan(int $assessmentId): array
     {
