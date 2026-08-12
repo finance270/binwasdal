@@ -1,0 +1,5 @@
+/data/uploads/*
+!/data/uploads/.gitkeep
+/data/mariadb/
+.env
+*.log

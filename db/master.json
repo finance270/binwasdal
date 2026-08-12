@@ -1,0 +1,5878 @@
+{
+ "sections": [
+  {
+   "code": "penyelenggaraan_layanan",
+   "title": "PENYELENGGARAAN LAYANAN",
+   "subtitle": "PELAYANAN KESEHATAN",
+   "items": [
+    {
+     "no": "1",
+     "title": "Pelayanan Rawat Jalan",
+     "hasil": "a. Waktu tunggu rawat jalan Target 60 menit\nb. Dokter pemberi pelayanan di Klinik Spesiali\nc. Penegakan diagnosis TB dengan pemeriksaan m\nd. Pasien TB yang diobati dengan metode DOT (T\ne. Ketersediaan pelayanan VCTHIV tersedia deng\nf. Pencatatan dan pelaporan TB di RS (Target ≥\ng. Peresepan obat sesuai formularium (Target 1\nh. Kepuasan pasien (Target ≥ 90%)",
+     "children": [
+      {
+       "text": "Waktu tunggu rawat jalan (Target <60 menit)",
+       "children": []
+      },
+      {
+       "text": "Dokter pemberi pelayanan di Klinik Spesialis (Target 100% dokter spesialis)",
+       "children": []
+      },
+      {
+       "text": "Penegakan diagnosis TB dengan pemeriksaan mikroskopis (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Pasien TB yang diobati dengan metode DOT (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Ketersediaan pelayanan VCT/HIV (tersedia dengan tenaga terlatih)",
+       "children": []
+      },
+      {
+       "text": "Pencatatan dan pelaporan TB di RS (Target ≥60%)",
+       "children": []
+      },
+      {
+       "text": "Peresepan obat sesuai formularium (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pasien (Target ≥ 90%)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "2",
+     "title": "Pelayanan Rawat Inap",
+     "hasil": "a. Pemenuhan 12 (dua belas) kriteria tempat tidur Kelas Rawat\nb. Laporan kejadian infeksi pasca operasi (Target 1,5%)\nc. Laporan kejadian infeksi nosokomialHAIs (Target 9%)\nd. Visit dokter spesialis setiap hari (termasuk sabtu dan min\ne. Laporan kejadian pasien jatuh yang berakibat cacatkematian\nf. Kepatuhan terhadap hand hygine (Target 85%)\ng. Kejadian Pulang Atas Permintaan Sendiri (Target ≤ 5%)\nh. Kematian pasien 48 jam (Target ≤0.24 %)\ni. Kepuasan Pasien (Target ≥ 90 %)",
+     "children": [
+      {
+       "text": "Pemenuhan 12 (dua belas) kriteria tempat tidur Kelas Rawat Inap Standar (KRIS)",
+       "children": []
+      },
+      {
+       "text": "(https://bit.ly/JuknisKRIS_RumahSakit)",
+       "children": []
+      },
+      {
+       "text": "Laporan kejadian infeksi pasca operasi (Target < 1,5%)",
+       "children": []
+      },
+      {
+       "text": "Laporan kejadian infeksi nosokomial/HAIs (Target < 9%)",
+       "children": []
+      },
+      {
+       "text": "Visit dokter spesialis setiap hari (termasuk sabtu dan minggu)",
+       "children": []
+      },
+      {
+       "text": "Laporan kejadian pasien jatuh yang berakibat cacat/kematian (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Kepatuhan terhadap hand hygine (Target >85%)",
+       "children": []
+      },
+      {
+       "text": "Kejadian Pulang Atas Permintaan Sendiri (Target ≤ 5%)",
+       "children": []
+      },
+      {
+       "text": "Kematian pasien > 48 jam (Target ≤0.24 %)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan Pasien (Target ≥ 90 %)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "3",
+     "title": "Pelayanan Gawat Darurat",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Pintu masuk ruang gawat darurat terpisah dengan pintu masuk utama rumah sakit/rawat jalan atau pintu masuk area servis",
+       "children": []
+      },
+      {
+       "text": "Lokasi ruang gawat darurat harus dapat dengan mudah dikenali dari jalan raya",
+       "children": []
+      },
+      {
+       "text": "Ruang gawat darurat memiliki akses yang cepat dan mudah ke ruang laboratorium, ruang perawatan intensif, ruang operasi, bank darah, ruang radiologi, ruang farmasi, serta ruang kebidanan",
+       "children": []
+      },
+      {
+       "text": "Ruang gawat darurat disarankan untuk memiliki area yang dapat digunakan untuk penanganan korban bencana massal (Kejadian Luar Biasa/KLB)",
+       "children": []
+      },
+      {
+       "text": "Ambulans / kendaraan yang membawa pasien harus dapat sampai di depan pintu yang area nya terlindung dari panas dan hujan",
+       "children": []
+      },
+      {
+       "text": "Memiliki area parkir ambulans",
+       "children": []
+      },
+      {
+       "text": "Area dekontaminasi ditempatkan di sisi depan/luar ruang gawat darurat atau terpisah dengan ruang gawat darurat",
+       "children": []
+      },
+      {
+       "text": "Triase dapat memuat minimal 2 (dua) brankar",
+       "children": []
+      },
+      {
+       "text": "Jumlah Kasus Rujukan IGD",
+       "children": [
+        {
+         "text": "Rujukan diterima dalam 1 (satu) tahun terakhir",
+         "children": []
+        },
+        {
+         "text": "Kasus rujukan keluar dari IGD dalam 1 (satu) tahun terakhir",
+         "children": []
+        },
+        {
+         "text": "Jumlah 10 (sepuluh) kasus rujukan terbanyak",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Monitoring Troly Emergency dan Defibrilator",
+       "children": []
+      },
+      {
+       "text": "Indikator Pelayanan IGD",
+       "children": [
+        {
+         "text": "Petugas sudah bersertifikat Pelayanan Kegawatdaruratan yang masih berlaku (ATLS/ACLS/PPGD/BTCLS/BTLS)",
+         "children": []
+        },
+        {
+         "text": "Ketersediaan SK Tim Penanggulangan Bencana, SK Tim Code Blue, Pedoman Hospital Disaster Plan, Simulasi Bencana",
+         "children": []
+        },
+        {
+         "text": "Waktu tanggap Tenaga Kesehatan/Dokter di Gawat Darurat (Target <5 menit)",
+         "children": []
+        },
+        {
+         "text": "Jam buka pelayanan Gawat Darurat (Target 24 Jam)",
+         "children": []
+        },
+        {
+         "text": "Lama pasien di IGD ≤ 8 jam",
+         "children": []
+        },
+        {
+         "text": "Tidak ada keharusan membayar uang muka (Target 100%)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Kematian pasien < 24 jam (Target ≤2/1000) (DOA dan DOE)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pasien di IGD (Target > 70%)",
+       "children": []
+      },
+      {
+       "text": "l. Laporan kalibrasi alat",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "4",
+     "title": "Pelayanan Bedah atau Ruang Operasi",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Ketersediaan tim bedah",
+       "children": []
+      },
+      {
+       "text": "Ketersediaan fasilitas dan peralatan operasi",
+       "children": []
+      },
+      {
+       "text": "Waktu tunggu operasi elektif",
+       "children": []
+      },
+      {
+       "text": "Pelaksanaan Surgical Safety List (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Pelaksanaan Site Marking (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Komplikasi anestesi karena overdosis, reaksi anestesi, salah penempatan ETT (Target ≤ 6%)",
+       "children": []
+      },
+      {
+       "text": "Kejadian kematian dimeja operasi (Target ≤ 1%)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pelanggan (Target ≥80%)",
+       "children": []
+      },
+      {
+       "text": "Regulasi terkait pelayanan operasi bedah cito",
+       "children": []
+      },
+      {
+       "text": "Pembagian Zona pada ruang Operasi",
+       "children": []
+      },
+      {
+       "text": "Pintu ruang operasi disarankan geser (sliding door) dengan rel di atas, yang dapat dibuka tutup secara otomatis dan dilengkapi dengan kaca jendela pengintai",
+       "children": []
+      },
+      {
+       "text": "Tidak boleh ada jalur bersilangan antara alur bersih dan kotor",
+       "children": []
+      },
+      {
+       "text": "Akses petugas menuju ruangan operasi harus melalui ruangan ganti dan sebaliknya",
+       "children": []
+      },
+      {
+       "text": "Minimal mempunyai kapasitas tempat tidur 1,5 kali jumlah ruang operasi",
+       "children": []
+      },
+      {
+       "text": "Minimal menampung 2 inkubator bayi dan perlengkapan resusitasi bayi",
+       "children": []
+      },
+      {
+       "text": "Sistem ventilasi tersaring, terkontrol dan tekanan dalam setiap ruang operasi harus merupakan tekanan positif",
+       "children": []
+      },
+      {
+       "text": "Sistem pengkondisian udara: Kelembaban relatif 45% - 60% dan Temperatur ruangan 19 °C – 24 °C",
+       "children": []
+      },
+      {
+       "text": "Monitoring pemakaian troly emergency dan Defibrilator",
+       "children": []
+      },
+      {
+       "text": "Laporan kalibrasi alat",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "5",
+     "title": "Pelayanan Pencegahan dan Pengendalian Infeksi",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Adanya IPCN (Infective Prevention Control Nurse) (1 IPCN/100-150 TT)",
+       "children": []
+      },
+      {
+       "text": "Adanya Tim PPI terlatih (Target ≥ 75%)",
+       "children": []
+      },
+      {
+       "text": "Tersedia Program PPI dan dilaksanakan sesuai program",
+       "children": []
+      },
+      {
+       "text": "Tersedia APD disetiap Instalasi (Target ≥ 60%)",
+       "children": []
+      },
+      {
+       "text": "Penggunaan APD saat bertugas (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Pencatatan dan pelaporan surveilance/HAI’s (Target ≥ 75%)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "6",
+     "title": "Pelayanan Radiologi",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Surat izin BAPETEN dan Izin PB UMKU Radiologi",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokter Spesialis Radiologi, radiografer, fisikawan medis,",
+       "children": []
+      },
+      {
+       "text": "Teknisi elektromedik, tenaga administrasi, dan perawat",
+       "children": []
+      },
+      {
+       "text": "Waktu tunggu hasil pelayanan foto thorax cito (Target ≤ 3 jam)",
+       "children": []
+      },
+      {
+       "text": "Pelaksana ekspertisi hasil pemeriksaan radiologi (Target Dr.Sp Radiologi)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pelanggan (Target ≥ 80%)",
+       "children": []
+      },
+      {
+       "text": "Ketersediaan emergency kit",
+       "children": []
+      },
+      {
+       "text": "Laporan kalibrasi alat",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "7",
+     "title": "Pelayanan Laboratorium",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tenaga Dokter Spesialis Patologi Klinik, Analis laboratorium, manajemen mutu",
+       "children": []
+      },
+      {
+       "text": "Tenaga laboratorium sudah pelatihan plebotomi dan K3",
+       "children": []
+      },
+      {
+       "text": "Dokumen Mutu:",
+       "children": [
+        {
+         "text": "Standar Prosedur Operasional (SPO)",
+         "children": []
+        },
+        {
+         "text": "Pemantapan Mutu Internal (PMI)",
+         "children": []
+        },
+        {
+         "text": "Pemantapan Mutu Eksternal (PME)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Saluran pembuangan limbah cair yang dilengkapi dengan pengolahan awal (pre-treatment) khusus sebelum dialirkan ke instalasi pengolahan air limbah rumah sakit",
+       "children": []
+      },
+      {
+       "text": "Waktu tunggu hasil pelayanan lab. PK (hematologi rutin 86 kimia darah cito) (Target ≤60 menit)",
+       "children": []
+      },
+      {
+       "text": "Pemberian identitas, pengolahan dan penyimpanan spesimen dilakukan dengan benar",
+       "children": []
+      },
+      {
+       "text": "Tidak adanya kejadian tertukar specimen dan pemberian hasil pemeriksaan lab (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Kemampuan memeriksa HIV-AIDS",
+       "children": []
+      },
+      {
+       "text": "Kemampuan mikroskopis TB paru",
+       "children": []
+      },
+      {
+       "text": "Ekspertisi hasil pemeriksaan lab oleh Dr Sp. Patologi Klinik",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pelanggan (Target ≥ 80%)",
+       "children": []
+      },
+      {
+       "text": "Pelaksanaan Kalibrasi Alkes",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "8",
+     "title": "Unit Pengelolaan Darah (UPD)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Catatan : dapat bergabung dengan layanan Laboratorium)",
+       "children": []
+      },
+      {
+       "text": "Struktur organisasi ditetapkan oleh pimpinan tertinggi RS",
+       "children": []
+      },
+      {
+       "text": "Struktur organisasi terdiri dari Kepala UPD, PJ Pelayanan, PJ Mutu,",
+       "children": []
+      },
+      {
+       "text": "PJ Administrasi, Pelaksana Teknis",
+       "children": []
+      },
+      {
+       "text": "Pelatihan dan sertifikasi SDM",
+       "children": []
+      },
+      {
+       "text": "Penyelenggaraan Pelayanan",
+       "children": [
+        {
+         "text": "Perencanaan dalam penyedian dan kebutuhan darah dalam 1 (satu) tahun;",
+         "children": []
+        },
+        {
+         "text": "Penyeleksian donor;",
+         "children": []
+        },
+        {
+         "text": "Pengambilan darah;",
+         "children": []
+        },
+        {
+         "text": "Pengujian darah dengan metode Chemiluminescence Imunoassay",
+         "children": []
+        },
+        {
+         "text": "(ChLIA)",
+         "children": []
+        },
+        {
+         "text": "Pengolahan darah antara lain Packed Red Cell (PRC), Thrombocyte Concentrate (TC), Fresh Frozen Plasma (FFP);",
+         "children": []
+        },
+        {
+         "text": "Penyimpanan produk darah;",
+         "children": []
+        },
+        {
+         "text": "Pendistribusian darah;",
+         "children": []
+        },
+        {
+         "text": "Pemusnahan darah dan komponen darah yang tidak terpakai;",
+         "children": []
+        },
+        {
+         "text": "pencatatan seluruh kegiatan UPD setiap hari;",
+         "children": []
+        },
+        {
+         "text": "Pelaporan kepada Kementerian Kesehatan; dan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "11) Pengendalian dokumen Pengelolaan Darah",
+       "children": []
+      },
+      {
+       "text": "Standar prosedur operasional untuk seluruh kegiatan mulai dari perencanaan sampai dengan pemusnahan",
+       "children": []
+      },
+      {
+       "text": "Standar prosedur operasional untuk pemeriksaan IMLTD meliputi HIV,",
+       "children": []
+      },
+      {
+       "text": "Hepatitis B, Hepatitis C, sifilis, dan malaria pada daerah endemis",
+       "children": []
+      },
+      {
+       "text": "Memenuhi kriteria mutu produk darah dan komponen darah sebelum didistribusikan",
+       "children": []
+      },
+      {
+       "text": "Memenuhi standar prosedur operasional audit internal Pengelolaan Darah",
+       "children": []
+      },
+      {
+       "text": "Kejadian reaksi tranfusi (Target ≤0.01%)",
+       "children": []
+      },
+      {
+       "text": "Pemenuhan kebutuhan darah di RS (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Persentase darah yang tidak terpakai (C/T ratio) (Target < 2)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pelanggan (Target ≥80%)",
+       "children": []
+      },
+      {
+       "text": "Laporan kalibrasi alat",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "9",
+     "title": "Layanan Sterilisasi Tersentral (CSSD)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Ada tiga akses di ruang sterilisasi terpusat, yaitu akses untuk penerimaan bahan-bahan kotor dan terkontaminasi, akses mengeluarkan persediaan dan instrumen steril, dan akses barang bersih.",
+       "children": []
+      },
+      {
+       "text": "Ruang sterilisasi sentral terbagi tiga zona, yaitu area kotor, area bersih, dan area steril",
+       "children": []
+      },
+      {
+       "text": "Zona/ Ruangan",
+       "children": [
+        {
+         "text": "Area kotor/pembersihan",
+         "children": [
+          {
+           "text": "Komponen bangunan nonporosif",
+           "children": []
+          },
+          {
+           "text": "Tekanan udara negatif",
+           "children": []
+          }
+         ]
+        },
+        {
+         "text": "- Temperatur ± 2-24°C / 18-22 °C",
+         "children": [
+          {
+           "text": "Kelembaban udara 35-75%",
+           "children": []
+          },
+          {
+           "text": "Dilengkapi bak cuci, bak perendaman dan bak pembilasan untuk pencucian manual",
+           "children": []
+          },
+          {
+           "text": "Sebelum dialirkan ke IPAL, buangan air kotor harus di-pretreatment terlebih dahulu",
+           "children": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "text": "- Kelengkapan APD petugas",
+       "children": []
+      },
+      {
+       "text": "Area bersih/pengemasan/sterilisasi alat",
+       "children": []
+      },
+      {
+       "text": "Komponen bangunan nonporosif",
+       "children": []
+      },
+      {
+       "text": "Tekanan udara positif",
+       "children": []
+      },
+      {
+       "text": "Temperatur ± 2-24°C",
+       "children": []
+      },
+      {
+       "text": "Kelas kebersihan 1.000.000 (ISO-9)",
+       "children": []
+      },
+      {
+       "text": "Pencahayaan alami dioptimalkan. Intensitas pencahayaan ±300 lux",
+       "children": []
+      },
+      {
+       "text": "Untuk ruangan yang menggunakan sterilisasi Etilen Oksida (EtO), maka tekanan ruangan negatif, resirkulasi tidak diperkenankan dan ducting VAC dari bahan stainless steel",
+       "children": []
+      },
+      {
+       "text": "Kelembaban udara max 60%",
+       "children": []
+      },
+      {
+       "text": "Area steril/ gudang alat steril",
+       "children": []
+      },
+      {
+       "text": "Temperatur ± 2-24°C",
+       "children": []
+      },
+      {
+       "text": "Kelas kebersihan 100.000 (ISO-8)",
+       "children": []
+      },
+      {
+       "text": "Ventilasi sistem tekanan positif dengan efisiensi filtrasi particular antara 90-95% (untuk particular ukuran 0,5 mikron)",
+       "children": []
+      },
+      {
+       "text": "Alat steril disimpan jarak 19-24 cm dari lantai, minimum 43 cm dari langit-langit, 5 cm dari dinding",
+       "children": []
+      },
+      {
+       "text": "Sertifikasi/pelatihan petugas CSSD",
+       "children": []
+      },
+      {
+       "text": "Pemberian vaksinasi Hepatitis B pada petugas",
+       "children": []
+      },
+      {
+       "text": "Laporan kalibrasi alat kesehatan",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "10",
+     "title": "Layanan Laundry",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Temperatur ±2-24°C, tekanan udara negatif",
+       "children": []
+      },
+      {
+       "text": "Bangunan laundry harus memperhatikan area basah dan kering, alur kegiatan, dan pengelompokan area bersih dan kotor",
+       "children": []
+      },
+      {
+       "text": "Ruang laundry rumah sakit mempunyai dua pintu yang berada pada sisi yang berbeda, masing-masing untuk akses kotor dan akses bersih",
+       "children": []
+      },
+      {
+       "text": "Ruangan cuci linen infeksius sebaiknya terpisah dari ruangan cuci linen non infeksius",
+       "children": []
+      },
+      {
+       "text": "Dilengkapi instalasi air bersih dan saluran pembuangan air kotor (drain), yang terhubung ke bak pre treatment sebelum dialirkan ke IPAL",
+       "children": []
+      },
+      {
+       "text": "Dilengkapi area toilet, ganti baju, shower, menggunakan APD, wastafel",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "11",
+     "title": "Ruang Jenazah dan/atau Kamar Jenazah",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Bangunan merupakan area tertutup yang benar – benar tidak dapat diakses oleh orang yang tidak berkepentingan",
+       "children": []
+      },
+      {
+       "text": "Letak kamar jenazah dan ruang pemeriksaan forensik memiliki akses langsung dengan ruang gawat darurat, ruang kebidanan, ruang rawat inap, ruang operasi, dan ruang perawatan intensif",
+       "children": []
+      },
+      {
+       "text": "Lantai tidak licin, tahan terhadap air, lebih rendah dari ruangan di sekitarnya, permukaan rata dengan kemiringan kearah floor drain dan mudah dibersihkan",
+       "children": []
+      },
+      {
+       "text": "Dinding tahan air dan bahan kimia, mudah dibersihkan",
+       "children": []
+      },
+      {
+       "text": "Ventilasi udara harus adekuat, baik alami maupun mekanik, dengan total pertukaran udara minimal 10 kali/jam",
+       "children": []
+      },
+      {
+       "text": "Dilengkapi saluran dan lubang pembuangan air kotor (floor drain)",
+       "children": []
+      },
+      {
+       "text": "Memiliki SPO dan alur pelayanan jenazah",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "12",
+     "title": "Program Peningkatan Mutu dan Keselamatan Pasien",
+     "hasil": "12. Program Peningkatan Mutu dan Keselamatan Pasien",
+     "children": [
+      {
+       "text": "Indikator Mutu di Rumah Sakit",
+       "children": [
+        {
+         "text": "Kepatuhan kebersihan tangan Target : ≥ 85%",
+         "children": []
+        },
+        {
+         "text": "Kepatuhan Penggunaan APD Target : 100%",
+         "children": []
+        },
+        {
+         "text": "Kepatuhan Identifikasi Pasien Target : 100%",
+         "children": []
+        },
+        {
+         "text": "Waktu tanggap operasi SC Emergensi Target : ≥ 80%",
+         "children": []
+        },
+        {
+         "text": "Waktu tunggu rawat jalan Target : ≥ 80%",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Penundaan operasi elektif Target : ≤ 5%",
+       "children": []
+      },
+      {
+       "text": "Kepatuhan waktu visite dokter Target : ≥ 80%",
+       "children": []
+      },
+      {
+       "text": "Pelaporan hasil kritis laboratorium Target : 100%",
+       "children": []
+      },
+      {
+       "text": "Kepatuhan penggunaan formularium nasional Target : ≥ 80%",
+       "children": []
+      },
+      {
+       "text": "Kepatuhan terhadap alur klinis (clinical pathway) Target : ≥ 80%",
+       "children": []
+      },
+      {
+       "text": "Kepatuhan upaya pencegahan risiko pasien jatuh Target : 100%",
+       "children": []
+      },
+      {
+       "text": "Kecepatan waktu tanggap komplain Target : ≥ 80%",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pasien Target : ≥ 76,61%",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "13",
+     "title": "Pelayanan Ambulans",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Sertifikasi mobil ambulans",
+       "children": []
+      },
+      {
+       "text": "Ketersediaan pelayanan ambulans (Target 24 jam)",
+       "children": []
+      },
+      {
+       "text": "Penyedia/pendamping pelayanan ambulans (Sopir dan perawat tersertifikasi)",
+       "children": []
+      },
+      {
+       "text": "Kecepatan memberikan pelayanan ambulans RS (Target ≤30 menit)",
+       "children": []
+      },
+      {
+       "text": "Tidak ada kecelakaan ambulans yang menimbulkan kecacatan/kematian (Target 100%)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan pelanggan ≥ 80%",
+       "children": []
+      },
+      {
+       "text": "Laporan kalibrasi alat kesehatan",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "14",
+     "title": "Pelayanan Intensif",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Ketersediaan fasilitas dan peralatan Ruang ICU",
+       "children": []
+      },
+      {
+       "text": "Ketersediaan tempat tidur dengan monitoring dan ventilator",
+       "children": []
+      },
+      {
+       "text": "Kepatuhan terhadap hand hygiene (Target : 100%)",
+       "children": []
+      },
+      {
+       "text": "Kejadian VAP (Ventilator Associated Pneumonia) (Target : ≤10 o/oo)",
+       "children": []
+      },
+      {
+       "text": "Kejadian IADP (Infeksi Aliran Darah Primer) (Target : ≤10 o/oo)",
+       "children": []
+      },
+      {
+       "text": "Kejadian HAP (Hospital Associated Pneumonia) (Target : ≤10 o/oo)",
+       "children": []
+      },
+      {
+       "text": "Pasien yang kembali ke Ruang ICU dengan kasus sama < 72 jam (Target : < 3%)",
+       "children": []
+      },
+      {
+       "text": "Kepuasan Pelanggan (Target > 70%)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "15",
+     "title": "Pemenuhan Layanan Prioritas di RSUD",
+     "hasil": "(Melampirkan hasil self assessment pemenuhan layanan prioritas)",
+     "children": []
+    }
+   ]
+  },
+  {
+   "code": "sub_bagian_tata_usaha",
+   "title": "SUB BAGIAN TATA USAHA",
+   "subtitle": "",
+   "items": [
+    {
+     "no": "1",
+     "title": "Prioritas Pelaksanaan:",
+     "hasil": "1. Implementasi Rekam Medis Elektronik di Rumah Sakit\n2. Pemenuhan Standar Pelayanan Minimal di Rumah Sakit\n3. Penanganan Keluhan Pelanggan (CRM)",
+     "children": [
+      {
+       "text": "Implementasi Rekam Medis Elektronik di Rumah Sakit",
+       "children": []
+      },
+      {
+       "text": "Pemenuhan Standar Pelayanan Minimal di Rumah Sakit",
+       "children": []
+      },
+      {
+       "text": "Penanganan Keluhan Pelanggan (CRM)",
+       "children": []
+      },
+      {
+       "text": "Pelaksanaan Ombudsman (Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "sumber_daya_kesehatan",
+   "title": "SUMBER DAYA KESEHATAN",
+   "subtitle": "",
+   "items": [
+    {
+     "no": "1",
+     "title": "Program Nasional PPRA (Program Pengendalian Resistensi Antimikroba)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "SK Direktur tentang penyelenggaraan Pengendalian Resistensi Antimikroba",
+       "children": []
+      },
+      {
+       "text": "SK Direktur tentang Komite/Tim PRA",
+       "children": []
+      },
+      {
+       "text": "SK Direktur tentang Program Kerja PRA",
+       "children": []
+      },
+      {
+       "text": "Bukti laporan pelaksanaan PPRA",
+       "children": []
+      },
+      {
+       "text": "Bukti laporan pemantauan dan evaluasi kegiatan PPRA (min/tahun)",
+       "children": []
+      },
+      {
+       "text": "Laporan PRA kepada pimpinan RS",
+       "children": []
+      },
+      {
+       "text": "Laporan PRA kepada Kemenkes melalui aplikasi nasional",
+       "children": []
+      },
+      {
+       "text": "Bukti pelaksanaan dan pengembangan penatagunaan antimikroba (PGA) di unit pelayanan",
+       "children": []
+      },
+      {
+       "text": "Panduan Praktik Klinis (PPK) yang sudah disusun RS sesuai regulasi",
+       "children": []
+      },
+      {
+       "text": "Panduan Penggunaan Antimikroba untuk terapi dan profilaksis (PPAB)",
+       "children": []
+      },
+      {
+       "text": "Bukti pengawasan pelaksanaan PGA",
+       "children": []
+      },
+      {
+       "text": "Bukti pemantauan dan evaluasi indikator PGA yang dilaporkan ke direktur",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "2",
+     "title": "Kebijakan Pelayanan Kefarmasian",
+     "hasil": "",
+     "children": [
+      {
+       "text": "SK Pedoman Pengorganisasian",
+       "children": []
+      },
+      {
+       "text": "SK Pedoman Pelayanan Kefarmasian yang mengatur pengelolaan sediaan farmasi, alat kesehatan, dan BMHP serta farmasi klinis",
+       "children": []
+      },
+      {
+       "text": "SK Tim Komite Farmasi Terapi dan menyatakan sekretaris tim KFT adalah Apoteker",
+       "children": []
+      },
+      {
+       "text": "Rapat tim KFT minimal 1 tahun sekali",
+       "children": []
+      },
+      {
+       "text": "Formularium RS",
+       "children": []
+      },
+      {
+       "text": "Evaluasi terhadap kepatuhan penggunaan formularium RS minimal 1 bulan sekali",
+       "children": []
+      },
+      {
+       "text": "Evaluasi terhadap kepatuhan penggunaan formularium nasional minimal 1 bulan sekali",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "3",
+     "title": "Sumber Daya Kefarmasian",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Apoteker dan TTK memiliki STR/STRTTK dan SIPA/SIPTTK yang berlaku",
+       "children": []
+      },
+      {
+       "text": "IFRS dikepalai oleh Apoteker",
+       "children": []
+      },
+      {
+       "text": "Kepala IFRS mempunyai pengalaman minimal 3 tahun",
+       "children": []
+      },
+      {
+       "text": "Ada Analisis Beban Kerja untuk kegiatan pengelolaan/manajerial",
+       "children": []
+      },
+      {
+       "text": "Ada Analisis Beban Kerja untuk kegiatan farmasi klinis",
+       "children": []
+      },
+      {
+       "text": "Apoteker di rawat jalan rasio 1 apoteker untuk 50 pasien",
+       "children": []
+      },
+      {
+       "text": "Apoteker di rawat inap rasio 1 apoteker untuk 30 pasien",
+       "children": []
+      },
+      {
+       "text": "Apoteker 1 orang di unit logistik",
+       "children": []
+      },
+      {
+       "text": "Ada program orientasi staf baru dan program pengembangan SDM kefarmasian",
+       "children": []
+      },
+      {
+       "text": "Ka,IFRS sudah mendapat pelatihan pengelolaan, farmasi klinis, manajemen risiko, leadership, aseptic dispensing",
+       "children": []
+      },
+      {
+       "text": "Seluruh staf apoteker sudah mendapat pelatihan pengelolaan, farmasi klinis, leadership, dan komunikasi",
+       "children": []
+      },
+      {
+       "text": "TTK sudah mendapat pelatihan pelayanan resep, perencanaan, penerimaan, pengadaan, pendistribusian, penyimpanan, dan komunikasi",
+       "children": []
+      },
+      {
+       "text": "Peran apoteker dalam komite/tim lain yaitu PPI, Keselamatan Pasien, Mutu, Tim HIV, Tim TB DOTS, PPRA, PKRS, dan Tim perawatan paliatif (jika ada)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "4",
+     "title": "Sarana Instalasi Farmasi Rumah Sakit",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Ada ruang administrasi",
+       "children": [
+        {
+         "text": "Ruang pimpinan",
+         "children": []
+        },
+        {
+         "text": "Ruang staf",
+         "children": []
+        },
+        {
+         "text": "Ruang kerja/ administrasi",
+         "children": []
+        },
+        {
+         "text": "Ruang pertemuan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Ada ruang penyimpanan obat, alkes dan BMHP dengan persyaratan",
+       "children": [
+        {
+         "text": "Suhu 15°C -25°C",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Jarak antara barang yang diletakkan di posisi tertinggi dengan langit-langit minimal 50 cm",
+       "children": []
+      },
+      {
+       "text": "Langit-langit tidak berpori dan tidak bocor",
+       "children": []
+      },
+      {
+       "text": "Ruang penyimpanan rapi dan bersih",
+       "children": []
+      },
+      {
+       "text": "Tersedia rak/lemari obat yang dapat menjamin keamanan dan mutu obat",
+       "children": []
+      },
+      {
+       "text": "Prekursor/obat-obat tertentu disimpan dalam tempat yang aman berdasarkan analisis risiko",
+       "children": []
+      },
+      {
+       "text": "Lemari narkotika/psikotropika berkunci ganda, terletak di tempat yang tidak dilalui banyak orang, ada CCTV menghadap lemari narkotika/psikotropika",
+       "children": []
+      },
+      {
+       "text": "Tersedia lemari pendingin khusus obat",
+       "children": []
+      },
+      {
+       "text": "Tersedia kulkas khusus vaksin jika terdapat pelayanan vaksin.",
+       "children": []
+      },
+      {
+       "text": "Tersedia pendingin ruangan (AC) dengan maintenance yang terjadwal untuk memastikan stabilitas obat",
+       "children": []
+      },
+      {
+       "text": "Depo farmasi/ruang pelayanan farmasi",
+       "children": [
+        {
+         "text": "Tersedia ruang tunggu",
+         "children": []
+        },
+        {
+         "text": "Ada area penerimaan resep dan penyerahan obat",
+         "children": []
+        },
+        {
+         "text": "Ada wastafel",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Tersedia ruang administrasi dan penyimpanan data",
+       "children": []
+      },
+      {
+       "text": "Tersedia ruang konseling apoteker dengan kriteria :",
+       "children": [
+        {
+         "text": "Dapat menjaga privasi pasien dan nyaman untuk berkomunikas",
+         "children": []
+        },
+        {
+         "text": "Tersedia tempat untuk memajang/menampilkan informasi obat",
+         "children": []
+        },
+        {
+         "text": "Tersedia referensi informasi obat",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Memiliki ruang/area untuk Pemberian Informasi Obat (PIO) yang dilengkapi pustaka/referensi",
+       "children": []
+      },
+      {
+       "text": "Memiliki ruang aseptic dispensing",
+       "children": [
+        {
+         "text": "Ruang bersih: kelas 10.000 (dalam LAF = kelas 100)",
+         "children": []
+        },
+        {
+         "text": "Ruang/tempat penyiapan: kelas 100.000",
+         "children": []
+        },
+        {
+         "text": "Ruang ganti pakaian: kelas 100.000",
+         "children": []
+        },
+        {
+         "text": "Ruang/tempat penyimpanan untuk sediaan yang telah disiapkan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "e. Memiliki LAF/isolator",
+       "children": []
+      },
+      {
+       "text": "Memiliki ruang laboratorium farmasi (jika ada)",
+       "children": [
+        {
+         "text": "Lokasi terpisah dari ruang produksi",
+         "children": []
+        },
+        {
+         "text": "Konstruksi bangunan dan peralatan tahan asam, alkali, zat kimia dan pereaksi lain (harus inert)",
+         "children": []
+        },
+        {
+         "text": "Aliran udara, suhu dan kelembaban sesuai persyaratan",
+         "children": []
+        },
+        {
+         "text": "Tata ruang disesuaikan dengan kegiatan dan alur kerja",
+         "children": []
+        },
+        {
+         "text": "Tersedia peralatan/perlengkapan laboratorium sesuai persyaratan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Memiliki ruang produksi untuk RS yang memproduksi sediaan farmasi untuk RS sendiri",
+       "children": [
+        {
+         "text": "Luas minimal 2 (dua) kali daerah kerja + peralatan dengan jarak peralatan minimal 2,5 m",
+         "children": []
+        },
+        {
+         "text": "Ruang terpisah antara obat jadi dan bahan baku",
+         "children": []
+        },
+        {
+         "text": "Ruang terpisah untuk setiap proses produksi",
+         "children": []
+        },
+        {
+         "text": "Ruang terpisah untuk produksi obat luar dan obat dalam",
+         "children": []
+        },
+        {
+         "text": "Tersedia saringan udara, efisiensi minimal 98%",
+         "children": []
+        },
+        {
+         "text": "Permukaan lantai, dinding, langit-langit dan pintu haru kedap air, tidak terdapat sambungan, tidak merupakan media pertumbuhan untuk mikroba, dan mudah dibersihkan dan tahan terhadap bahan pembersih/desinfektan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Daerah pengolahan dan pengemasan tidak menggunakan bahan dari kayu, kecuali dilapisi cat epoxy/enamel",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "5",
+     "title": "Prasarana IFRS",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Instalasi air bersih (sumber air tersedia)",
+       "children": []
+      },
+      {
+       "text": "Alat Pemadam Api Ringan (APAR) yang masih berlaku/tidak kedaluwarsa",
+       "children": []
+      },
+      {
+       "text": "Pest Control secara mandiri, dengan alat, atau kerjasama dengan pihak ketiga",
+       "children": []
+      },
+      {
+       "text": "Penerangan yang menjamin pelaksanaan pelayanan kefarmasian",
+       "children": []
+      },
+      {
+       "text": "Ventilasi memenuhi persyaratan higienis",
+       "children": []
+      },
+      {
+       "text": "Prasarana listrik yang cukup (PLN/generator)",
+       "children": []
+      },
+      {
+       "text": "Memiliki wastafel dan tempat cuci peralatan meracik dan alat pengering",
+       "children": []
+      },
+      {
+       "text": "Lampu emergency",
+       "children": []
+      },
+      {
+       "text": "Toilet",
+       "children": []
+      },
+      {
+       "text": "Tempat sampah yang tertutup",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "6",
+     "title": "Peralatan",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Gudang penyimpanan memiliki peralatan sebagai berikut:",
+       "children": [
+        {
+         "text": "Tersedia pengukur suhu dan kelembaban (termohigrometer) digital atau analog yang terkalibrasi",
+         "children": []
+        },
+        {
+         "text": "Tersedia kartu monitor suhu",
+         "children": []
+        },
+        {
+         "text": "Tersedia palet yang tidak terbuat dari kayu",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Ruang distribusi untuk pelayanan/depo pelayanan memiliki peralatan sebagai berikut:",
+       "children": [
+        {
+         "text": "Tersedia timbangan analog atau digital yang dikalibrasi secara berkala (dibuktikan dengan surat dan tanda bukti kalibrasi)",
+         "children": []
+        },
+        {
+         "text": "Tersedia wadah pengemas dan pembungkus obat",
+         "children": []
+        },
+        {
+         "text": "Tersedia etiket sesuai ketentuan",
+         "children": []
+        },
+        {
+         "text": "Tersedia alat racik",
+         "children": []
+        },
+        {
+         "text": "Tersedia pengukur suhu dan kelembaban (termohigrometer) digital atau analog yang terkalibrasi",
+         "children": []
+        },
+        {
+         "text": "Tersedia kartu monitor suhu",
+         "children": []
+        },
+        {
+         "text": "Tersedia dokumen pelayanan kefarmasian (formulir PIO, buku catatan konseling, formulir catatan pengobatan pasien, formulir MESO, formulir Home Pharmacy Care)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Ruang administrasi dan penyimpanan data",
+       "children": [
+        {
+         "text": "Terdapat blanko surat pesanan (SP)",
+         "children": []
+        },
+        {
+         "text": "Terdapat blanko kartu stok obat",
+         "children": []
+        },
+        {
+         "text": "Terdapat blanko salinan resep",
+         "children": []
+        },
+        {
+         "text": "Terdapat buku pencatatan obat narkotika dan psikotropika",
+         "children": []
+        },
+        {
+         "text": "Terdapat dokumentasi resep (manual/elektronik)",
+         "children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": "7",
+     "title": "Pengelolaan Sediaan Farmasi, Alat Kesehatan dan BMHP",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Pengelolaan sediaan farmasi, alat kesehatan dan BMHP di RS dilakukan oleh IFRS melalui sistem satu pintu",
+       "children": []
+      },
+      {
+       "text": "Di dalam RS tidak ada apotek di luar organisasi RS",
+       "children": []
+      },
+      {
+       "text": "Pemilihan",
+       "children": [
+        {
+         "text": "Mempunyai SPO",
+         "children": []
+        },
+        {
+         "text": "Berdasarkan Formularium Nasional/Formularium RS",
+         "children": []
+        },
+        {
+         "text": "Penggunaan obat di luar FORNAS/Formularium RS harus disetujui oleh KFT",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Perencanaan",
+       "children": [
+        {
+         "text": "Memiliki SPO",
+         "children": []
+        },
+        {
+         "text": "Dengan metode konsumsi/morbiditas",
+         "children": []
+        },
+        {
+         "text": "Ada dokumen evaluasi perencanaan",
+         "children": []
+        },
+        {
+         "text": "RS menyusun RKO setiap tahun melalui aplikasi e-monev (monevkatalog.kemkes.go.id)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pengadaan",
+       "children": [
+        {
+         "text": "Adanya kebijakan dan pedoman pengadaan",
+         "children": []
+        },
+        {
+         "text": "Memiliki SPO",
+         "children": []
+        },
+        {
+         "text": "Memiliki dokumen seleksi supplier",
+         "children": []
+        },
+        {
+         "text": "Melibatkan apoteker",
+         "children": []
+        },
+        {
+         "text": "Adanya kebijakan dan pedoman obat donasi/hibah",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Produksi",
+       "children": [
+        {
+         "text": "Memiliki SPO",
+         "children": []
+        },
+        {
+         "text": "Memiliki catatan master formula",
+         "children": []
+        },
+        {
+         "text": "Dilaksanakan QA dan QC hasil produksi (etiket, nomor batch, tanggal produksi, BUD, hasil pemeriksaan organoleptis)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Penerimaan",
+       "children": [
+        {
+         "text": "Memiliki SPO termasuk penerimaan obat rantai dingin/vaksin",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "b. Dilakukan oleh tenaga kefarmasian",
+       "children": [
+        {
+         "text": "c. Saat penerimaan, diperiksa oleh tenaga kefarmasian. Untuk perbekalan cold chain dan vaksin harus memenuhi persyaratan (pemeriksaan cold box dan pencatatan pemantauan suhu dalam perjalanan, VVM)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Penyimpanan",
+       "children": [
+        {
+         "text": "Memiliki SPO",
+         "children": []
+        },
+        {
+         "text": "Tidak untuk penyimpanan barang lainnya yang menyebabkan kontaminasi",
+         "children": []
+        },
+        {
+         "text": "Obat kedaluwarsa atau rusak diinventarisir dan disimpan terpisah dan terjamin keamanannya",
+         "children": []
+        },
+        {
+         "text": "Sistem penyimpanan dilakukan dengan memperhatikan bentuk sediaan, kelas terapi sediaan farmasi dan disusun secara alfabetis",
+         "children": []
+        },
+        {
+         "text": "Sediaan farmasi disimpan dalam wadah asli dari pabrik, jika sediaan farmasi dipindahkan dari wadah primernya, wajib dituliskan tanggal dipindahkan, petugas yang memindahkan, dan BUD",
+         "children": []
+        },
+        {
+         "text": "Sediaan farmasi yang mendekati kedaluwarsa (3-6 bulan sebelum tanggal kedaluwarsa) diberikan penandaan khusus",
+         "children": []
+        },
+        {
+         "text": "Vaksin disimpan pada tempat dengan kendali suhu tertentu dan hanya diperuntukkan khusus menyimpan vaksin saja",
+         "children": []
+        },
+        {
+         "text": "Penyimpanan obat LASA tidak saling berdekatan dan diberi label khusus",
+         "children": []
+        },
+        {
+         "text": "Obat high alert (obat dengan kewaspadaan tinggi) berupa elektrolit konsentrasi tinggi dan obat risiko tinggi disimpan terpisah dan diberi penandaan yang jelas/stiker",
+         "children": []
+        },
+        {
+         "text": "Terdapat kartu stok yang diisi secara rutin dan lengkap (nama obat, tanggal, tanggal kedaluwarsa, jumlah pemasukan, jumlah pengeluaran, nomor batch, dan sisa persediaan), manual/komputer",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Satu kartu stok hanya digunakan untuk mencatat mutasi satu jenis sediaan farmasi diletakkan berdekatan dengan sediaan farmasi yang bersangkutan",
+       "children": []
+      },
+      {
+       "text": "Pencatatan dilakukan setiap kali ada mutasi (keluar masuk sediaan farmasi atau jika ada sediaan farmasi hilang, rusak/kedaluwarsa)",
+       "children": []
+      },
+      {
+       "text": "Pengeluaran Obat memakai sistem FEFO (First Expire First Out) dan FIFO (First In First Out)",
+       "children": []
+      },
+      {
+       "text": "Pengelolaan obat emergensi memiliki SPO yang menjamin:",
+       "children": []
+      },
+      {
+       "text": "Jumlah, jenis obat sesuai daftar obat emergensi yang ditetapkan",
+       "children": []
+      },
+      {
+       "text": "Tidak boleh bercampur dengan persediaan obat untuk kebutuhan lain",
+       "children": []
+      },
+      {
+       "text": "Dicek secara berkala apakah ada yang kedaluwarsa",
+       "children": []
+      },
+      {
+       "text": "Dilarang untuk dipinjam untuk kebutuhan lainnya",
+       "children": []
+      },
+      {
+       "text": "Pendistribusian",
+       "children": [
+        {
+         "text": "Memiliki SPO",
+         "children": []
+        },
+        {
+         "text": "Floor stock",
+         "children": []
+        },
+        {
+         "text": "Sistem resep individual",
+         "children": []
+        },
+        {
+         "text": "Sistem unit dosis disiapkan dalam unit dosis tunggal atau ganda untuk penggunaan satu kali dosis/pasien untuk pasien rawat inap",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pemusnahan dan Penarikan",
+       "children": [
+        {
+         "text": "Memiliki SPO",
+         "children": []
+        },
+        {
+         "text": "Kriteria : obat rusak/tidak memenuhi syarat mutu, kedaluwarsa, dicabut izin edarnya",
+         "children": []
+        },
+        {
+         "text": "Tahapan : membuat daftar obat & BMHP yg dimusnahkan, menyiapkan BAP, koordinasi jadwal, metode, tempat dan pemusnahan sesuai peraturan.",
+         "children": []
+        },
+        {
+         "text": "Obat kadaluarsa atau rusak dimusnahkan sesuai dengan jenis dan bentuk sediaan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Untuk obat narkotika atau psikotropika disaksikan oleh Dinas Kesehatan Kabupaten/Kota dan/atau balai besar atau balai POM setempat.",
+       "children": []
+      },
+      {
+       "text": "Selain obat narkotika/psikotropika dilakukan oleh apoteker dan disaksikan oleh tenaga kefarmasian lain yang memiliki surat izin praktik dan/atau diserahkan kepada pihak ketiga disertai dengan berita acara dan terdokumentasi",
+       "children": []
+      },
+      {
+       "text": "Pemusnahan resep dilakukan oleh apoteker disaksikan oleh sekurang-kurangnya petugas lain di instalasi farmasi RS dengan cara dibakar atau cara pemusnahan lain yang dibuktikan dengan Berita Acara Pemusnahan",
+       "children": []
+      },
+      {
+       "text": "Pemusnahan dokumen narkotika dan psikotropika dilakukan oleh apoteker penanggung jawab instalasi farmasi RS disaksikan oleh Dinas Kesehatan Kabupaten/Kota dan/atau BPOM atau balai besar POM setempat dengan cara dibakar atau cara pemusnahan lain yang dibuktikan dengan Berita Acara Pemusnahan dokumen narkotika dan psikotropika",
+       "children": []
+      },
+      {
+       "text": "Pengendalian",
+       "children": [
+        {
+         "text": "Mengevaluasi persediaan yang jarang digunakan (slow moving)",
+         "children": []
+        },
+        {
+         "text": "Mengevaluasi persediaan yang tidak digunakan dalam waktu tiga bulan berturut-turut (dead stock)",
+         "children": []
+        },
+        {
+         "text": "Stock opname yang dilakukan secara periodik dan berkala",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Dokumentasi",
+       "children": [
+        {
+         "text": "Semua resep dan salinan resep diarsipkan selama 5 tahun (diarsipkan per hari, per bulan, dan per tahun)",
+         "children": []
+        },
+        {
+         "text": "Semua dokumen (faktur, SP) diarsipkan per hari, per bulan, dan per tahun",
+         "children": []
+        },
+        {
+         "text": "Seluruh dokumen pencatatan, dokumen penerimaan, dokumen penyaluran, dan/atau dokumen penyerahan termasuk surat",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "pesanan narkotika, psikotropika, dan prekursor farmasi disimpan secara terpisah paling singkat 3 (tiga) tahun",
+       "children": []
+      },
+      {
+       "text": "d. Administrasi penghapusan untuk obat kedaluwarsa, rusak, mutu TMS (Tidak Memenuhi Syarat) dengan membuat usulan penghapusan obat, alat kesehatan dan BMHP",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "8",
+     "title": "Pelayanan Farmasi Klinis",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Pengkajian dan Pelayanan Resep",
+       "children": [
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Diilaksanakan oleh apoteker (administratif, farmasetik, klinis) dan TTK terbatas untuk aspek administratif dan farmasetik",
+         "children": []
+        },
+        {
+         "text": "Adanya form/checklist pengkajian (administratif, farmasetik, klinis)",
+         "children": []
+        },
+        {
+         "text": "Jumlah pengkajian resep terdokumentasi rata-rata tiap bulan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Penelusuran Riwayat Penggunaan Obat",
+       "children": [
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Dilaksanakan oleh apoteker",
+         "children": []
+        },
+        {
+         "text": "Membandingkan riwayat pengobatan dengan data rekam medik/pencatatan penggunaan obat untuk mengetahui perbedaan pengobatan",
+         "children": []
+        },
+        {
+         "text": "Melakukan verifikasi riwayat penggunaan obat yang diberikan oleh tenaga kesehatan lain dan memberi tambahan informasi lainnya",
+         "children": []
+        },
+        {
+         "text": "Mendokumentasikan obat yang digunakan pasien sendiri tanpa sepengetahuan dokter",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Rekonsiliasi obat (dilakukan untuk mencegah terjadinya kesalahan pemberian obat/medication error, seperti obat tidak diberikan, duplikasi, kesalahan dosis atau interaksi obat)",
+       "children": [
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Dilaksanakan oleh apoteker",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pengumpulan data (mencatat dan memverifikasi obat yang digunakan pasien seperti nama obat, dosis, frekuensi, rute, obat mulai diberikan, dilanjutkan, dihentikan, riwayat alergi, efek samping obat)",
+       "children": []
+      },
+      {
+       "text": "Komparasi (membandingkan obat yang pernah, sedang dan akan digunakan)",
+       "children": []
+      },
+      {
+       "text": "Melakukan konfirmasi kepada dokter jika menemukan ketidaksesuaian dokumentasi (dokter harus dihubungi kurang dari 24 jam)",
+       "children": []
+      },
+      {
+       "text": "Komunikasi (dengan pasien/keluarga pasien atau perawat mengenai perubahan terapi yang terjadi)",
+       "children": []
+      },
+      {
+       "text": "Pelayanan Informasi Obat (PIO)",
+       "children": [
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Dilaksanakan oleh apoteker",
+         "children": []
+        },
+        {
+         "text": "Menjawab pertanyaan, menerbitkan buletin, leaflet, poster, newsletter",
+         "children": []
+        },
+        {
+         "text": "Menyediakan informasi bagi Tim Farmasi dan Terapi sehubungan dengan penyusunan Formularium Rumah Sakit",
+         "children": []
+        },
+        {
+         "text": "Bersama tim Penyuluhan Kesehatan Rumah Sakit (PKRS) melakukan kegiatan penyuluhan bagi pasien rawat jalan dan rawat inap",
+         "children": []
+        },
+        {
+         "text": "Melakukan pendidikan berkelanjutan bagi tenaga kefarmasian, tenaga kesehatan lainnya dan melakukan penelitian",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata PIO (Pelayanan Informasi Obat) terdokumentasi dalam satu bulan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Konseling",
+       "children": [
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Dilaksanakan oleh apoteker",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Terdapat dokumentasi kegiatan konseling melalui formulir konseling",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokumentasi evaluasi konseling setiap bulan (terkait kepatuhan minum obat HIV, OAT, obat dengan aturan khusus)",
+       "children": []
+      },
+      {
+       "text": "Sarana dan peralatan (ruangan/tempat konseling, alat bantu konseling, kartu pasien/catatan konseling)",
+       "children": []
+      },
+      {
+       "text": "Jumlah rata-rata konseling terdokumentasi dalam satu bulan",
+       "children": []
+      },
+      {
+       "text": "Visite",
+       "children": [
+        {
+         "text": "Pelaksana visite adalah apoteker",
+         "children": []
+        },
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Tersedia dokumentasi pelaporan visite (formulir khusus/ Catatan Perkembangan Pasien Terintegrasi/CPPT)",
+         "children": []
+        },
+        {
+         "text": "Tersedia referensi buku cetakan atau elektronik (formularium nasional, formularium RS, AHFS, DIH)",
+         "children": []
+        },
+        {
+         "text": "Tersedia dokumentasi evaluasi visite (rencana pengobatan pasien, dokumentasi pemberian obat, frekuensi diskusi masalah klinis, rekomendasi apoteker dalam perubahan regimen obat)",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata visite terdokumentasi dalam satu bulan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pemantauan Terapi Obat (PTO)",
+       "children": [
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Dilaksanakan oleh apoteker",
+         "children": []
+        },
+        {
+         "text": "Tersedia formulir CPPT",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata PTO terdokumentasi dalam satu bulan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Monitoring Efek Samping Obat (MESO)",
+       "children": [
+        {
+         "text": "Tersedia SPO",
+         "children": []
+        },
+        {
+         "text": "Tersedia formulir MESO",
+         "children": []
+        },
+        {
+         "text": "Tersedia laporan MESO kepada tim MESO (KFT/TFT)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Membuat laporan ke BPOM secara manual maupun elektronik melalui link BPOM",
+       "children": []
+      },
+      {
+       "text": "Tersedia rekapitulasi laporan MESO ke internal (KFT/TFT)",
+       "children": []
+      },
+      {
+       "text": "Jumlah rata-rata MESO terdokumentasi dalam satu bulan",
+       "children": []
+      },
+      {
+       "text": "Evaluasi Penggunaan Obat (EPO)",
+       "children": [
+        {
+         "text": "EPO dilaksanakan minimal sekali dalam setahun",
+         "children": []
+        },
+        {
+         "text": "Tersedia umpan balik EPO",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata EPO terdokumentasi dalam satu tahun",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Dispensing sediaan steril",
+       "children": [
+        {
+         "text": "Melaksanakan pencampuran obat suntik (mencampur sediaan i.v ke dalam cairan infus, melarutkan sediaan i.v dalam bentuk serbuk dengan pelarut yang sesuai, mengemas menjadi sediaan siap pakai)",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata i.v admixture terdokumentasi dalam satu bulan",
+         "children": []
+        },
+        {
+         "text": "Melaksanakan penyiapan nutrisi parenteral (mencampur sediaan karbohidrat, protein, lipid, vitamin, mineral untuk kebutuhan perorangan, mengemas kedalam kantong khusus untuk nutrisi)",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata TPN terdokumentasi dalam satu bulan",
+         "children": []
+        },
+        {
+         "text": "Melaksanakan penanganan sediaan sitotoksik",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata handling sitotoksik terdokumentasi dalam satu bulan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pemantauan Kadar Obat dalam Darah (PKOD)",
+       "children": [
+        {
+         "text": "Tersedia SPO PKOD",
+         "children": []
+        },
+        {
+         "text": "Tersedia dokumentasi kegiatan PKOD dalam CPPT dan menyimpan hasil PKOD dalam rekam medis",
+         "children": []
+        },
+        {
+         "text": "Jumlah rata-rata PKOD terdokumentasi dalam satu bulan",
+         "children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": "9",
+     "title": "Manajemen Risiko dan Pengendalian Mutu Pelayanan",
+     "hasil": "",
+     "children": [
+      {
+       "text": "1. Manajemen Risiko",
+       "children": []
+      },
+      {
+       "text": "Melakukan analisis risiko dalam pengelolaan sediaan farmasi serta pelayanan farmasi klinis baik secara kualitatif, semi kualitatif, kuantitatif dan semi kuantitatif",
+       "children": []
+      },
+      {
+       "text": "Melakukan evaluasi risiko",
+       "children": []
+      },
+      {
+       "text": "Membuat upaya atau langkah-langkah mengatasi risiko",
+       "children": []
+      },
+      {
+       "text": "Pengendalian Mutu Pelayanan Kefarmasian",
+       "children": [
+        {
+         "text": "Monitoring dan evaluasi dari instalasi farmasi atau tim audit internal",
+         "children": []
+        },
+        {
+         "text": "Mengukur kepuasan pasien, dilakukan dengan angket atau wawancara langsung",
+         "children": []
+        },
+        {
+         "text": "Apoteker mengevaluasi waktu pelayanan obat baik obat jadi maupun racikan",
+         "children": []
+        },
+        {
+         "text": "Tersedia daftar SPO yang selalu diperbaharui secara berkala",
+         "children": []
+        },
+        {
+         "text": "Tersedia pemantauan obat rusak/kedaluwarsa",
+         "children": []
+        },
+        {
+         "text": "Melakukan pelaporan pelayanan kefarmasian RS melalui sistem pelaporan",
+         "children": []
+        },
+        {
+         "text": "Tanggal pelaporan terakhir",
+         "children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": "10",
+     "title": "ASPAK (Aplikasi Sarana Prasarana Alat Kesehatan)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Surat Penunjukan petugas sebagai Penanggung Jawab ASPAK",
+       "children": []
+      },
+      {
+       "text": "Pemenuhan Data Standar Sarana Prasarana Alat Kesehatan (SPA) min. 60% yang telah diinput dalam aplikasi ASPAK",
+       "children": []
+      },
+      {
+       "text": "Pemenuhan Keaktifan Pembaharuan Data SPA dalam aplikasI ASPAK 100%",
+       "children": []
+      },
+      {
+       "text": "Validasi Alat Kesehatan Rumah Sakit dalam aplikasi Aspak 100%",
+       "children": []
+      },
+      {
+       "text": "Alat Kesehatan pada Penyelenggaraan Pengampuan Pelayanan Prioritas",
+       "children": [
+        {
+         "text": "Pelayanan KIA",
+         "children": []
+        },
+        {
+         "text": "Pelayanan Gastroenterologi",
+         "children": []
+        },
+        {
+         "text": "Pelayanan Stroke",
+         "children": []
+        },
+        {
+         "text": "Pelayanan Jantung dan Pembuluh Darah",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pelayanan Kanker",
+       "children": []
+      },
+      {
+       "text": "Pelayanan Non KJSU-KIA",
+       "children": []
+      },
+      {
+       "text": "Memiliki dokumen perencanaan daftar alat kesehatan.",
+       "children": []
+      },
+      {
+       "text": "Memiliki prosedur tetap penerimaan alat kesehatan meliputi Berita Acara Penerimaan serta Berita Acara Uji Fungsi (daftar hadir, dokumentasi)",
+       "children": []
+      },
+      {
+       "text": "Mempunyai Daftar Inventaris Alkes",
+       "children": []
+      },
+      {
+       "text": "Dokumen Pemeliharaan dan Kalibrasi",
+       "children": []
+      },
+      {
+       "text": "RS memiliki Penanggung Jawab/ Koordinator Teknis pemeliharaan alat kesehatan.",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "1",
+     "title": "PENYEDIAAN SARANA DAN PRASARANA DISABILITAS",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Indikator Utama",
+       "children": []
+      },
+      {
+       "text": "Jalur Pemandu",
+       "children": [
+        {
+         "text": "Dipasang di depan jalur lalu lintas kendaraan",
+         "children": []
+        },
+        {
+         "text": "Dipasang di depan pintu masuk/keluar bangunan",
+         "children": []
+        },
+        {
+         "text": "Dipasang dari/ketangga atau persilangan beda ketinggian",
+         "children": []
+        },
+        {
+         "text": "Dipasang pada bagian tepi jalur pedestrian",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pintu",
+       "children": [
+        {
+         "text": "Lebar efektif pintu utama min 90 cm, pintu lainnya min 80 cm.",
+         "children": []
+        },
+        {
+         "text": "Pintu ayun dapat membuka 90°, arah bukaan keluar.",
+         "children": []
+        },
+        {
+         "text": "Ruang babas di depan pintu min 152,5 cm x 152,25 cm.",
+         "children": []
+        },
+        {
+         "text": "Penutup lantai di sekitar pintu tidak licin.",
+         "children": []
+        },
+        {
+         "text": "Dilengkapi alat penutup pintu otomatis.",
+         "children": []
+        },
+        {
+         "text": "Tinggi handle pintu max 110 cm.",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Tangga",
+       "children": [
+        {
+         "text": "Tinggi anak tangga max 18 cm min 15 cm",
+         "children": []
+        },
+        {
+         "text": "Lebar anak tangga min 30 cm",
+         "children": []
+        },
+        {
+         "text": "Material anak tangga tidak licin dan dilengkapi step nosing",
+         "children": []
+        },
+        {
+         "text": "Kemiringan min 35°",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Dilengkapi handrail menerus, tinggi 80 cm (dewasa)",
+       "children": []
+      },
+      {
+       "text": "Handrail dilengkapi dengan pemandu huruf Braille pada kedua ujungnya",
+       "children": []
+      },
+      {
+       "text": "Bordess setiap 12 anak tangga",
+       "children": []
+      },
+      {
+       "text": "Baluster (pagar tangga) pada sisi tangga yang tidak dibatasi dinding",
+       "children": []
+      },
+      {
+       "text": "Pencahayaan memadai",
+       "children": []
+      },
+      {
+       "text": "Toilet",
+       "children": [
+        {
+         "text": "Lebar pintu min 90 cm",
+         "children": []
+        },
+        {
+         "text": "Pintu Toilet membuka ke arah luar/Geser",
+         "children": []
+        },
+        {
+         "text": "Pintu Toilet otomatis menutup",
+         "children": []
+        },
+        {
+         "text": "Pintu Toilet dilengkapi plat tendang di bagian bawah pintu",
+         "children": []
+        },
+        {
+         "text": "Handrail",
+         "children": []
+        },
+        {
+         "text": "Permukaan Lantai tidak licin",
+         "children": []
+        },
+        {
+         "text": "Luas toilet minimal 152 cm x 230 cm",
+         "children": []
+        },
+        {
+         "text": "Tuas (kran/tuas closet) yang mudah terjangkau",
+         "children": []
+        },
+        {
+         "text": "Masing-masing toilet pria dan wanita harus menyediakan minimal 1 toilet untuk penyandang disabilitas",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Rambu dan Marka",
+       "children": [
+        {
+         "text": "Menunjukkan arah dan tujuan pedestrian, kamar mandi, telepon umum, parkir khusus penyandang disabilitas, nama fasilitas tempat, ATM",
+         "children": []
+        },
+        {
+         "text": "Jenis rambu dan marka antara lain : alarm lampu darurat diatas pintu dan lift",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Indikator Tambahan",
+       "children": []
+      },
+      {
+       "text": "1. Pedestrian",
+       "children": []
+      },
+      {
+       "text": "Permukaan stabil, kuat, tahan dan tidak licin",
+       "children": []
+      },
+      {
+       "text": "Lebar min. 150 cm (1 arah) atau 160 cm (2 arah)",
+       "children": []
+      },
+      {
+       "text": "Kelandaian sisi lebar max 2 derajat, sisi panjang min 5 derajat",
+       "children": []
+      },
+      {
+       "text": "Area istirahat setiap 900 cm",
+       "children": []
+      },
+      {
+       "text": "Pencahayaan cukup",
+       "children": []
+      },
+      {
+       "text": "Dilengkapi pemandu/ penanda",
+       "children": []
+      },
+      {
+       "text": "Selasar",
+       "children": [
+        {
+         "text": "Lebar efektif min 140 cm",
+         "children": []
+        },
+        {
+         "text": "Dilengkapi penanda/petunjuk arah terutama untuk exit",
+         "children": []
+        },
+        {
+         "text": "Pencahayaan cukup",
+         "children": []
+        },
+        {
+         "text": "Jalur evakuasi harus bebas dari penghalang",
+         "children": []
+        },
+        {
+         "text": "Penutup lantai tidak licin",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Ramp",
+       "children": [
+        {
+         "text": "Lebar Efektif min. 120 cm",
+         "children": []
+        },
+        {
+         "text": "Dilengkapi kanstin / tepi pengaman dengan tinggi min. 10 cm",
+         "children": []
+        },
+        {
+         "text": "Dilengkapi handrail menerus di kedua sisi dengan tinggi 80cm",
+         "children": []
+        },
+        {
+         "text": "Awalan dan akhiran ramp tidak langsung berhadapan dengan pintu",
+         "children": []
+        },
+        {
+         "text": "Kemiringan ramp di dalam bangunan maks. 1:10 atau maks 6°(Misalnya:ketinggian ramp 0,5 meter, panjang bidang datar min. 5 m)",
+         "children": []
+        },
+        {
+         "text": "Kemiringan ramp di luar bangunanmaks. 1:12 atau maks 5° (Misalnya:ketinggian ramp 0,5 meter, panjang bidang datar min. 6 m)",
+         "children": []
+        },
+        {
+         "text": "Permukaan datar pada awal dan akhiran ramp harus bertekstur tidak licin dan dilengkapi ubin peringatan dan panjang minimal 120 cm",
+         "children": []
+        },
+        {
+         "text": "Dilengkapi permukaan datar (bordes) sebagai tempat beristirahat setiap 900 cm",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Koridor",
+       "children": [
+        {
+         "text": "Handrail",
+         "children": []
+        },
+        {
+         "text": "Marka",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Jalur Evakuasi Bebas Penghalang",
+       "children": []
+      },
+      {
+       "text": "Pencahayaan Cukup",
+       "children": []
+      },
+      {
+       "text": "Ukuran Lebar Min. 152 Cm (1 Kursi Roda +1 Pejalan Kaki)",
+       "children": []
+      },
+      {
+       "text": "Lift",
+       "children": [
+        {
+         "text": "Panel (luar & dalam) memiliki tinggi maks 90 cm",
+         "children": []
+        },
+        {
+         "text": "Panel dilengkapi huruf braille",
+         "children": []
+        },
+        {
+         "text": "Lebar bukaan pintu minimal 110 cm",
+         "children": []
+        },
+        {
+         "text": "Luas lift minimal 120 cm x 230 cm",
+         "children": []
+        },
+        {
+         "text": "Handrail menerus di minimal 2 sisi dengan tinggi antara 65-80 cm",
+         "children": []
+        },
+        {
+         "text": "Indikator Suara (Suara Pemandu)",
+         "children": []
+        },
+        {
+         "text": "Dilengkapi CCTV",
+         "children": []
+        },
+        {
+         "text": "Stainless Mirror",
+         "children": []
+        },
+        {
+         "text": "Sensor Buka Tutup",
+         "children": []
+        },
+        {
+         "text": "Jarak Ruang Perantara depan lift lobby lift), lebar minimal 185 cm.",
+         "children": []
+        },
+        {
+         "text": "Layar tampilan yang secara visual menunjukkan posisi lift di dalam dan di luar lift",
+         "children": []
+        },
+        {
+         "text": "sistem pencahayaan dan udara yang memadai",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Parkir",
+       "children": [
+        {
+         "text": "Lokasi kurang dari 60 m dari pintu masuk",
+         "children": []
+        },
+        {
+         "text": "Simbol Disabilitas",
+         "children": []
+        },
+        {
+         "text": "Lebar 370 cm x 500 cm (Parkir Tunggal) dan 620 cm x 500 cm (Parkir Ganda)",
+         "children": []
+        },
+        {
+         "text": "Jalur yang mudah ke pintu masuk",
+         "children": []
+        },
+        {
+         "text": "Kelandaian paling besar 2 derajat",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Kursi Roda dan Meja Layanan Ramah Disabilitas",
+       "children": [
+        {
+         "text": "Terdapat kursi roda serta tempat/ ruang khusus penyimpanan kursi roda bagi penyandang disabilitas",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Meja informasi disediakan dengan ketinggian yang dapat diakses oleh setiap pengguna dan pengunjung bangunan gedung (85cm bagi penyandang disabilitas berkursi roda, 107 cm bagi pasien non disabilitas)",
+       "children": []
+      },
+      {
+       "text": "Sarana penyampaian informasi/peringatan kepada pengguna dan pengunjung bangunan gedung sebagai penunjuk arah dilengkapi dengan sensor pengarah",
+       "children": []
+      },
+      {
+       "text": "Tersedia pelayanan khusus bagi penyandang disabilitas yang bertujuan untuk memberikan kemudahan bagi penyandang disabilitas dalam melaksanakan kegiatan",
+       "children": []
+      },
+      {
+       "text": "Pada fasilitas pelayanan min.tersedia loket khusus yang dilengkapi papan nomor antrian, running teks dan pengeras suara",
+       "children": []
+      },
+      {
+       "text": "Ruang tunggu dengan tempat duduk prioritas bagi penyandang disabilitas",
+       "children": [
+        {
+         "text": "Tersedia tempat duduk/ruang tunggu khusus bagi penyandang disabilitas",
+         "children": []
+        },
+        {
+         "text": "Tempat duduk/ruang tunggu khusus dilengkapi dengan marka/penanda",
+         "children": []
+        },
+        {
+         "text": "Tersedia kursi roda, tongkat dan kruk",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Memiliki standar operasional prosedur (sop) untuk penyandang disabilitas",
+       "children": []
+      },
+      {
+       "text": "Memiliki sdm yang dapat berkomunikasi dengan bahasa isyarat",
+       "children": []
+      },
+      {
+       "text": "Memiliki formulir persetujuan tindakan (inform consent) yang tercetak menggunakan huruf braille",
+       "children": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "kesehatan_masyarakat",
+   "title": "KESEHATAN MASYARAKAT",
+   "subtitle": "",
+   "items": [
+    {
+     "no": "1",
+     "title": "Program Nasional Rumah Sakit",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Pelaksanaan PONEK 24 Jam",
+       "children": [
+        {
+         "text": "Regulasi pelaksanaan PONEK 24 jam di RS",
+         "children": []
+        },
+        {
+         "text": "Penetapan tim PONEK",
+         "children": []
+        },
+        {
+         "text": "Penetapan Program Kerja program PONEK",
+         "children": []
+        },
+        {
+         "text": "Pelaporan pelaksanaan program PONEK",
+         "children": []
+        },
+        {
+         "text": "Bukti pemantauan dan evaluasi pelaksanaan program PONEK di RS secara rutin",
+         "children": []
+        },
+        {
+         "text": "Penetapan program pembinaan jejaring rujukan RS",
+         "children": []
+        },
+        {
+         "text": "Bukti pelaksanaan pembinaan terhadap jejaring secara berkala",
+         "children": []
+        },
+        {
+         "text": "Laporan pelaksanaan evaluasi program pembinaan jejaring rujukan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pelaksanaan Program Gizi",
+       "children": [
+        {
+         "text": "Penetapan kebijakan pelaksanaan program gizi",
+         "children": []
+        },
+        {
+         "text": "Penetapan tim stunting dan wasting di RS",
+         "children": []
+        },
+        {
+         "text": "Penetapan sistem rujukan untuk kasus gangguan gizi yang perlu penanganan lanjut",
+         "children": []
+        },
+        {
+         "text": "Bukti pelaksanaan pendampingan intervensi dan pengelolaan gizi (jika ada)",
+         "children": []
+        },
+        {
+         "text": "Bukti pembinaan jejaring rujukan kepada RS kelas dibawahnya dan FKTP",
+         "children": []
+        },
+        {
+         "text": "Bukti rujukan masalah gizi",
+         "children": []
+        },
+        {
+         "text": "Bukti pemantauan, evaluasi, pelaporan dan analisis program stunting dan wasting",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pelaksanaan Program Keluarga Berencana (PKB) Rumah Sakit",
+       "children": [
+        {
+         "text": "Penetapan kebijakan pelaksanaan PKBRS",
+         "children": []
+        },
+        {
+         "text": "Penetapan tim PKBRS",
+         "children": []
+        },
+        {
+         "text": "Penetapan program kerja PKBRS",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Bukti pelaksanaan program KB Paska Persalinan dan Paska Keguguran",
+       "children": []
+      },
+      {
+       "text": "Bukti pelaporan pemantauan dan evaluasi pelaksanaan PKBRS",
+       "children": []
+      },
+      {
+       "text": "Daftar alat, obat kontrasepsi dan sarana penunjang pelayanan KB di RS",
+       "children": []
+      },
+      {
+       "text": "Tersedianya layanan konseling bagi peserta dan calon peserta program KB",
+       "children": []
+      },
+      {
+       "text": "Tersedianya ruang pelayanan KB",
+       "children": []
+      },
+      {
+       "text": "Simatneo Kajian Mandiri Pelayanan KB",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "2",
+     "title": "Pelaksanaan Penyelenggaraan Pelayanan Geriatri Rumah Sakit (sesuai Permenkes Nomor 79 Tahun 2014)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "SK Tim Terpadu Geriatri",
+       "children": []
+      },
+      {
+       "text": "Kemampuan Pelayanan :",
+       "children": [
+        {
+         "text": "Tingkat Sederhana,",
+         "children": [
+          {
+           "text": "Jenis pelayanan terdiri atas Layanan Rawat Jalan dan",
+           "children": []
+          },
+          {
+           "text": "Homecare",
+           "children": []
+          },
+          {
+           "text": "Bangunan pelayanan Geriatri terdiri atas ruang pendaftaran/administrasi, ruang tunggu, ruang periksa, ruang Tim Terpadu Geriatri.",
+           "children": []
+          },
+          {
+           "text": "Ketenagaan : dokter spesialis penyakit dalam, dokter spesialis lainnya sesuai dengan jenis penyakit Pasien Geriatri, dokter, perawat yang telah mengikuti pelatihan keperawatan gerontik atau pelatihan keterampilan inteligensia, apoteker, tenaga gizi, fisioterapi, okupasi terapis.",
+           "children": []
+          }
+         ]
+        },
+        {
+         "text": "Tingkat Lengkap,",
+         "children": [
+          {
+           "text": "Jenis pelayanan terdiri atas rawat jalan, rawat inap akut, dan kunjungan rumah (homecare)",
+           "children": []
+          },
+          {
+           "text": "Bangunan pelayanan Geriatri terdiri atas ruang pendaftaran/administrasi, ruang tunggu, ruang periksa, ruang",
+           "children": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "text": "bangsal Geriatri akut (ruang rawat inap dan ruang fisioterapi), ruang Tim Terpadu Geriatri.",
+       "children": []
+      },
+      {
+       "text": "c. Ketenagaan : dokter spesialis penyakit dalam, dokter spesialis kedokteran fisik dan rehabilitasi, dokter spesialis kedokteran jiwa/psikiater, dokter spesialis lainnya sesuai dengan jenis penyakit Pasien Geriatri, dokter, perawat yang telah mengikuti pelatihan keperawatan gerontik atau pelatihan keterampilan inteligensia, apoteker, tenaga gizi, fisioterapis, okupasi terapis, psikolog, pekerja sosial.",
+       "children": []
+      },
+      {
+       "text": "Tingkat Sempurna,",
+       "children": [
+        {
+         "text": "Jenis pelayanan terdiri atas rawat jalan, rawat inap akut, kunjungan rumah (homecare), dan Klinik Asuhan Siang.",
+         "children": []
+        },
+        {
+         "text": "Bangunan pelayanan Geriatri terdiri atas ruang pendaftaran/administrasi, ruang tunggu, ruang periksa, ruang bangsal Geriatri akut (ruang rawat inap dan ruang fisioterapi), ruang Klinik Asuhan Siang, ruang bangsal Geriatri kronis, ruang penitipan Pasien Geriatri (respite care), ruang Hospice care, ruang Tim Terpadu Geriatri.",
+         "children": []
+        },
+        {
+         "text": "Ketenagaan : dokter spesialis penyakit dalam, dokter spesialis kedokteran fisik dan rehabilitasi, dokter spesialis kedokteran jiwa/psikiater, dokter spesialis lainnya sesuai dengan jenis penyakit Pasien Geriatri, dokter, perawat yang telah mengikuti pelatihan keperawatan gerontik atau pelatihan keterampilan inteligensia, apoteker, tenaga gizi, fisioterapis, okupasi terapis, terapis wicara, perekam medis, psikolog,pekerja sosial",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Tingkat Paripurna",
+       "children": [
+        {
+         "text": "Jenis pelayanan terdiri atas rawat jalan, Klinik Asuhan Siang, rawat inap akut, rawat inap kronik, rawat inap Psikogeriatri, penitipan Pasien Geriatri (respite care), kunjungan rumah (home care), dan Hospice.",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "b. Bangunan pelayanan Geriatri terdiri atas ruang pendaftaran/administrasi, ruang tunggu, ruang periksa, ruang bangsal Geriatri akut (ruang rawat inap dan ruang fisioterapi), ruang Klinik Asuhan Siang, ruang bangsal Geriatri kronis, ruang penitipan Pasien Geriatri (respite care), ruang Hospice care, ruang Tim Terpadu Geriatri.",
+       "children": []
+      },
+      {
+       "text": "c. Ketenagaan : dokter spesialis penyakit dalam konsultan Geriatri, dokter spesialis kedokteran fisik dan rehabilitasi, dokter spesialis kedokteran jiwa/psikiater, dokter spesialis lainnya sesuai dengan jenis penyakit Pasien Geriatri, dokter, perawat yang telah mengikuti pelatihan keperawatan gerontik atau pelatihan keterampilan inteligensia, apoteker, tenaga gizi, fisioterapis, okupasi terapis, terapis wicara, perekam medis, psikolog, pekerja sosial.",
+       "children": []
+      },
+      {
+       "text": "Konstruksi bangunan :",
+       "children": [
+        {
+         "text": "Jalan menuju ke pelayanan geriatri harus cukup kuat, rata, tidak licin serta disediakan jalur khusus untuk pasien/pengunjung dengan kursi roda. Lantai harus rata, mudah dibersihkan tetapi tidak licin, bila ada undakan atau tangga harus jelas terlihat dengan warna ubin yang berbeda untuk mencegah jatuh",
+         "children": []
+        },
+        {
+         "text": "Lebar pintu sebaiknya 120 cm terdiri dari pintu 90 cm dan pintu 30 cm",
+         "children": []
+        },
+        {
+         "text": "Dinding terdapat pegangan yang kuat sebaiknya terbuat dari kayu (handrail).",
+         "children": []
+        },
+        {
+         "text": "Kamar mandi menggunakan kloset duduk dengan pegangan di sebelah kanan dan kirinya. Shower dilengkapi dengan tempat duduk dan pegangan. Tersedia bel untuk meminta bantuan dan pintu membuka keluar.",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Lokasi pelayanan Geriatri berdekatan dengan ruang perawatan dan ruang Rehabilitasi Medik serta berdekatan dengan akses masuk Rumah Sakit",
+       "children": []
+      },
+      {
+       "text": "Keselamatan Pasien Geriatri.",
+       "children": []
+      },
+      {
+       "text": "Alur pelayanan Geriatri sesuai tingkatan layanan.",
+       "children": []
+      },
+      {
+       "text": "Alur Rujukan Internal dan eksternal Geriatri",
+       "children": []
+      },
+      {
+       "text": "Pencatatan dan pelaporan terdiri dari : lama perawatan, Status Fungsional, kualitas hidup, rawat inap ulang (rehospitalisasi), kepuasan pasien.",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "3",
+     "title": "Program K3RS",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Standar K3RS (sesuai Permenkes No.66 Tahun 2016)",
+       "children": []
+      },
+      {
+       "text": "Kebijakan K3RS telah ditetapkan oleh Direktur RS dan disosialisasikan ke seluruh SDM RS",
+       "children": []
+      },
+      {
+       "text": "Penetapan Organisasi K3RS (SK Tim K3)",
+       "children": []
+      },
+      {
+       "text": "Manajemen Risiko",
+       "children": [
+        {
+         "text": "Melakukan identifikasi bahaya potensial pada pekerja, pasien, dan pengunjung",
+         "children": []
+        },
+        {
+         "text": "Membuat analisa risiko bencana, analisa risiko B3, analisa risiko K3 fasilitas",
+         "children": []
+        },
+        {
+         "text": "Membuat pemetaan area risiko dan upaya pengendalian risiko",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pengawasan Keselamatan dan Keamanan di Rumah Sakit",
+       "children": [
+        {
+         "text": "Melakukan identifikasi dan penilaian risiko keselamatan dan keamanan",
+         "children": []
+        },
+        {
+         "text": "Pemetaan area berisiko terjadinya gangguan keselamatan dan keamanan di Rumah Sakit",
+         "children": []
+        },
+        {
+         "text": "Melakukan upaya pengendalian dan pencegahan",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pelayanan Kesehatan Kerja",
+       "children": [
+        {
+         "text": "Kegiatan promotif:",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Extra fooding bagi petugas yang bekerja di area berisiko tinggi atau petugas yang dinas bergilir",
+       "children": []
+      },
+      {
+       "text": "Terdapat program jasmani terprogram",
+       "children": []
+      },
+      {
+       "text": "Pembinaan mental/rohani",
+       "children": []
+      },
+      {
+       "text": "Pemenuhan gizi kerja dan ASI di Rumah Sakit",
+       "children": []
+      },
+      {
+       "text": "Kegiatan preventif:",
+       "children": []
+      },
+      {
+       "text": "Pemberian imunisasi pada SDM yang bekerja pada area risiko dan berbahaya",
+       "children": []
+      },
+      {
+       "text": "Pemeriksaan kesehatan bagi pegawai sebelum, berkala, dan khusus sesuai dengan risiko pekerjaan",
+       "children": []
+      },
+      {
+       "text": "Menganalisis hasil pemeriksaan kesehatan SDM rumah sakit dan memberikan rekomendasi dan tindak lanjut hasil analisis",
+       "children": []
+      },
+      {
+       "text": "Menganalisis hasil pengukuran lingkungan kerja dan rekomendasi hasil evaluasi pengukuran lingkungan kerja",
+       "children": []
+      },
+      {
+       "text": "Kegiatan kuratif:",
+       "children": []
+      },
+      {
+       "text": "Memberikan pengobatan dan perawatan bagi SDM yang sakit",
+       "children": []
+      },
+      {
+       "text": "Melakukan diagnosis dan tatalaksana PAK",
+       "children": []
+      },
+      {
+       "text": "Melakukan penanganan KAK",
+       "children": []
+      },
+      {
+       "text": "Melakukan penanganan pasca pemajanan",
+       "children": []
+      },
+      {
+       "text": "Kegiatan rehabilitatif:",
+       "children": []
+      },
+      {
+       "text": "Rehabilitasi medik",
+       "children": []
+      },
+      {
+       "text": "Program pendampingan return to work setelah sakit lebih dari 2 minggu KAK/PAK",
+       "children": []
+      },
+      {
+       "text": "Tersedia unit layanan kesehatan kerja sesuai dengan kondisi kemampuan yang dimiliki Rumah Sakit",
+       "children": []
+      },
+      {
+       "text": "Pengelolaan B3 dari aspek K3",
+       "children": [
+        {
+         "text": "Melakukan identifikasi dan inventarisasi B3",
+         "children": []
+        },
+        {
+         "text": "Memiliki lembar data keselamatan bahan (MSDS)",
+         "children": []
+        },
+        {
+         "text": "Tersedia sarana keselamatan B3",
+         "children": []
+        },
+        {
+         "text": "Terdapat pedoman dan SPO Pengelolaan B3 yang aman",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "e. Terdapat penanganan keadaan darurat B3: melakukan pelatihan dan simulasi, menerapkan SPO pengelolaan tumpahan dan paparan B3, dan terdapat mekanisme pelaporan dan investigasi untuk tumpahan B3",
+       "children": []
+      },
+      {
+       "text": "Pencegahan dan Pengendalian Kebakaran",
+       "children": [
+        {
+         "text": "Membuat daftar potensi bahaya kebakaran di semua area Rumah Sakit",
+         "children": []
+        },
+        {
+         "text": "Membuat denah potensi risiko tinggi kebakaran",
+         "children": []
+        },
+        {
+         "text": "Pengecekan sarana proteksi kebakaran pasif dan aktif",
+         "children": []
+        },
+        {
+         "text": "Melakukan pengendalian kebakaran",
+         "children": []
+        },
+        {
+         "text": "Melakukan simulasi kebakaran",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pengelolaan prasarana Rumah Sakit dari aspek K3",
+       "children": [
+        {
+         "text": "Tersedia inventaris sistem utilitas nya",
+         "children": []
+        },
+        {
+         "text": "Dilakukannya kegiatan pemeriksaan, pengujian, dan pemeliharaan sistem utilitas",
+         "children": []
+        },
+        {
+         "text": "Mengidentifikasi jangka waktu pemeriksaan, pengujian, dan pemeliharaan sistem utilitas yang beroperasi",
+         "children": []
+        },
+        {
+         "text": "Dilakukannya pemeliharaan promotif dan terencana",
+         "children": []
+        },
+        {
+         "text": "Dokumentasi setiap kegiatan sistem utilitas",
+         "children": []
+        },
+        {
+         "text": "Air bersih dan listrik tersedia 24 jam",
+         "children": []
+        },
+        {
+         "text": "Mengidentifikasi area dan layanan yang memiliki risiko terbesar jika terjadi pemadaman listrik atau gangguan air",
+         "children": []
+        },
+        {
+         "text": "Rumah sakit merencanakan sumber alternatif dalam keadaan darurat",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pengelolaan peralatan medis dari aspek K3",
+       "children": [
+        {
+         "text": "Tersedia inventaris seluruh peralatan medis",
+         "children": []
+        },
+        {
+         "text": "Tersedia penandaan peralatan medis",
+         "children": []
+        },
+        {
+         "text": "Dilakukannya inspeksi berkala",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Dilakukannya uji coba peralatan",
+       "children": []
+      },
+      {
+       "text": "Dilakukannya pemeliharaan promotif dan terencana",
+       "children": []
+      },
+      {
+       "text": "Adanya petugas yang memelihara dan menggunakan peralatan medis kompeten dan terlatih",
+       "children": []
+      },
+      {
+       "text": "Kesiapsiagaan menghadapi kondisi darurat atau bencana",
+       "children": [
+        {
+         "text": "Terdapat pedoman tanggap darurat atau bencana",
+         "children": []
+        },
+        {
+         "text": "Terdapat Tim Tanggap Darurat atau bencana",
+         "children": []
+        },
+        {
+         "text": "Terdapat SPO tanggap darurat",
+         "children": []
+        },
+        {
+         "text": "Tersedia alat/sarana dan prosedur keadaan darurat",
+         "children": []
+        },
+        {
+         "text": "Kesesuaian penempatan dan kemudahan alat keadaan darurat oleh petugas yang berkompeten",
+         "children": []
+        },
+        {
+         "text": "Terdapat rambu-rambu keselamatan dan pintu darurat",
+         "children": []
+        },
+        {
+         "text": "Simulasi kondisi darurat atau bencana:",
+         "children": [
+          {
+           "text": "darurat air",
+           "children": []
+          },
+          {
+           "text": "darurat listrik",
+           "children": []
+          },
+          {
+           "text": "penculikan bayi",
+           "children": []
+          },
+          {
+           "text": "ancaman bom",
+           "children": []
+          },
+          {
+           "text": "tumpahan B3",
+           "children": []
+          },
+          {
+           "text": "kebocoran radiasi",
+           "children": []
+          },
+          {
+           "text": "gangguan keamanan",
+           "children": []
+          },
+          {
+           "text": "banjir",
+           "children": []
+          },
+          {
+           "text": "gempa bumi",
+           "children": []
+          }
+         ]
+        },
+        {
+         "text": "Memberikan pelatihan tanggap darurat atau bencana",
+         "children": []
+        },
+        {
+         "text": "Melakukan uji coba kesiapan petugas yang bertanggung jawab menangangi keadaan darurat minimal 1 tahun sekali setiap gedung",
+         "children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": "4",
+     "title": "Program Promosi Kesehatan Rumah Sakit (PKRS)",
+     "hasil": "SK Penetapan Unit PKRS\nStruktur PKRS",
+     "children": [
+      {
+       "text": "1. Aspek Kebijakan dan Organisasi",
+       "children": []
+      },
+      {
+       "text": "SK Penetapan Unit/Instalasi PKRS yang masih berlaku",
+       "children": []
+      },
+      {
+       "text": "Struktur PKRS",
+       "children": []
+      },
+      {
+       "text": "c. Dokumen rencana kerja tahunan PKRS",
+       "children": []
+      },
+      {
+       "text": "d. Pedoman pelayanan PKRS",
+       "children": []
+      },
+      {
+       "text": "Sumber Daya dan Sarana",
+       "children": [
+        {
+         "text": "Ada petugas khusus dalam bidang promosi kesehatan ( Bukti SK )",
+         "children": []
+        },
+        {
+         "text": "Tersedia ruang kerja khusus tim PKRS",
+         "children": []
+        },
+        {
+         "text": "Tersedia ruang untuk konseling/edukasi kelompok",
+         "children": []
+        },
+        {
+         "text": "Tersedia peralatan dan media pendukung (komputer, kamera, alat desain)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Standar Pelayanan PKRS",
+       "children": [
+        {
+         "text": "Ada media edukasi (poster, leaflet, videotron) di:",
+         "children": [
+          {
+           "text": "Ruang pendaftaran",
+           "children": []
+          },
+          {
+           "text": "Rawat jalan",
+           "children": []
+          },
+          {
+           "text": "Rawat inap",
+           "children": []
+          },
+          {
+           "text": "Ruang tindakan",
+           "children": []
+          },
+          {
+           "text": "Luar gedung",
+           "children": []
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "text": "Integrasi Program",
+       "children": [
+        {
+         "text": "Ada media/kegiatan edukasi mengenai Germas",
+         "children": []
+        },
+        {
+         "text": "Ada kolaborasi kegiatan Pemberdayaan Masyarakat dan Kemitraan",
+         "children": []
+        },
+        {
+         "text": "Ada bukti pelaksanaan kegiatan edukasi di luar RS",
+         "children": []
+        },
+        {
+         "text": "Ada kerjasama dengan CSR atau organisasi dalam mendukung promosi kesehatan",
+         "children": []
+        },
+        {
+         "text": "Ada jadwal rutin penyuluhan kelompok bagi pengunjung rumah sakit",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Monitoring dan Evaluasi",
+       "children": [
+        {
+         "text": "Memiliki target indikator keberhasilan PKRS",
+         "children": []
+        },
+        {
+         "text": "Melakukan evaluasi",
+         "children": []
+        },
+        {
+         "text": "Tersedia laporan kegiatan PKRS",
+         "children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": "5",
+     "title": "Program Kesehatan Ibu Anak",
+     "hasil": "",
+     "children": [
+      {
+       "text": "1. Pelaporan kematian ibu dan perinatal melalui aplikasi Maternal Perinatal Death Notification (MPDN) sesuai dengan SE Kementerian Kesehatan Republik Indonesia Direktorat Jenderal Pelayanan Kesehatan Nomor : HK.02.02/D/7767/2023.",
+       "children": []
+      },
+      {
+       "text": "Pelaporan ANC menggunakan SIGIZIKESGA dan KOMDAT KESPRIMKOM sesuai dengan Surat Edaran Kementerian Kesehatan Republik Indonesia Direktorat Jenderal Pelayanan Kesehatan Nomor: KG.01.10/B.II/4037/2025.",
+       "children": []
+      },
+      {
+       "text": "Pengisian SIMATNEO di https://simatneo.kemkes.go.id dengan rincian:",
+       "children": [
+        {
+         "text": "Pengisian tatakelola manajemen per semester setiap tahunnya (semester awal dan semester akhir)",
+         "children": []
+        },
+        {
+         "text": "Alat pantau kinerja ( APK maternal, APK Neonatal, APK tatakelola, APK Pencegahan Infeksi, APK Rujukan) setiap triwulan dalam 1 tahun",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Penggunaan BUKU KIA berdasarkan Keputusan Menteri Kesehatan No. 284/MENKES/SK/III/2004 Tentang Buku Kesehatan Ibu dan Anak (KIA), buku KIA yang dipergunakan sesuai dengan Kementerian Kesehatan Republik Indonesia.",
+       "children": []
+      },
+      {
+       "text": "Pelaksanaan pelayanan ANC 12 T meliputi :",
+       "children": [
+        {
+         "text": "Pengukuran berat badan dan tinggi badan",
+         "children": []
+        },
+        {
+         "text": "Pengukuran tekanan darah",
+         "children": []
+        },
+        {
+         "text": "Pengukuran lingkar lengan atas (LILA)",
+         "children": []
+        },
+        {
+         "text": "Pengukuran tinggi puncak rahim (fundus uteri)",
+         "children": []
+        },
+        {
+         "text": "Penentuan presentasi janin dan denyut jantung janin",
+         "children": []
+        },
+        {
+         "text": "Pemberian imunisasi sesuai dengan status imunisasi",
+         "children": []
+        },
+        {
+         "text": "Pemberian tablet tambah darah minimal 90 (sembilan puluh) tablet",
+         "children": []
+        },
+        {
+         "text": "Test laboratorium",
+         "children": []
+        },
+        {
+         "text": "Tatalaksana/ penanganan kasus",
+         "children": []
+        },
+        {
+         "text": "Temu wicara (konseling)",
+         "children": []
+        },
+        {
+         "text": "penilaian kesehatan jiwa melalui simkeswa",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "l. USG",
+       "children": []
+      },
+      {
+       "text": "Pelaksanaan skrining bayi baru lahir di rumah sakit (SHK, S-G6PD, S-HAK, Skrining PJB Kritis, Skrining kelainan saluran empedu dan Skrining pertumbuhan dan perkembangan)",
+       "children": [
+        {
+         "text": "Penginputan data skrining bayi baru lahir (by name) pada DHIS",
+         "children": []
+        },
+        {
+         "text": "Adanya Alur dan SPO terkait pelaksanaan skrining bayi baru lahir",
+         "children": []
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "pencegahan_dan_pengendalian_penyakit",
+   "title": "PENCEGAHAN DAN PENGENDALIAN PENYAKIT",
+   "subtitle": "",
+   "items": [
+    {
+     "no": "1",
+     "title": "Program Nasional Rumah Sakit",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Pelaksanaan Program Penanggulangan Tuberkulosis",
+       "children": [
+        {
+         "text": "Regulasi pelaksanaan penanggulangan TB di RS (pencapaian indikator program TBC sesuai Rencana Strategis (Renstra) Dinas Kesehatan Provinsi DKI Jakarta)",
+         "children": []
+        },
+        {
+         "text": "Penetapan tim TB Paru RS (SK Tim TBC DOTS)",
+         "children": []
+        },
+        {
+         "text": "Penetapan program kerja Tim TBC DOTS untuk memperkuat jejaring Internal dan jejaring eksternal Faskes (Validasi data mingguan, rapat koordinasi tim TBC DOTS bulanan, pelaksanaan promosi kesehatan di faskes, perencanaan dan pengadaan logistik Program TBC (OAT dan non OAT))",
+         "children": []
+        },
+        {
+         "text": "Bukti pelaksanaan Promosi kesehatan, surveilans dan upaya pencegahan TB (informed consent dimintakan kepada setiap pasien TBC sebelum pemberian OAT, KIE Pemberian TPT bagi kontak serumah pasien TBC)",
+         "children": []
+        },
+        {
+         "text": "Laporan pelaksanaan promosi kesehatan (Program kerja tim TBC DOTS dalam pelaksanaan promosi kesehatan di faskes)",
+         "children": []
+        },
+        {
+         "text": "Tersedia ruang pelayanan rawat jalan yang memenuhi pedoman PPI TBC (strategi TEMPO (Temukan Pisahkan Obati) sebagai penentuan prioritas bagi layanan TBC)",
+         "children": []
+        },
+        {
+         "text": "Tersedia ruang pelayanan rawat inap yang memenuhi pedoman PPI TBC (jika tersedia ranap)",
+         "children": []
+        },
+        {
+         "text": "Tersedia ruang pengambilan spesimen sputum yang memenuhi pedoman PPI TBC (Pojok dahak/sputum booth)",
+         "children": []
+        },
+        {
+         "text": "Penerapan kepatuhan staf medis terhadap Panduan Praktik Klinis (PPK) TBC (SPO Alur penegakan diagnosis TBC, SPO Pengobatan TBC dan pemantauan pengobatan sampai tuntas)",
+         "children": []
+        },
+        {
+         "text": "Perencanaan dan pengadaan logistik Program TBC (OAT dan non OAT) melalui Sistem Informasi Tuberkulosis (SITB)",
+         "children": []
+        }
+       ]
+      },
+      {
+       "text": "Pelaksanaan pelayanan TBC Resisten Obat (bagi RS rujukan TBC RO)",
+       "children": []
+      },
+      {
+       "text": "Bukti pencatatan dan pelaporan terduga TBC dan kasus TBC di SITB",
+       "children": []
+      },
+      {
+       "text": "2) Pelaksanaan Program Penanggulangan HIV/AIDS",
+       "children": [
+        {
+         "text": "Regulasi penetapan program penanggulangan HIV/AIDS",
+         "children": []
+        },
+        {
+         "text": "Bukti pelaksanaan program penanggulangan HIV/AIDS",
+         "children": []
+        },
+        {
+         "text": "Bukti penerapan fungsi rujukan HIV/AIDS pada rumah sakit sesuai dengan kebijakan yang berlaku",
+         "children": []
+        },
+        {
+         "text": "Bukti pelaksanaan PITC (Provider Initiated Testing and Counselling) dan PMTC (Prevention of Mother to Child) → jika tersedia",
+         "children": []
+        },
+        {
+         "text": "Bukti rumah sakit telah memberikan pelayanan ODHA dengan faktor risiko IO → jika tersedia",
+         "children": []
+        },
+        {
+         "text": "Bukti perencanaan, pengadaan dan penyediaan ARV → jika tersedia",
+         "children": []
+        },
+        {
+         "text": "Bukti pelaporan pemantauan dan evaluasi program penanggulangan HIV/AIDS",
+         "children": []
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "no": "2",
+     "title": "Pelaksanaan Program Surveilans",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia SK Tim TGC/SARS",
+       "children": []
+      },
+      {
+       "text": "Melaksanakan Pencatatan dan Pelaporan Harian RS pada web surveilans Dinas Kesehatan Provinsi DKI Jakarta",
+       "children": []
+      },
+      {
+       "text": "Melaporkan penyakit PD3I (Penyakit yang Dapat Dicegah dengan Imunisasi)",
+       "children": []
+      },
+      {
+       "text": "Melaporkan kematian sesuai dengan Penyebab dasar kematian berdasarkan ICD ill-defined adalah diagnosis penyebab kematian yang dibuat oleh dokter yang bertanggung jawab ketika pasien dinyatakan meninggal berdasarkan kode ICD-X dan berupa diagnosis ill defined (R00-R99)",
+       "children": []
+      },
+      {
+       "text": "Melaksanakan pelaporan Zero Report AFP setiap minggu sesuai dengan Juknis dari Kemenkes dan Dinkes Provinsi Jakarta.",
+       "children": []
+      },
+      {
+       "text": "Memverifikasi alert yang muncul pada SKDR setiap minggu sesuai juknis Kemenkes RI dan Dinkes Provinsi Jakarta",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "3",
+     "title": "Melaksanakan Inspeksi Kesehatan Lingkungan minimal 1 X per tahun menggunakan form IKL Rumah Sakit",
+     "hasil": "(rumah sakit mengisi form lampiran Inspeksi Kesehatan Lingkungan)",
+     "children": [
+      {
+       "text": "(Lampiran Permenkes Nomor 7 Tahun 2019 yang sudah di revisi di Peraturan Menteri Kesehatan Republik Indonesia Nomor 2 Tahun 2023)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "4",
+     "title": "Menginput Laporan Penyelenggaraan Kesehatan Lingkungan di aplikasi",
+     "hasil": "",
+     "children": [
+      {
+       "text": "SIKELIM dan SPEED",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "5",
+     "title": "Melaporkan kegiatan pest control di rumah sakit /fasyankes melalui link berikut:",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(https://bit.ly/FormatPelaporanPengendalianVektordanBPP-JakartaPusat) Catatan: Disi setiap 6 bulan sekali.",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "6",
+     "title": "Pelaksanaan Program Malaria",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia Regulasi (SK/SE/MoU) terkait Rumah Sakit Rujukan Malaria atau Depo Obat Anti Malaria baik dari Dinas Kesehatan Provinsi atau Suku Dinas Kesehatan",
+       "children": []
+      },
+      {
+       "text": "Penegakkan diagnosa malaria (Klinis/mikroskopis)",
+       "children": []
+      },
+      {
+       "text": "Adakah Pedoman Nasional Penatalaksanaan Kedokteran (PNPK) atau buku saku tentang tatalaksana malaria terbaru",
+       "children": []
+      },
+      {
+       "text": "Mekanisme Pelayanan Kebutuhan Obat Anti Malaria (OAM)",
+       "children": []
+      },
+      {
+       "text": "Kasus malaria di terapi dengan ACT atau DHP dan primaquin",
+       "children": []
+      },
+      {
+       "text": "Melaksanakan penjaminan dan pengendalian mutu external diagnosa malaria",
+       "children": []
+      },
+      {
+       "text": "Mengirimkan sediaan darah ke laboratorium rujukan/cross checker",
+       "children": []
+      },
+      {
+       "text": "yang ditunjuk untuk dilakukan uji silang melalui Suku Dinas Kesehatan",
+       "children": []
+      },
+      {
+       "text": "Melaksanakan pelaporan kasus malaria (Regmal 1), zero reporting, hasil pemeriksaan (Regmal 2) ke website Sismal Kemkes RI",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "7",
+     "title": "Pelayanan Imunisasi atau Vaksinasi",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Apakah layanan imunisasi dilakukan sesuai Standar?",
+       "children": []
+      },
+      {
+       "text": "Apakah ada ruangan khusus imunisasi? apakah terpisah dengan poli anak sakit? apakah tersedia tempat cuci tangan dengan sabun dan air mengalir (wastafel atau ember berlobang) atau hand sanitizer",
+       "children": []
+      },
+      {
+       "text": "Apakah tersedia safety box untuk limbah medis tajam, kantong plastik limbah medis non tajam atau kantong plastik kuning yang kuat dan tidak bocor serta diberi tanda, serta kantong plastik hitam untuk limbah domestik?",
+       "children": []
+      },
+      {
+       "text": "Apakah tersedia KIPI kit/Anafilatik Shock Kit sesuai standar (1 Ampul Epinefrin 1:1000, 1 spuit 1 ml, 1 infus set, dan larutan infus Ringers Lactate (RL) dan pastikan tanggal expired datenya?",
+       "children": []
+      },
+      {
+       "text": "Apakah hasil layanan imunisasi dicatat secara lengkap di catatan manual dan diinput langsung di ASIK? apakah laporan dikirim rutin ke Puskesmas Pengampu?",
+       "children": []
+      },
+      {
+       "text": "Apakah Fasilitas Kesehatan memiliki akun ASIK dan Akun Web Keamanan Vaksin? Apakah ada PJ khusus Imunisasi?",
+       "children": []
+      },
+      {
+       "text": "Apakah tersedia refrigerator, vaccine carrier dengan busa, cool pack yang cukup, sesuai standar dan berfungsi baik serta terdapat indikator pemantau suhu?",
+       "children": []
+      },
+      {
+       "text": "Apakah Semua vaksin yang ada, tidak kedaluwarsa dan dalam kondisi VVM A atau B?",
+       "children": []
+      },
+      {
+       "text": "Apakah penyimpanan vaksin dalam refrigerator atau cold chain sudah sesuai standar (sensitivitas vaksin), dan apakah ada obat / barang lain di dalamnya?",
+       "children": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "code": "sumber_daya_manusia_kesehatan",
+   "title": "SUMBER DAYA MANUSIA KESEHATAN",
+   "subtitle": "",
+   "items": [
+    {
+     "no": "1",
+     "title": "Pengelolaan Cuti Pegawai :",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia dokumen/file informasi terkait perencanaan Cuti Pegawai",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokumen/arsip Cuti Pegawai pada periode bulan atau tahun sebelum supervisi dilaksanakan",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "2",
+     "title": "Pembinaan Pegawai-Hukuman Disiplin :",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia peraturan (PP/Pergub/SE/Peraturan Internal Fasyankes/ Standar Operasional Prosedur) terkait pelaksanaan Pembinaan Pegawai-Hukuman Disiplin Pegawai",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokumen/arsip Cuti Pegawai pada periode bulan atau tahun sebelum supervisi dilaksanakan",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "3",
+     "title": "Formasi Jabatan :",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia peraturan (PP/Pergub/SE/Peraturan Internal Fasyankes/ Standar Operasional Prosedur) terkait Formasi Jabatan Pegawai",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokumen/arsip Analisis Jabatan, Evaluasi Jabatan, Info Jabatan dan Peta Jabatan",
+       "children": []
+      },
+      {
+       "text": "Tersedia data/ dokumen Kepegawaian",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "4",
+     "title": "Pensiun Pegawai :",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia peraturan (PP/Pergub/SE/Peraturan Internal Fasyankes/ Standar Operasional Prosedur) terkait Pensiun Pegawai",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokumen/ file informasi terkait BUP (batas usia pensiun) Pegawai, berdasarkan TMT masing-masing BUP Pegawai",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "5",
+     "title": "Pencantuman Gelar/PI/PP/Ujian Dinas (Khusus Rumah Sakit Umum Daerah)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia peraturan (PP/ Pergub/ SE/ Peraturan Internal Fasyankes/ Standar Operasional Prosedur) terkait Pencantuman Gelar Pegawai ASN di Fasyankes",
+       "children": []
+      },
+      {
+       "text": "Tersedia peraturan (PP/Pergub/SE/Peraturan Internal Fasyankes/ Standar Operasional Prosedur) terkait PI/PP/Ujian Dinas Pegawai ASN di Fasyankes",
+       "children": []
+      },
+      {
+       "text": "c. Tersedia dokumen/ file informasi terkait PI/PP/Ujian Dinas Pegawai, berdasarkan Kepangkatan atau Ijazah terbaru ASN di Fasyankes",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "6",
+     "title": "SKP dan Dokumen Evaluasi (Khusus Rumah Sakit Umum Daerah)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia peraturan (PP/Pergub/SE/Peraturan Internal Fasyankes/ Standar Operasional Prosedur) terkait SKP dan Dokumen Evaluasi Pegawai di Fasyankes",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokumen/file arsip terkait SKP dan Dokumen Evaluasi Pegawai di Fasyankes",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "7",
+     "title": "PLT dan PLH",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      },
+      {
+       "text": "Tersedia Peraturan Gubernur DKI Jakarta terkait dengan Penugasan Pegawai Negeri Sipil sebagai Pelaksana Harian dan Pelaksana Tugas",
+       "children": []
+      },
+      {
+       "text": "Tersedia laporan sebagai pelaksana tugas di Fasyankes",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "8",
+     "title": "SPT dan LHKASN",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      },
+      {
+       "text": "Tersedia peraturan (PP/ Pergub/ SE/ Peraturan Internal Fasyankes/ Standar Operasional Prosedur) terkait SPT dan LHKASN di Fasyankes",
+       "children": []
+      },
+      {
+       "text": "Tersedia dokumen/ file arsip terkait SPT dan LHKASN di Fasyankes",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "9",
+     "title": "Terdapat Rekapitulasi Diklat Kepegawaian 40 JP, 20 JP, dan Diklat Tusi",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "10",
+     "title": "Bukti Usulan Diklat Pegawai (TNA/AKPK Khusus Rumah Sakit Umum Daerah) dan Rekap diklat khusus RS Swasta",
+     "hasil": "",
+     "children": []
+    },
+    {
+     "no": "11",
+     "title": "Terdapat monitoring tenaga kesehatan yang sedang menjalani tugas belajar",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "12",
+     "title": "Terdapat perizinan dan pelaporan hasil penelitian pada Fasyankes (Khusus Rumah Sakit Umum Daerah)",
+     "hasil": "",
+     "children": []
+    },
+    {
+     "no": "13",
+     "title": "Terdapat Kegiatan dan Pelaporan Hospitality",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "14",
+     "title": "Fasyankes sudah memiliki GAP Kompetensi Pegawai pada tahun 2025",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "15",
+     "title": "Sistem Informasi SDMK",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Fasyankes melakukan update data SISDMK",
+       "children": []
+      },
+      {
+       "text": "Terdapat kesesuaian data eksisting dan data yang tercantum di SISDMK",
+       "children": []
+      },
+      {
+       "text": "Tenaga Medis dan Tenaga Kesehatan yang bekerja di Fasyankes memiliki SIP dan STR aktif",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "16",
+     "title": "Terdapat Dokumen deskripsi SDM Kesehatan yang telah ditandatangani pimpinan",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "17",
+     "title": "Uji Kompetensi Jabatan Fungsional Kesehatan (Khusus Rumah Sakit Umum Daerah)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Fasyankes memiliki dokumen/i kebijakan tentang Uji Kompetensi Jabatan Fungsional kesehatan",
+       "children": []
+      },
+      {
+       "text": "Memiliki SOP pengelolaan uji kompetensi jabatan fungsional kesehatan di UKPD",
+       "children": []
+      },
+      {
+       "text": "Terdapat data SDMK yang mengikuti uji kompetensi jabatan fungsional kesehatan",
+       "children": []
+      },
+      {
+       "text": "Terdapat usulan Uji Kompetensi sesuai dengan ketentuan",
+       "children": []
+      },
+      {
+       "text": "Terdapat SOP untuk menindaklanjuti SDMK yang tidak lulus Uji Kompetensi beserta bukti tindak lanjut",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "18",
+     "title": "Kredensial Tenaga Medis & Tenaga Kesehatan",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Fasyankes memiliki dokumen tenaga medis dan tenaga kesehatan yang telah dilakukan kredensial / rekredensial",
+       "children": []
+      },
+      {
+       "text": "Tidak terdapat tenaga medis dan tenaga kesehatan yang belum dilakukan kredensial atau kredensial kedaluwarsa",
+       "children": []
+      },
+      {
+       "text": "Terdapat usulan jadwal kredensial Tenaga Medis dan Tenaga Kesehatan",
+       "children": []
+      },
+      {
+       "text": "d. Terdapat tindak lanjut tenaga medis dan tenaga kesehatan yang mendapatkan clinical privilege dengan catatan, beserta bukti tindak lanjut",
+       "children": []
+      },
+      {
+       "text": "e. Terdapat SOP proses kredensial",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "19",
+     "title": "Tata Kelola Jabatan Fungsional Kesehatan ASN (PNS, PPPK) dan BLUD",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      },
+      {
+       "text": "Terdapat usulan pengangkatan dalam JF sesuai dengan ketentuan",
+       "children": []
+      },
+      {
+       "text": "Penempatan jabatan fungsional kesehatan ASN dan BLUD sesuai dengan jabatan dan level kompetensi",
+       "children": []
+      },
+      {
+       "text": "Terdapat penyusunan SKP tahun jabatan fungsional ASN dan BLUD sesuai dengan level kompetensi",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "20",
+     "title": "Persatuan IDI & Persatuan IDGI",
+     "hasil": "",
+     "children": [
+      {
+       "text": "(Khusus Rumah Sakit yang menjadi Wahana Internship)",
+       "children": []
+      },
+      {
+       "text": "Terdapat dokumen Kebijakan pelaksanaan PIDI/PIDGI",
+       "children": []
+      },
+      {
+       "text": "Terdapat dokumen Kesepakatan Bersama yang ditandatangani oleh Pimpinan wahana, dokter pendamping dan peserta PIDI/PIDGI",
+       "children": []
+      },
+      {
+       "text": "Dilakukan evaluasi kinerja peserta PIDI/PIDGI secara berkala",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "21",
+     "title": "Kesejahteraan SDMK",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Tersedia SK/Surat Tugas/lainnya yang mengatur unit/tim yang mengatur kesejahteraan SDM",
+       "children": []
+      },
+      {
+       "text": "Tersedianya dokumen/laporan pemberian upah/gaji/ tunjangan/insentif",
+       "children": []
+      },
+      {
+       "text": "Fasyankes melaporkan dokumen/laporan pemberian upah/gaji/ tunjangan/insentif ke Suku Dinas Kesehatan? (Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      },
+      {
+       "text": "Terdapat monitoring dan evaluasi kesesuaian pemberian upah/gaji/ tunjangan/insentif",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "22",
+     "title": "Perlindungan K3 (Kesehatan dan Keselamatan Kerja)",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Terdapat bukti laporan/dokumen kerja sama terkait pemberian asuransi kesehatan kepada SDMK",
+       "children": []
+      },
+      {
+       "text": "b. Terdapat bukti laporan/dokumen kerja sama terkait pemberian asuransi ketenagakerjaan kepada SDMK",
+       "children": []
+      },
+      {
+       "text": "c. Tersedia kebijakan keamanan seperti petugas keamanan yang berjaga/CCTV di wilayah pelayanan kesehatan selama 24 jam",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "23",
+     "title": "Perlindungan Hukum",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Memiliki SOP/SPO perlindungan hukum",
+       "children": []
+      },
+      {
+       "text": "Melaksanakan sosialisasi SOP/SPO perlindungan hukum dengan sasaran semua tenaga medis dan tenaga kesehatan (minimal 1x dalam setahun)",
+       "children": []
+      },
+      {
+       "text": "Melaksanakan sosialisasi etik, disiplin profesi sesuai regulasi terbaru dengan sasaran semua tenaga medis dan tenaga kesehatan (minimal 1x dalam setahun)",
+       "children": []
+      },
+      {
+       "text": "Memiliki tim pengaduan dan/atau tim perlindungan hukum",
+       "children": []
+      },
+      {
+       "text": "Melaksanakan pelaporan aduan/sengketa medik ke Dinas Kesehatan (Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      },
+      {
+       "text": "Terdapat pendampingan internal untuk kasus hukum/sengketa medik/aduan",
+       "children": []
+      },
+      {
+       "text": "Memiliki mediator bidang kesehatan bersertifikat (Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      }
+     ]
+    },
+    {
+     "no": "24",
+     "title": "Penanganan Pengaduan",
+     "hasil": "",
+     "children": [
+      {
+       "text": "Terdapat peraturan pimpinan fasyankes/pedoman/juknis/SOP penanganan pengaduan eksternal",
+       "children": []
+      },
+      {
+       "text": "Terdapat peraturan pimpinan fasyankes/pedoman/juknis/SOP penanganan pengaduan internal",
+       "children": []
+      },
+      {
+       "text": "Tersedia SK/Surat Tugas/lainnya yang mengatur unit/tim yang mengelola penanganan pengaduan internal",
+       "children": []
+      },
+      {
+       "text": "Tersedia SK/Surat Tugas/lainnya yang mengatur unit/tim yang mengelola penanganan pengaduan eksternal",
+       "children": []
+      },
+      {
+       "text": "Tersedia kanal pengaduan internal",
+       "children": []
+      },
+      {
+       "text": "Tersedia kanal pengaduan eksternal",
+       "children": []
+      },
+      {
+       "text": "Tersedia laporan/dokumen rekapitulasi pengaduan terkait SDMK baik internal maupun eksternal",
+       "children": []
+      },
+      {
+       "text": "Jika tersedia laporan/dokumen rekapitulasi pengaduan terkait SDMK apakah fasyankes melaporkan ke Suku Dinas Kesehatan (Khusus Rumah Sakit Umum Daerah)",
+       "children": []
+      },
+      {
+       "text": "Tersedia laporan/dokumen hasil tindak lanjut pengaduan terkait SDMK baik internal maupun eksternal",
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "tables": {
+  "kompetensi": {
+   "cols": [
+    "no",
+    "layanan",
+    "kompetensi"
+   ],
+   "rows": [
+    [
+     "1",
+     "Jantung dan Pembuluh Darah",
+     "-"
+    ],
+    [
+     "2",
+     "Paru dan Pernafasan",
+     "-"
+    ],
+    [
+     "3",
+     "Uro Nefro",
+     "-"
+    ],
+    [
+     "4",
+     "Neonatus",
+     "-"
+    ],
+    [
+     "5",
+     "Neoplasma",
+     "-"
+    ],
+    [
+     "6",
+     "Ibu dan Ginekologi",
+     "-"
+    ],
+    [
+     "7",
+     "Musculoskeletal",
+     "-"
+    ],
+    [
+     "8",
+     "THT",
+     "Ya"
+    ],
+    [
+     "9",
+     "Mata",
+     "-"
+    ],
+    [
+     "10",
+     "Kulit dan Penyakit Kelamin",
+     "-"
+    ],
+    [
+     "11",
+     "Saraf/ Neuroscience",
+     "-"
+    ],
+    [
+     "12",
+     "Infeksi dan Parasit",
+     "-"
+    ],
+    [
+     "13",
+     "Pencernaan dan Hepatobilier",
+     "-"
+    ],
+    [
+     "14",
+     "Hematologi",
+     "-"
+    ],
+    [
+     "15",
+     "Alergi Imunologi dan Rheumatologi",
+     "-"
+    ],
+    [
+     "16",
+     "Rekonstruksi dan Estetika",
+     "-"
+    ],
+    [
+     "17",
+     "Keracunan",
+     "-"
+    ],
+    [
+     "18",
+     "Endokrin, Nutrisi dan Metabolik",
+     "-"
+    ],
+    [
+     "19",
+     "Luka Bakar",
+     "-"
+    ],
+    [
+     "20",
+     "Trauma",
+     "-"
+    ],
+    [
+     "21",
+     "Jiwa",
+     "-"
+    ],
+    [
+     "22",
+     "Gigi",
+     "+"
+    ],
+    [
+     "23",
+     "Forensik",
+     "-"
+    ],
+    [
+     "24",
+     "Rehabilitasi",
+     "-"
+    ]
+   ]
+  },
+  "tempat_tidur": {
+   "cols": [
+    "no",
+    "jenis",
+    "jumlah"
+   ],
+   "rows": [
+    [
+     "1",
+     "VVIP/VIP/Eksekutif dan sejenisnya",
+     "4"
+    ],
+    [
+     "2",
+     "Kelas I",
+     "5"
+    ],
+    [
+     "3",
+     "Kelas II",
+     "4"
+    ],
+    [
+     "4",
+     "Kelas III",
+     "6"
+    ],
+    [
+     "5",
+     "Perinatologi",
+     "-"
+    ],
+    [
+     "6",
+     "Isolasi",
+     "-"
+    ],
+    [
+     "7",
+     "Tempat Tidur Intensif",
+     ""
+    ],
+    [
+     "",
+     "a. ICU",
+     "-"
+    ],
+    [
+     "",
+     "b. ICCU",
+     "-"
+    ],
+    [
+     "",
+     "c. NICU",
+     "-"
+    ],
+    [
+     "",
+     "d. PICU",
+     "-"
+    ],
+    [
+     "",
+     "e. TT Intensif Lainnya",
+     "-"
+    ],
+    [
+     "8",
+     "Intermediate Ward",
+     "-"
+    ],
+    [
+     "9",
+     "Tempat Tidur Rawat Inap Lainnya",
+     "-"
+    ],
+    [
+     "Jumlah Total Tempat Tidur Rawat Inap",
+     ""
+    ],
+    [
+     "12",
+     "Tempat Tidur IGD",
+     "3"
+    ],
+    [
+     "13",
+     "Alokasi TT Kelas Rawat Inap Standar (KRIS)",
+     "6"
+    ]
+   ]
+  },
+  "perizinan": {
+   "cols": [
+    "no",
+    "dokumen",
+    "nomor",
+    "tahun"
+   ],
+   "rows": [
+    [
+     "1",
+     "Studi Kelayakan (Feasibility Study)",
+     "",
+     ""
+    ],
+    [
+     "2",
+     "Detail Engineering Design (DED)",
+     "",
+     ""
+    ],
+    [
+     "3",
+     "Master Plan",
+     "-",
+     ""
+    ],
+    [
+     "4",
+     "Izin Mendirikan Bangunan (IMB)",
+     "0007/8.1/31.71.04.1002/-1.785.51/2017",
+     "2017"
+    ],
+    [
+     "5",
+     "Sertifikat Layak Fungsi (SLF)",
+     "37/C.39B/31.71.04.1002.04.016.S./2/-1.785.51/e/2022",
+     "2022"
+    ],
+    [
+     "6",
+     "Izin IPAL/ Persetujuan Teknis (Pertek)",
+     "E-0492/LH.02.01",
+     "2026"
+    ],
+    [
+     "7",
+     "Izin TPS Limbah B3/ Rincian Teknis (Rintek)",
+     "66/K.5/31.75.02.1001.02.022.K.1/1/-1.774.15/2021",
+     "2021"
+    ],
+    [
+     "8",
+     "Dokumen Lingkungan ( UKL UPL, AMDAL ,DLL )",
+     "8297/1.842.112",
+     "2003"
+    ],
+    [
+     "9",
+     "Izin Radiologi Diagnostik",
+     "108/CAB-RB/SS-2/V/2026",
+     "2026"
+    ],
+    [
+     "10",
+     "Izin Lift",
+     "9782/-1836.2",
+     "2018"
+    ],
+    [
+     "11",
+     "Izin Genset",
+     "9793/-1.836.2",
+     "2018"
+    ],
+    [
+     "12",
+     "Sertifikat Keselamatan Kebakaran",
+     "11/E.2b/2/TM.33.10/e/2023",
+     "2023"
+    ],
+    [
+     "13",
+     "Izin Parkir",
+     "36/N.21.1/31.71.04.1002.7.SPU-1/1/TM.13.30/e/2025",
+     "2025"
+    ],
+    [
+     "14",
+     "Izin Petir (> 4 lantai)",
+     "-",
+     ""
+    ],
+    [
+     "15",
+     "MOU Pengelolaan Limbah",
+     "028/SPK/JNB/I1/2026",
+     "2026"
+    ],
+    [
+     "16",
+     "MOU Pengendalian Vektor/Pest Control",
+     "-",
+     ""
+    ],
+    [
+     "17",
+     "SK Hospital Bylaw",
+     "001 /RSKBSSM-SK/DIR/X/2014",
+     "2014"
+    ],
+    [
+     "18",
+     "SK Komite Etik dan Hukum",
+     "067 /RSSSM-SK/DIR/I/2025",
+     "2025"
+    ],
+    [
+     "19",
+     "SK Komite Medik",
+     "066/RSSSM-SK/DIR/I/2024",
+     "2024"
+    ],
+    [
+     "20",
+     "SK Tim/ Komite Keselamatan Pasien",
+     "042/SK/DIR/2024",
+     "2024"
+    ],
+    [
+     "21",
+     "SK Komite Keperawatan",
+     "003/SK/DIR/2024",
+     "2024"
+    ],
+    [
+     "22",
+     "SK Komite Nakes Lainnya (Sebutkan)",
+     "",
+     ""
+    ],
+    [
+     "23",
+     "SK Komite Mutu",
+     "0001/SK/DIR/2024",
+     "2024"
+    ],
+    [
+     "24",
+     "SK Tim PPI",
+     "0014/SK/DIR/2024",
+     "2024"
+    ],
+    [
+     "25",
+     "SK PPRA",
+     "038-SKDIR-FAR-2025",
+     "2025"
+    ],
+    [
+     "26",
+     "SK Tim K3",
+     "",
+     ""
+    ],
+    [
+     "27",
+     "SK Tim Penanggulangan Bencana",
+     "",
+     ""
+    ]
+   ]
+  },
+  "sarana": {
+   "cols": [
+    "no",
+    "uraian",
+    "isi"
+   ],
+   "rows": [
+    [
+     "1",
+     "Luas Tanah",
+     ": 1597 m²/ Luas Bangunan 4021 m²"
+    ],
+    [
+     "2",
+     "Sarana Parkir",
+     ": Tersedia"
+    ],
+    [
+     "3",
+     "Sistem Pemadam Kebakaran",
+     ": APAR"
+    ],
+    [
+     "4",
+     "Penyediaan Air Minum",
+     ": PAM"
+    ],
+    [
+     "5",
+     "Fasilitas Listrik",
+     ": Tersedia. PLN : 82,5 KVA, Genset : 125 KVA"
+    ],
+    [
+     "6",
+     "Pengelolaan Limbah Cair (IPAL)",
+     ": Tersedia"
+    ],
+    [
+     "7",
+     "Pembuangan Sampah Domestik",
+     ": Ada"
+    ],
+    [
+     "8",
+     "TPS",
+     ": Ada"
+    ],
+    [
+     "9",
+     "Daftar Inventaris Alkes dan Kalibrasi Alat",
+     ": Ada"
+    ]
+   ]
+  },
+  "kinerja": {
+   "cols": [
+    "no",
+    "kegiatan",
+    "thn1",
+    "thn2"
+   ],
+   "hdr": [
+    "No",
+    "Data Kegiatan",
+    "2025",
+    "Jan s.d Jul 2026"
+   ],
+   "rows": [
+    [
+     "1",
+     "Jumlah kunjungan rawat jalan",
+     "6132",
+     "3616"
+    ],
+    [
+     "2",
+     "Jumlah kunjungan rawat inap",
+     "237",
+     "138"
+    ],
+    [
+     "3",
+     "Jumlah kelahiran hidup",
+     "0",
+     "0"
+    ],
+    [
+     "4",
+     "Jumlah kematian ibu maternal",
+     "0",
+     "0"
+    ],
+    [
+     "5",
+     "Jumlah kematian neonatal (<28) hari",
+     "0",
+     "0"
+    ],
+    [
+     "6",
+     "Jumlah kematian bayi (>28 hari 1 thn)",
+     "0",
+     "0"
+    ],
+    [
+     "7",
+     "Jumlah kematian Balita (1-5 thn)",
+     "0",
+     "0"
+    ],
+    [
+     "8",
+     "BOR",
+     "11.06",
+     "6.50"
+    ],
+    [
+     "9",
+     "LOS",
+     "3.24",
+     "3.27"
+    ],
+    [
+     "10",
+     "TOI",
+     "1.54",
+     "1.51"
+    ],
+    [
+     "11",
+     "GDR",
+     "0",
+     "0"
+    ],
+    [
+     "12",
+     "NDR",
+     "0",
+     "0"
+    ],
+    [
+     "13",
+     "Jumlah Kasus SC",
+     "0",
+     "0"
+    ]
+   ]
+  },
+  "penyakit_rj": {
+   "cols": [
+    "no",
+    "diagnosa",
+    "jumlah"
+   ],
+   "rows": [
+    [
+     "1",
+     "Impacted Cerumen",
+     "1123"
+    ],
+    [
+     "2",
+     "Allergic rhinitis, unspecified",
+     "812"
+    ],
+    [
+     "3",
+     "Tinnitus",
+     "325"
+    ],
+    [
+     "4",
+     "Chronic tubotympanic suppurative otitis media",
+     "311"
+    ],
+    [
+     "5",
+     "Sensorineural hearing loss, unspecified",
+     "281"
+    ],
+    [
+     "6",
+     "Acute upper respiratory infection, unspecified",
+     "225"
+    ],
+    [
+     "7",
+     "Gastro-oesophageal reflux disease",
+     "208"
+    ],
+    [
+     "8",
+     "Acute sinusitis",
+     "204"
+    ],
+    [
+     "9",
+     "Benign paroxysmal vertigo",
+     "198"
+    ],
+    [
+     "10",
+     "Dental examination",
+     "178"
+    ]
+   ]
+  },
+  "penyakit_ri": {
+   "cols": [
+    "no",
+    "diagnosa",
+    "jumlah"
+   ],
+   "rows": [
+    [
+     "1",
+     "Chronic tubotympanic suppurative otitis media",
+     "36"
+    ],
+    [
+     "2",
+     "Allergic rhinitis, unspecified",
+     "28"
+    ],
+    [
+     "3",
+     "Acute tonsillitis",
+     "25"
+    ],
+    [
+     "4",
+     "Cholesteatoma of external ear",
+     "22"
+    ],
+    [
+     "5",
+     "Sensorineural hearing loss, unspecified",
+     "20"
+    ],
+    [
+     "6",
+     "Hypertrophy of nasal turbinates",
+     "19"
+    ],
+    [
+     "7",
+     "Sleep apnoea",
+     "10"
+    ],
+    [
+     "8",
+     "Acute sinusitis",
+     "9"
+    ],
+    [
+     "9",
+     "Otosclerosis",
+     "9"
+    ],
+    [
+     "10",
+     "Hypertrophy of adenoids",
+     "8"
+    ]
+   ]
+  },
+  "sdm_detail": {
+   "cols": [
+    "no",
+    "jenis",
+    "standar",
+    "jumlah",
+    "purna",
+    "paruh"
+   ],
+   "rows": [
+    [
+     "1.",
+     "Tenaga medis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1. Dokter Umum",
+     "+/-",
+     "2",
+     "",
+     "2"
+    ],
+    [
+     "",
+     "2. Dokter gigi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "3. Dokter spesialis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Spesialis dasar",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Penyakit dalam",
+     "+/-",
+     "1",
+     "",
+     "1"
+    ],
+    [
+     "",
+     "Anak",
+     "+",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Bedah",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Obstetri dan ginekologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Spesialis lain",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1) Mata",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "2) THT-KL",
+     "+/-",
+     "5",
+     "",
+     "5"
+    ],
+    [
+     "",
+     "3) Saraf",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "4) Jantung dan pembuluh darah",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "5) Kulit dan kelamin",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "6) Kedokteran jiwa",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "7) Paru",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "8) Orthopedi dan traumatologi",
+     "+/-",
+     "1",
+     "",
+     "1"
+    ],
+    [
+     "",
+     "9) Urologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "10) Bedah saraf",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "11) Bedah plastik rekonstruksi dan estetika",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "12) Bedah anak",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "13) Bedah toraks kardiak dan vaskuler",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "14) Kedokteran forensik",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "15) Emergensi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "16) Anestesi",
+     "+/-",
+     "1",
+     "",
+     "1"
+    ],
+    [
+     "",
+     "17) Kedokteran fisik dan rehabilitasi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "18) Radiologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "19) Patologi klinik",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "20) Patologi anatomi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "21) Gizi klinik",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "22) Akupuntur",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "23) Kedokteran nuklir",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Dokter gigi spesialis",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1) Konservasi/endodonsi",
+     "+/-",
+     "2",
+     "",
+     "2"
+    ],
+    [
+     "",
+     "2) Orthodonti",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "3) Periodonti",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "4) Prosthodonti",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "5) Pedodonti",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "6) Penyakit mulut",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "7) Bedah mulut",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Subspesialis Dasar",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Subspesialis bedah dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Digestif",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Onkologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Vaskuler",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Subspesialis penyakit dalam dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Gastroenterohepatologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Ginjal Hipertensi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Hematologi onkologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Subspesialis anak dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Neurologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Hematologi onkologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Emergensi dan Rawat Intensif Anak (ERIA)",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "d) Neonatologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "e) Kardiologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Subspesialis obstetri dan ginekologi dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Fetomaternal",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Fertilitas dan endokrinologi reproduksi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Onkologi ginekologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "d) Obstetri ginekologi sosial",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "Subspesialis lain",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1) Mata dan/atau dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Glaukoma",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Kornea, lensa, dan bedah refraktif",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Pediatri onkologi strabismus",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "d) Vitreo retina",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "2) Telinga, hidung, tenggorokan dan bedah kepala leher (THT-KL) dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Neurotologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "3) Paru dan/atau Dokter spesialis",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a. Intervensi dan gawat nafas",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "4) Saraf dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Neurofisiologi dan neuromuskular",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Neurointervensi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "5) Bedah Saraf dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Neuro onkologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Neurovaskular",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "6) Jantung dan pembuluh darah dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Aritmia",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Kardio intervensi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Pencitraan kardiovaskular",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "7) Orthopedi dan traumatologi dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Orthopedic spine",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Hip and knee",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Hand, upper limb and microsurgery",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "d) Orthopedic onkologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "e) Foot and ankle",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "f) Orthopedic sports injury",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "8) Anestesi dan terapi intensif dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Intensive care",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Kardiovaskular anestesi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "9) Radiologi dan/atau Dokter spesialis dengan kualifikasi tambahan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Radiologi intervensi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Radiologi anak",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "10) Bedah plastik",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Kraniomaksilofasial",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "11) Gizi klinik",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Nutrisi pada Critical Care",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "12) Urologi",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a) Urologi Onkologi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b) Urologi Pediatri",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c) Urologi Rekonstruksi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "2",
+     "Tenaga keperawatan dan kebidanan",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a. Perawat",
+     "+",
+     "11",
+     "",
+     "11"
+    ],
+    [
+     "",
+     "b. Bidan",
+     "+",
+     "",
+     "",
+     ""
+    ],
+    [
+     "3",
+     "Tenaga kefarmasian",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a. Apoteker",
+     "+",
+     "1",
+     "",
+     "1"
+    ],
+    [
+     "",
+     "b. Tenaga teknis kefarmasian",
+     "+",
+     "1",
+     "",
+     "1"
+    ],
+    [
+     "4",
+     "Tenaga kesehatan lain",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "a. Tenaga gizi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "b. Tenaga psikologi klinis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "c. Tenaga keterapian fisik",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1) Fisioterapis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "d. Tenaga keteknisian medis",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1) Perekam medis dan informasi kesehatan",
+     "+/-",
+     "1",
+     "",
+     ""
+    ],
+    [
+     "",
+     "2) Penata anestesi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "e. Tenaga teknik biomedika",
+     "",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1) Radiografer",
+     "+",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "2) Elektromedis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "3) Fisikawan medik",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "4) Ortotis prostetis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "5) Radioterapis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "6) Ahli teknologi laboratorium medik(Analis/Biologi)",
+     "+",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "f. Tenaga kesehatan lingkungan",
+     "+/-",
+     "1",
+     "",
+     ""
+    ],
+    [
+     "",
+     "g. Tenaga kesehatan lainnya yang diperlukan (sesuai kebutuhan)",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "1) Refraksionis",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "2) Teknisi Bank Darah",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "3) Teknis Gigi dan Mulut/Perawat Gigi",
+     "+/-",
+     "",
+     "",
+     ""
+    ],
+    [
+     "5",
+     "Tenaga manajemen Rumah Sakit",
+     "+",
+     "4",
+     "",
+     ""
+    ],
+    [
+     "6",
+     "Tenaga non kesehatan",
+     "+",
+     "14",
+     "",
+     ""
+    ]
+   ]
+  },
+  "rekap_sdm": {
+   "cols": [
+    "no",
+    "tenaga",
+    "jumlah",
+    "part",
+    "full"
+   ],
+   "rows": [
+    [
+     "1",
+     "Dokter umum",
+     "2",
+     "",
+     ""
+    ],
+    [
+     "2",
+     "Dokter spesialis",
+     "",
+     "",
+     ""
+    ],
+    [
+     "3",
+     "Dokter sub spesialis",
+     "",
+     "",
+     ""
+    ],
+    [
+     "4",
+     "Drg umum",
+     "",
+     "",
+     ""
+    ],
+    [
+     "5",
+     "Drg spesialis",
+     "",
+     "",
+     ""
+    ],
+    [
+     "6",
+     "Drg subspesialis",
+     "",
+     "",
+     ""
+    ],
+    [
+     "7",
+     "Perawat",
+     "",
+     "",
+     ""
+    ],
+    [
+     "8",
+     "Bidan",
+     "",
+     "",
+     ""
+    ],
+    [
+     "9",
+     "Tenaga kesehatan lain",
+     "",
+     "",
+     ""
+    ],
+    [
+     "10",
+     "Manajemen",
+     "",
+     "",
+     ""
+    ],
+    [
+     "11",
+     "Tenaga non kesehatan",
+     "",
+     "",
+     ""
+    ],
+    [
+     "",
+     "JUMLAH",
+     "",
+     "",
+     ""
+    ]
+   ]
+  }
+ },
+ "data_dasar": [
+  {
+   "key": "nama_rumah_sakit",
+   "label": "Nama Rumah Sakit",
+   "value": "RS Khusus THT SS Medika"
+  },
+  {
+   "key": "kepemilikan",
+   "label": "Kepemilikan",
+   "value": "Swasta"
+  },
+  {
+   "key": "klasifikasi_dan_kelas_rs",
+   "label": "Klasifikasi dan Kelas RS",
+   "value": "Rumah Sakit Khusus Kelas C"
+  },
+  {
+   "key": "alamat_rumah_sakit",
+   "label": "Alamat Rumah Sakit",
+   "value": "Jl. Salemba Satu No. 11-13 Jakarta Pusat 10430"
+  },
+  {
+   "key": "nama_direktur_rs",
+   "label": "Nama Direktur RS",
+   "value": "dr. Mevin handoyo, MKK"
+  },
+  {
+   "key": "nomor_sk_penetapan_direktur_rs",
+   "label": "Nomor SK Penetapan Direktur RS",
+   "value": "001/SK-DIR/PT/X/2014"
+  },
+  {
+   "key": "nomor_izin_operasional_rs",
+   "label": "Nomor Izin Operasional RS",
+   "value": "1/2.5/31/-1.77/2017"
+  },
+  {
+   "key": "masa_berlaku_izin_operasional",
+   "label": "Masa Berlaku Izin Operasional",
+   "value": "27 Februari 2028"
+  },
+  {
+   "key": "status_akreditasi_rumah_sakit",
+   "label": "Status Akreditasi Rumah Sakit",
+   "value": "Madya"
+  },
+  {
+   "key": "masa_berlaku_akreditasi_rs",
+   "label": "Masa Berlaku Akreditasi RS",
+   "value": "12 Mei 2028"
+  },
+  {
+   "key": "kerjasama_bpjs_kesehatan",
+   "label": "Kerjasama BPJS Kesehatan",
+   "value": "Tidak"
+  },
+  {
+   "key": "kode_registrasi_rumah_sakit",
+   "label": "Kode Registrasi Rumah Sakit",
+   "value": "3173074"
+  },
+  {
+   "key": "layanan_unggulan",
+   "label": "Layanan Unggulan",
+   "value": "THT"
+  }
+ ]
+}

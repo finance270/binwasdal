@@ -1,0 +1,88 @@
+services:
+  # -------------------------------------------------------------------
+  #  Aplikasi PHP (webdevops/php-apache 8.2)
+  # -------------------------------------------------------------------
+  app:
+    image: webdevops/php-apache:8.2
+    container_name: binwasdal-app
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    volumes:
+      - ./:/app
+    environment:
+      # docroot aplikasi
+      WEB_DOCUMENT_ROOT: /app/public
+      PHP_DATE_TIMEZONE: Asia/Jakarta
+      PHP_DISPLAY_ERRORS: 0
+      PHP_MEMORY_LIMIT: 512M
+      PHP_POST_MAX_SIZE: 220M
+      PHP_UPLOAD_MAX_FILESIZE: 200M
+      PHP_MAX_EXECUTION_TIME: 300
+      PHP_MAX_FILE_UPLOADS: 40
+
+      # koneksi database
+      DB_HOST: mariadb
+      DB_PORT: 3306
+      DB_NAME: binwasdal
+      DB_USER: binwasdal
+      DB_PASS: BinwasdalRahasia2026
+
+      # akun awal aplikasi (ubah setelah login pertama)
+      ADMIN_USER: admin
+      ADMIN_PASS: admin123
+
+      # folder induk Google Drive
+      GDRIVE_ROOT_FOLDER_ID: 1f-KUg6Rq1CeZ4ZkksrPF7UbPiLI-GJjZ
+      GDRIVE_AUTH_MODE: oauth
+      # Isi lewat menu Pengaturan di aplikasi, atau langsung di sini:
+      # GDRIVE_CLIENT_ID: ""
+      # GDRIVE_CLIENT_SECRET: ""
+      # GDRIVE_REFRESH_TOKEN: ""
+
+      MAX_UPLOAD_SIZE: 209715200   # 200 MB per berkas
+      APP_TIMEZONE: Asia/Jakarta
+      APP_DEBUG: "false"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  # -------------------------------------------------------------------
+  #  Database (linuxserver/mariadb 11.4.8)
+  # -------------------------------------------------------------------
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:11.4.8
+    container_name: binwasdal-db
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Asia/Jakarta
+      MYSQL_ROOT_PASSWORD: RootRahasia2026
+      MYSQL_DATABASE: binwasdal
+      MYSQL_USER: binwasdal
+      MYSQL_PASSWORD: BinwasdalRahasia2026
+    volumes:
+      - ./data/mariadb:/config
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+
+  # -------------------------------------------------------------------
+  #  phpMyAdmin
+  # -------------------------------------------------------------------
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: binwasdal-pma
+    restart: unless-stopped
+    ports:
+      - "8089:80"
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 256M
+    depends_on:
+      - mariadb
