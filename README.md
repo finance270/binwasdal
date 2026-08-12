@@ -285,7 +285,18 @@ Membuat **periode penilaian baru** (misalnya tahun berikutnya, atau rumah sakit 
 dilakukan lewat *Pengaturan → Periode Penilaian* — struktur dokumen dipakai bersama,
 isian dan dokumennya terpisah per periode.
 
-## 8. Catatan keamanan
+## 8. Bila terjadi kesalahan
+
+Kegagalan pada jendela pengisian (simpan, unggah, buat folder) selalu dijawab dengan
+**pesan yang menyebutkan sebabnya**, bukan sekadar kode kesalahan. Pesan yang sama juga
+tercatat di *Pengaturan → Aktivitas Terakhir* dengan aksi `galat`, sehingga masih bisa
+ditelusuri setelah jendela ditutup.
+
+Nama folder Google Drive dipotong hingga 150 karakter (pada batas kata, ditandai `…`)
+karena beberapa judul poin pada dokumen resmi lebih dari 270 karakter — terlalu panjang
+untuk kolom nama di database dan menyulitkan saat dibaca di Google Drive.
+
+## 9. Catatan keamanan
 
 - Kata sandi disimpan dengan `password_hash()`; seluruh aksi POST diperiksa token CSRF.
 - Ekstensi berkas yang boleh diunggah dibatasi (`ALLOWED_EXT`), berkas `.php` ditolak.

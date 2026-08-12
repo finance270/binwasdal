@@ -49,7 +49,7 @@ class Storage
             "SELECT * FROM drive_folders WHERE assessment_id = ? AND owner_type = 'root' AND owner_key = 'root'",
             [$assessment['id']]
         );
-        $nama = sprintf('Self Assessment %d - %s', $assessment['tahun'], $assessment['nama_rs']);
+        $nama = $this->potongNama(sprintf('Self Assessment %d - %s', $assessment['tahun'], $assessment['nama_rs']));
 
         if ($existing && ($existing['drive_id'] || !$this->driveAktif())) {
             return $existing;
@@ -69,6 +69,7 @@ class Storage
     /** Folder per bagian dokumen. */
     public function sectionFolder(array $assessment, string $key, string $nama): ?array
     {
+        $nama = $this->potongNama($nama);
         $existing = DB::one(
             "SELECT * FROM drive_folders WHERE assessment_id = ? AND owner_type = 'section' AND owner_key = ?",
             [$assessment['id'], $key]
@@ -132,6 +133,28 @@ class Storage
         return $this->saveFolder((int) $assessment['id'], $ownerType, $ownerKey, $folderName, $res);
     }
 
+    /**
+     * Batas panjang nama folder. Judul poin pada dokumen bisa sangat panjang
+     * (ada yang lebih dari 270 karakter), sedangkan kolom nama di database
+     * dan kenyamanan membaca di Google Drive membutuhkan batas.
+     */
+    private const MAKS_NAMA_FOLDER = 150;
+
+    private function potongNama(string $nama): string
+    {
+        $nama = preg_replace('/\s+/u', ' ', trim($nama));
+        if (mb_strlen($nama, 'UTF-8') <= self::MAKS_NAMA_FOLDER) {
+            return $nama;
+        }
+        // potong pada batas kata terdekat agar tetap terbaca
+        $potong = mb_substr($nama, 0, self::MAKS_NAMA_FOLDER - 1, 'UTF-8');
+        $spasi = mb_strrpos($potong, ' ', 0, 'UTF-8');
+        if ($spasi !== false && $spasi > self::MAKS_NAMA_FOLDER * 0.6) {
+            $potong = mb_substr($potong, 0, $spasi, 'UTF-8');
+        }
+        return rtrim($potong, " ,.;:-") . '…';
+    }
+
     /** Menentukan nama folder + bagian induk berdasarkan pemilik. */
     private function describe(string $ownerType, string $ownerKey): array
     {
@@ -145,7 +168,7 @@ class Storage
                 return ['', '', null];
             }
             $sectionName = sprintf('%02d. %s', $item['section_ordering'], $item['section_title']);
-            $nama = trim($item['code'] . ' ' . $item['title']);
+            $nama = $this->potongNama($item['code'] . ' ' . $item['title']);
             return ['sec:' . $item['section_code'], $sectionName, $nama];
         }
 
@@ -159,7 +182,7 @@ class Storage
         $labelCol = array_values(array_diff(array_keys($def['cols']), ['no']))[0] ?? 'no';
         $label = trim((string) ($data[$labelCol] ?? ''));
         $nomor = trim((string) ($data['no'] ?? $rowNo));
-        $nama = sprintf('%s - %s. %s', $def['title'], $nomor !== '' ? $nomor : $rowNo, $label);
+        $nama = $this->potongNama(sprintf('%s - %s. %s', $def['title'], $nomor !== '' ? $nomor : $rowNo, $label));
         return ['sec:profil', '00. PROFIL RUMAH SAKIT', $nama];
     }
 

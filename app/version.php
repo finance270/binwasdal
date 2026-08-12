@@ -6,7 +6,7 @@
  * berkas yang berjalan di server benar-benar sudah yang terbaru.
  */
 return [
-    'versi'   => '1.4.0',
+    'versi'   => '1.4.1',
     'tanggal' => '2026-08-12',
-    'catatan' => 'Penomoran sesuai dokumen asli + unduh Word',
+    'catatan' => 'Perbaikan gagal unggah pada poin berjudul panjang',
 ];

@@ -85,6 +85,22 @@ if (str_starts_with($page, 'api_')) {
         json_out(['ok' => false, 'pesan' => 'Akun Anda hanya dapat melihat.'], 403);
     }
 
+    // Kegagalan tak terduga tetap dijawab dalam bentuk JSON, supaya pengguna
+    // membaca sebabnya alih-alih hanya "HTTP 500".
+    set_exception_handler(function (Throwable $e) use ($page) {
+        Log::write(Auth::username(), 'galat', $page . ' — ' . $e->getMessage());
+        json_out(['ok' => false, 'pesan' => 'Terjadi kesalahan di server: ' . $e->getMessage()], 500);
+    });
+    register_shutdown_function(function () use ($page) {
+        $g = error_get_last();
+        if ($g && in_array($g['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR], true)) {
+            Log::write(Auth::username(), 'galat', $page . ' — ' . $g['message']);
+            if (!headers_sent()) {
+                json_out(['ok' => false, 'pesan' => 'Terjadi kesalahan di server: ' . $g['message']], 500);
+            }
+        }
+    });
+
     switch ($page) {
         // --- isi jendela popup sebuah poin --------------------------
         case 'api_detail':
@@ -147,7 +163,10 @@ if (str_starts_with($page, 'api_')) {
             }
             DB::q('UPDATE profil_values SET v = ? WHERE assessment_id = ? AND k = ?', [$v, $assessment['id'], $k]);
             if ($k === 'nama_rumah_sakit' && trim($v) !== '') {
-                DB::q('UPDATE assessments SET nama_rs = ? WHERE id = ?', [trim($v), $assessment['id']]);
+                // kolom nama_rs dibatasi 190 karakter
+                DB::q('UPDATE assessments SET nama_rs = ? WHERE id = ?', [
+                    mb_substr(trim($v), 0, 190, 'UTF-8'), $assessment['id'],
+                ]);
             }
             json_out(['ok' => true, 'waktu' => date('H:i:s')]);
 
@@ -295,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !str_starts_with($page, 'api_')) {
 
     if ($aksi === 'buat_periode') {
         Auth::requireEdit();
-        $nama = trim((string) $_POST['nama_rs']);
+        $nama = mb_substr(trim((string) $_POST['nama_rs']), 0, 190, 'UTF-8');
         $tahun = (int) $_POST['tahun'];
         if ($nama === '' || $tahun < 2000) {
             flash('Nama rumah sakit dan tahun wajib diisi.', 'galat');
@@ -305,7 +324,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !str_starts_with($page, 'api_')) {
             flash('Periode untuk rumah sakit dan tahun tersebut sudah ada.', 'galat');
             redirect(url(['p' => 'pengaturan']));
         }
-        $id = Assessment::create($nama, $tahun, trim((string) ($_POST['wilayah'] ?? '')), !empty($_POST['salin']));
+        $id = Assessment::create(
+            $nama,
+            $tahun,
+            mb_substr(trim((string) ($_POST['wilayah'] ?? '')), 0, 190, 'UTF-8'),
+            !empty($_POST['salin'])
+        );
         Assessment::setCurrent($id);
         flash('Periode penilaian baru dibuat.');
         redirect(url(['p' => 'pengaturan']));

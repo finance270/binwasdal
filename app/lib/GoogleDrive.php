@@ -301,9 +301,9 @@ class GoogleDrive
         $name = str_replace(['/', '\\'], '-', $name);
         $name = preg_replace('/\s+/u', ' ', trim($name));
         if (function_exists('mb_substr')) {
-            $name = mb_substr($name, 0, 120, 'UTF-8');
+            $name = mb_substr($name, 0, 200, 'UTF-8');
         } else {
-            $name = substr($name, 0, 120);
+            $name = substr($name, 0, 200);
         }
         return $name === '' ? 'Dokumen' : $name;
     }
