@@ -6,7 +6,7 @@
  * berkas yang berjalan di server benar-benar sudah yang terbaru.
  */
 return [
-    'versi'   => '1.4.1',
+    'versi'   => '1.5.0',
     'tanggal' => '2026-08-12',
-    'catatan' => 'Perbaikan gagal unggah pada poin berjudul panjang',
+    'catatan' => 'Jendela progres unggah dengan persentase dan tombol batal',
 ];

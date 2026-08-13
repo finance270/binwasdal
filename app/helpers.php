@@ -28,6 +28,41 @@ function asetVersi(string $relatif): string
     return $t ? (string) $t : (string) time();
 }
 
+/** Ubah nilai ukuran gaya PHP ("200M", "8G") menjadi byte. */
+function keByte(string $nilai): int
+{
+    $nilai = trim($nilai);
+    if ($nilai === '') {
+        return 0;
+    }
+    $angka = (float) $nilai;
+    switch (strtolower(substr($nilai, -1))) {
+        case 'g': $angka *= 1024;
+            // no break
+        case 'm': $angka *= 1024;
+            // no break
+        case 'k': $angka *= 1024;
+    }
+    return (int) $angka;
+}
+
+/**
+ * Batas ukuran unggahan yang benar-benar berlaku: nilai terkecil antara
+ * pengaturan aplikasi, upload_max_filesize, dan post_max_size PHP.
+ * Dipakai agar peramban dapat menolak berkas kebesaran sebelum dikirim.
+ */
+function batasUnggah(array $CFG): int
+{
+    $batas = [(int) $CFG['app']['max_upload']];
+    foreach (['upload_max_filesize', 'post_max_size'] as $k) {
+        $v = keByte((string) ini_get($k));
+        if ($v > 0) {
+            $batas[] = $v;
+        }
+    }
+    return min($batas);
+}
+
 /** Informasi versi aplikasi dari app/version.php. */
 function appInfo(): array
 {

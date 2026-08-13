@@ -14,6 +14,13 @@
     // dibuka, bukan URL relatif — agar tetap benar di sub-folder mana pun.
     var ENDPOINT = window.location.pathname;
 
+    function meta(nama, bawaan) {
+        var m = document.querySelector('meta[name="' + nama + '"]');
+        return m ? m.content : bawaan;
+    }
+    var BATAS_UNGGAH = parseInt(meta('unggah-maks', '0'), 10) || 0;
+    var EKSTENSI_OK  = meta('unggah-ext', '').split(',').filter(Boolean);
+
     // ------------------------------------------------------------- util
     var statusEl = null;
 
@@ -126,6 +133,7 @@
 
     var aktif = null;      // { sel, ownerType, ownerKey, itemId, punyaStatus, status, berkas }
     var berubah = false;
+    var sedangUnggah = false;   // true selama unggahan berjalan — mengunci penutupan
 
     // ------------------------------------------------------- buka/tutup
     function buka(sel) {
@@ -177,6 +185,7 @@
     }
 
     function tutup() {
+        if (sedangUnggah) { return; }   // dikunci selama unggahan berjalan
         if (berubah) { simpanJawaban(); }
         latar.classList.remove('tampil');
         modal.classList.remove('tampil');
@@ -189,7 +198,9 @@
     document.getElementById('modal-batal').addEventListener('click', tutup);
     document.getElementById('modal-simpan').addEventListener('click', tutup);
     document.addEventListener('keydown', function (ev) {
-        if (ev.key === 'Escape' && modal.classList.contains('tampil')) { tutup(); }
+        if (ev.key !== 'Escape') { return; }
+        if (sedangUnggah) { ev.preventDefault(); return; }
+        if (modal.classList.contains('tampil')) { tutup(); }
     });
 
     // --------------------------------------------------------- status
@@ -331,39 +342,252 @@
     });
 
     // --------------------------------------------------------- unggah
-    function unggah(files) {
-        if (!files || !files.length || !aktif) { return; }
-        var fd = new FormData();
-        fd.append('owner_type', aktif.ownerType);
-        fd.append('owner_key', aktif.ownerKey);
-        for (var i = 0; i < files.length; i++) { fd.append('berkas[]', files[i]); }
+    //
+    // Berkas dikirim satu per satu memakai XMLHttpRequest supaya kemajuan
+    // unggahan bisa ditampilkan dalam persen. Selama proses berjalan, layar
+    // dikunci oleh jendela progres — hanya tombol Batalkan yang aktif.
 
-        var sel = aktif.sel;
-        elZona.classList.add('sibuk');
-        elInfo.textContent = 'Mengunggah ' + files.length + ' berkas…';
+    var uLatar   = document.getElementById('unggah-latar');
+    var uModal   = document.getElementById('modal-unggah');
+    var uJudul   = document.getElementById('unggah-judul');
+    var uHitung  = document.getElementById('unggah-hitung');
+    var uNama    = document.getElementById('unggah-nama');
+    var uBar     = uModal ? uModal.querySelector('.unggah-bar') : null;
+    var uIsi     = document.getElementById('unggah-isi');
+    var uPersen  = document.getElementById('unggah-persen');
+    var uUkuran  = document.getElementById('unggah-ukuran');
+    var uDaftar  = document.getElementById('unggah-daftar');
+    var uInfo    = document.getElementById('unggah-info');
+    var uBatal   = document.getElementById('unggah-batal');
+    var uTutup   = document.getElementById('unggah-tutup');
 
-        post('api_unggah', fd).then(function (r) {
-            elZona.classList.remove('sibuk');
-            if (!aktif) { return; }
-            (r.berkas || []).forEach(function (b) { aktif.berkas.push(b); });
-            gambarBerkas();
-            gambarFolder(r.folder);
-            perbaruiSel(sel, aktif.status, elKet.value);
-            if (r.gagal && r.gagal.length) {
-                elInfo.textContent = '';
-                toast(r.gagal.join(' | '), true);
-            } else {
-                elInfo.textContent = r.pesan || 'Selesai';
-                toast(r.pesan || 'Berkas tersimpan');
-            }
-        }).catch(function () {
-            elZona.classList.remove('sibuk');
-            elInfo.textContent = '';
-            toast('Gagal mengunggah berkas', true);
+    var dibatalkan = false;
+    var xhrAktif   = null;
+
+    function ukuranTeks(b) {
+        var satuan = ['B', 'KB', 'MB', 'GB'], i = 0, n = b;
+        while (n >= 1024 && i < satuan.length - 1) { n /= 1024; i++; }
+        return (i === 0 ? n : n.toFixed(1).replace('.', ',')) + ' ' + satuan[i];
+    }
+
+    function cegahTutup(ev) {
+        ev.preventDefault();
+        ev.returnValue = 'Unggahan sedang berjalan.';
+        return ev.returnValue;
+    }
+
+    function bukaProgres(daftar) {
+        sedangUnggah = true;
+        dibatalkan = false;
+        uDaftar.innerHTML = '';
+        daftar.forEach(function (f, i) {
+            var li = document.createElement('li');
+            li.setAttribute('data-i', i);
+            li.innerHTML = '<span class="tanda">•</span>'
+                + '<span class="berkas-nama"></span>'
+                + '<span class="catatan"></span>';
+            li.querySelector('.berkas-nama').textContent = f.name;
+            li.querySelector('.catatan').textContent = ukuranTeks(f.size);
+            uDaftar.appendChild(li);
+        });
+        uJudul.textContent = 'Mengunggah dokumen…';
+        uInfo.textContent = 'Mohon tunggu — jangan menutup halaman.';
+        uBar.className = 'unggah-bar';
+        uBatal.style.display = '';
+        uBatal.disabled = false;
+        uTutup.style.display = 'none';
+        uLatar.classList.add('tampil');
+        uModal.classList.add('tampil');
+        window.addEventListener('beforeunload', cegahTutup);
+    }
+
+    function perbaruiProgres(persen, terkirim, total, namaBerkas, ke, jumlah) {
+        persen = Math.max(0, Math.min(100, persen));
+        uIsi.style.width = persen.toFixed(1) + '%';
+        uPersen.textContent = Math.round(persen) + '%';
+        uUkuran.textContent = ukuranTeks(terkirim) + ' dari ' + ukuranTeks(total);
+        uNama.textContent = namaBerkas;
+        uHitung.textContent = 'Berkas ke-' + ke + ' dari ' + jumlah;
+    }
+
+    function tandaiBerkas(i, keadaan, catatan) {
+        var li = uDaftar.querySelector('li[data-i="' + i + '"]');
+        if (!li) { return; }
+        li.className = keadaan === 'gagal' ? 'gagal' : (keadaan === 'jalan' ? 'jalan' : '');
+        li.querySelector('.tanda').textContent =
+            keadaan === 'selesai' ? '✅' : (keadaan === 'gagal' ? '❌' : (keadaan === 'jalan' ? '⏳' : '•'));
+        if (catatan !== undefined) {
+            li.querySelector('.catatan').textContent = catatan;
+        }
+    }
+
+    function tutupProgres() {
+        sedangUnggah = false;
+        xhrAktif = null;
+        uLatar.classList.remove('tampil');
+        uModal.classList.remove('tampil');
+        window.removeEventListener('beforeunload', cegahTutup);
+    }
+
+    function selesaiProgres(berhasil, gagal) {
+        sedangUnggah = false;
+        xhrAktif = null;
+        window.removeEventListener('beforeunload', cegahTutup);
+        uBatal.style.display = 'none';
+        uTutup.style.display = '';
+        uNama.textContent = '';
+
+        if (dibatalkan) {
+            uJudul.textContent = 'Unggahan dibatalkan';
+            uBar.className = 'unggah-bar gagal';
+            uInfo.textContent = berhasil + ' berkas terlanjur tersimpan.';
+        } else if (gagal > 0) {
+            uJudul.textContent = 'Selesai dengan ' + gagal + ' kegagalan';
+            uBar.className = 'unggah-bar gagal';
+            uInfo.textContent = berhasil + ' berhasil, ' + gagal + ' gagal.';
+        } else {
+            uJudul.textContent = 'Unggahan selesai';
+            uBar.className = 'unggah-bar selesai';
+            uIsi.style.width = '100%';
+            uPersen.textContent = '100%';
+            uInfo.textContent = berhasil + ' berkas tersimpan.';
+            setTimeout(function () {
+                if (!sedangUnggah) { tutupProgres(); }
+            }, 900);
+        }
+    }
+
+    /** Mengirim satu berkas; memanggil onKemajuan(bytesTerkirim). */
+    function kirimBerkas(file, onKemajuan) {
+        return new Promise(function (resolve) {
+            var fd = new FormData();
+            fd.append('csrf', CSRF);
+            fd.append('owner_type', aktif.ownerType);
+            fd.append('owner_key', aktif.ownerKey);
+            fd.append('berkas[]', file);
+
+            var xhr = new XMLHttpRequest();
+            xhrAktif = xhr;
+            xhr.open('POST', ENDPOINT + '?p=api_unggah', true);
+            xhr.withCredentials = true;
+
+            xhr.upload.onprogress = function (e) {
+                if (e.lengthComputable) { onKemajuan(Math.min(e.loaded, file.size)); }
+            };
+            xhr.upload.onload = function () {
+                onKemajuan(file.size);
+                uInfo.textContent = 'Berkas terkirim, sedang diproses server…';
+            };
+            xhr.onload = function () {
+                var r;
+                try { r = JSON.parse(xhr.responseText); }
+                catch (e) { r = { ok: false, pesan: 'Balasan server tidak valid (HTTP ' + xhr.status + ').' }; }
+                resolve(r);
+            };
+            xhr.onerror = function () { resolve({ ok: false, pesan: 'Koneksi ke server terputus.' }); };
+            xhr.onabort  = function () { resolve({ ok: false, dibatalkan: true, pesan: 'Dibatalkan.' }); };
+            xhr.send(fd);
         });
     }
 
-    elZona.addEventListener('click', function () { input.value = ''; input.click(); });
+    /** Alasan berkas ditolak sebelum dikirim, atau null bila lolos. */
+    function periksaBerkas(f) {
+        var ext = (f.name.split('.').pop() || '').toLowerCase();
+        if (EKSTENSI_OK.length && EKSTENSI_OK.indexOf(ext) < 0) {
+            return 'jenis berkas .' + ext + ' tidak diizinkan';
+        }
+        if (BATAS_UNGGAH && f.size > BATAS_UNGGAH) {
+            return 'melebihi batas ' + ukuranTeks(BATAS_UNGGAH);
+        }
+        return null;
+    }
+
+    function unggah(files) {
+        if (!files || !files.length || !aktif || sedangUnggah) { return; }
+
+        var semua = Array.prototype.slice.call(files);
+        var daftar = [];
+        var ditolak = [];
+        semua.forEach(function (f) {
+            var alasan = periksaBerkas(f);
+            if (alasan) { ditolak.push({ file: f, alasan: alasan }); }
+            else { daftar.push(f); }
+        });
+
+        var total = daftar.reduce(function (a, f) { return a + f.size; }, 0) || 1;
+        var sel = aktif.sel;
+        var sudah = 0, berhasil = 0, gagal = ditolak.length;
+
+        // berkas yang ditolak tetap ditampilkan agar sebabnya terlihat
+        bukaProgres(daftar.concat(ditolak.map(function (d) { return d.file; })));
+        ditolak.forEach(function (d, k) {
+            tandaiBerkas(daftar.length + k, 'gagal', d.alasan);
+        });
+
+        if (!daftar.length) {
+            elZona.classList.remove('sibuk');
+            selesaiProgres(0, gagal);
+            return;
+        }
+
+        perbaruiProgres(0, 0, total, daftar[0].name, 1, daftar.length);
+        elZona.classList.add('sibuk');
+
+        (function berikutnya(i) {
+            if (dibatalkan || i >= daftar.length) {
+                elZona.classList.remove('sibuk');
+                gambarBerkas();
+                perbaruiSel(sel, aktif ? aktif.status : undefined, elKet.value);
+                selesaiProgres(berhasil, gagal);
+                return;
+            }
+
+            var file = daftar[i];
+            tandaiBerkas(i, 'jalan', 'mengunggah…');
+            uInfo.textContent = 'Mohon tunggu — jangan menutup halaman.';
+
+            kirimBerkas(file, function (terkirim) {
+                perbaruiProgres((sudah + terkirim) / total * 100, sudah + terkirim, total,
+                                file.name, i + 1, daftar.length);
+            }).then(function (r) {
+                sudah += file.size;
+                perbaruiProgres(sudah / total * 100, sudah, total, file.name, i + 1, daftar.length);
+
+                if (r.dibatalkan) {
+                    tandaiBerkas(i, 'gagal', 'dibatalkan');
+                } else if (r.ok && r.berkas && r.berkas.length) {
+                    berhasil++;
+                    tandaiBerkas(i, 'selesai', ukuranTeks(file.size));
+                    if (aktif) { aktif.berkas.push(r.berkas[0]); }
+                    if (r.folder) { gambarFolder(r.folder); }
+                } else {
+                    gagal++;
+                    tandaiBerkas(i, 'gagal', (r.gagal && r.gagal.length ? r.gagal[0] : (r.pesan || 'gagal')));
+                }
+                berikutnya(i + 1);
+            });
+        })(0);
+    }
+
+    if (uBatal) {
+        uBatal.addEventListener('click', function () {
+            if (!sedangUnggah) { return; }
+            if (!confirm('Batalkan unggahan? Berkas yang sudah terkirim tetap tersimpan.')) { return; }
+            dibatalkan = true;
+            uBatal.disabled = true;
+            uJudul.textContent = 'Membatalkan…';
+            if (xhrAktif) { xhrAktif.abort(); }
+        });
+    }
+    if (uTutup) {
+        uTutup.addEventListener('click', tutupProgres);
+    }
+
+    elZona.addEventListener('click', function () {
+        if (sedangUnggah) { return; }
+        input.value = '';
+        input.click();
+    });
     input.addEventListener('change', function () { unggah(input.files); });
 
     ['dragenter', 'dragover'].forEach(function (t) {
@@ -382,8 +606,18 @@
         });
     });
 
+    // keterangan batas ukuran pada area unggah
+    (function () {
+        var kecil = elZona ? elZona.querySelector('.zona-kecil') : null;
+        if (kecil && BATAS_UNGGAH) {
+            kecil.textContent = 'atau seret dan lepas berkas ke area ini — maksimal '
+                + ukuranTeks(BATAS_UNGGAH) + ' per berkas';
+        }
+    })();
+
     // ------------------------------------------- membuka popup dari sel
     document.addEventListener('click', function (ev) {
+        if (sedangUnggah) { return; }
         var sel = ev.target.closest('.poin-sel');
         if (sel) { buka(sel); }
     });

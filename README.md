@@ -206,11 +206,29 @@ Klik kolom tersebut pada baris mana pun untuk membuka **jendela pengisian**:
 - **Status** — pilih salah satu tombol; tersimpan otomatis.
 - **Keterangan** — ketik bebas, tersimpan otomatis beberapa saat setelah berhenti mengetik.
 - **Dokumen pendukung** — klik area bergaris putus-putus untuk memilih **beberapa berkas
-  sekaligus**, atau **seret & lepas** berkas ke area itu.
+  sekaligus**, atau **seret & lepas** berkas ke area itu. Berkas yang jenisnya tidak
+  diizinkan atau melebihi batas ukuran ditolak seketika, sebelum dikirim ke server.
 - **Daftar berkas** — setiap berkas dapat dibuka atau dihapus (ikut terhapus dari Google Drive).
 - **Tautan folder Drive** poin tersebut muncul di jendela ini setelah unggahan pertama.
 
 Tekan **Esc** atau **Simpan & Tutup** untuk kembali. Penanda pada baris langsung diperbarui.
+
+### Saat dokumen diunggah
+
+Selama unggahan berjalan muncul **jendela progres** yang mengunci layar:
+
+- **Persentase dan bilah kemajuan** dari total seluruh berkas, beserta jumlah byte terkirim
+- Penunjuk **berkas ke berapa dari berapa**, dan daftar berkas dengan tanda ⏳ / ✅ / ❌
+- Jendela **tidak dapat ditutup** — tombol Esc, tombol silang, dan klik di luar jendela
+  diabaikan; peramban juga memperingatkan bila halaman hendak ditinggalkan
+- Satu-satunya jalan keluar adalah **✕ Batalkan**. Berkas yang sudah terkirim tetap
+  tersimpan, sisanya tidak jadi dikirim, dan jumlahnya dilaporkan
+
+Bila semua berkas berhasil, jendela menutup sendiri. Bila ada yang gagal, jendela tetap
+terbuka menampilkan sebab kegagalan tiap berkas sampai Anda menekan **Selesai**.
+
+Berkas dikirim satu per satu, sehingga kemajuannya akurat dan unggahan banyak berkas
+besar tidak terbentur batas `post_max_size`.
 
 ### Mencetak / menyimpan PDF
 

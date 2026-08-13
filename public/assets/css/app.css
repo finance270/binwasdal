@@ -358,6 +358,71 @@ ul.berkas-cetak { display: none; }
 .zona-unggah .zona-kecil { font-size: 11.5px; color: #78828f; margin-top: 3px; }
 .zona-unggah.sibuk { opacity: .6; pointer-events: none; }
 
+/* ---------------------------------------------- dialog progres unggah */
+
+.modal-latar.kunci { background: rgba(15, 23, 42, .68); z-index: 110; }
+.modal-unggah { z-index: 111; width: min(560px, 94vw); }
+.modal-unggah header { padding-right: 20px; }
+.modal-unggah .badan { padding-top: 14px; }
+
+.unggah-nama {
+    font-size: 13px;
+    color: var(--teks);
+    overflow-wrap: anywhere;
+    min-height: 19px;
+    margin-bottom: 9px;
+}
+
+.unggah-bar {
+    height: 12px;
+    background: #e6e9ee;
+    border-radius: 99px;
+    overflow: hidden;
+}
+.unggah-bar > i {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #2b6cb0, #1a4f8a);
+    transition: width .18s ease-out;
+}
+.unggah-bar.selesai > i { background: linear-gradient(90deg, #2f9e5c, #1e7d43); }
+.unggah-bar.gagal > i   { background: linear-gradient(90deg, #d1554b, #b3261e); }
+
+.unggah-angka {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 7px;
+    font-size: 12.5px;
+    color: #6b7481;
+}
+.unggah-angka b { font-size: 17px; color: var(--biru-tua); }
+
+.unggah-daftar {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    font-size: 12.5px;
+    max-height: 190px;
+    overflow-y: auto;
+}
+.unggah-daftar li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 5px 2px;
+    border-bottom: 1px dotted #e2e6ec;
+}
+.unggah-daftar li:last-child { border-bottom: 0; }
+.unggah-daftar .tanda { width: 15px; flex: 0 0 15px; text-align: center; }
+.unggah-daftar .berkas-nama { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.unggah-daftar .catatan { color: #78828f; font-size: 11.5px; white-space: nowrap; }
+.unggah-daftar li.gagal .berkas-nama { color: var(--merah); }
+.unggah-daftar li.gagal .catatan { color: var(--merah); white-space: normal; }
+.unggah-daftar li.jalan .berkas-nama { font-weight: 600; }
+
 .modal-folder { margin-top: 12px; }
 .modal-folder:empty { display: none; }
 .modal-kosong { margin-top: 10px; font-size: 12.5px; color: #8a929e; }
