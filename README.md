@@ -16,6 +16,9 @@ di Wilayah Kota Administrasi Jakarta Pusat**, lengkap dengan:
 - **Unduh Word (.docx)** — berkas Word asli (A4, Arial, tabel bergaris, tautan folder Drive
   dapat diklik) yang masih bisa diedit dan ditandatangani.
 - Rekap **kemajuan pengisian** per bagian dan **daftar seluruh tautan folder** untuk dilampirkan.
+- **Dapat dipakai dari ponsel** (Android maupun iPhone/iPad) — menu menjadi laci geser,
+  baris penilaian ditumpuk agar tidak perlu digeser ke samping, dan jendela pengisian
+  muncul sebagai lembar dari bawah layar.
 
 Seluruh isi dokumen (63 poin utama, **920 poin & sub-poin**, 253 baris tabel profil) diambil
 langsung dari dokumen Word resmi. **Penomoran tiap poin dibaca dari definisi penomoran
@@ -303,7 +306,30 @@ Membuat **periode penilaian baru** (misalnya tahun berikutnya, atau rumah sakit 
 dilakukan lewat *Pengaturan → Periode Penilaian* — struktur dokumen dipakai bersama,
 isian dan dokumennya terpisah per periode.
 
-## 8. Bila terjadi kesalahan
+## 8. Memakai dari ponsel
+
+Aplikasi menyesuaikan diri pada layar kecil, baik di **Chrome Android** maupun
+**Safari iOS/iPadOS**:
+
+| Bagian | Di ponsel |
+|---|---|
+| Menu samping | Menjadi **laci geser**, dibuka lewat tombol ☰ di kiri atas |
+| Baris penilaian | **Ditumpuk**: nomor dan uraian di atas, kolom hasil menjadi bidang sentuh di bawahnya — tidak perlu digeser ke samping |
+| Data dasar RS | Label di atas, kolom isian di bawahnya, selebar layar |
+| Tabel profil (perizinan, SDM, dll.) | Tetap berbentuk tabel dan **digeser ke samping**, dengan petunjuk “← geser …” bila memang lebih lebar dari layar |
+| Jendela pengisian &amp; progres unggah | Muncul sebagai **lembar dari bawah layar**, tombol selebar layar |
+
+Penyesuaian khusus iOS:
+
+- Kolom isian memakai huruf 16px sehingga **Safari tidak memperbesar halaman** saat disentuh
+- Area aman perangkat berponi (`env(safe-area-inset-*)`) dihormati pada bagian bawah jendela
+- Tinggi memakai satuan `dvh` agar tidak terpotong bilah alamat Safari
+- Pembesaran teks otomatis saat layar diputar dimatikan
+
+Tampilan layar lebar dan hasil cetak **tidak berubah** — seluruh aturan ponsel
+dibatasi ke media `screen` dengan lebar tertentu.
+
+## 9. Bila terjadi kesalahan
 
 Kegagalan pada jendela pengisian (simpan, unggah, buat folder) selalu dijawab dengan
 **pesan yang menyebutkan sebabnya**, bukan sekadar kode kesalahan. Pesan yang sama juga
@@ -314,7 +340,7 @@ Nama folder Google Drive dipotong hingga 150 karakter (pada batas kata, ditandai
 karena beberapa judul poin pada dokumen resmi lebih dari 270 karakter — terlalu panjang
 untuk kolom nama di database dan menyulitkan saat dibaca di Google Drive.
 
-## 9. Catatan keamanan
+## 10. Catatan keamanan
 
 - Kata sandi disimpan dengan `password_hash()`; seluruh aksi POST diperiksa token CSRF.
 - Ekstensi berkas yang boleh diunggah dibatasi (`ALLOWED_EXT`), berkas `.php` ditolak.

@@ -41,7 +41,8 @@ require __DIR__ . '/partials/head.php';
         <div class="sub-bab"><?= e($sec['subtitle']) ?></div>
     <?php endif; ?>
 
-    <table class="w">
+    <div class="tabel-gulir">
+    <table class="w poin-tabel">
         <thead>
             <tr>
                 <th style="width:46px">No</th>
@@ -53,6 +54,7 @@ require __DIR__ . '/partials/head.php';
             <?= Render::barisPoin($tree) ?>
         </tbody>
     </table>
+    </div>
 </div>
 
 <?php require __DIR__ . '/partials/foot.php'; ?>

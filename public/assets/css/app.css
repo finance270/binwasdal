@@ -25,7 +25,14 @@ html, body {
     color: var(--teks);
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
+    /* Safari iOS memperbesar teks sendiri saat layar diputar — dicegah di sini */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
+body { overflow-x: hidden; }
+
+button, .btn, a { -webkit-tap-highlight-color: rgba(26, 79, 138, .15); }
+button, .btn { touch-action: manipulation; }
 
 a { color: var(--biru); }
 
@@ -45,7 +52,32 @@ a { color: var(--biru); }
     box-shadow: 0 1px 6px rgba(0, 0, 0, .25);
 }
 
+.tombol-menu {
+    display: none;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border: 0;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px 9px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.tombol-menu span {
+    display: block;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform .2s, opacity .2s;
+}
+.tombol-menu[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.tombol-menu[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.tombol-menu[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 .topbar .merek { font-weight: 700; letter-spacing: .2px; font-size: 15px; white-space: nowrap; }
+.merek-pendek { display: none; }
 .topbar .merek small { display: block; font-weight: 400; font-size: 11px; opacity: .8; }
 .topbar .spacer { flex: 1; }
 .topbar .periode {
@@ -79,6 +111,15 @@ a { color: var(--biru); }
     overflow-y: auto;
     z-index: 30;
 }
+
+.sidebar-latar {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, .45);
+    z-index: 29;
+}
+.sidebar-latar.tampil { display: block; }
 
 .sidebar .grup { padding: 12px 14px 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: #7a8390; font-weight: 700; }
 .sidebar a {
@@ -147,6 +188,9 @@ a { color: var(--biru); }
 
 .kertas p { margin: 0 0 8px; text-align: justify; }
 
+/* pembungkus tabel: menggulir mendatar bila layar tidak cukup lebar */
+.tabel-gulir { overflow: visible; }
+
 /* tabel gaya Word */
 table.w {
     width: 100%;
@@ -195,6 +239,7 @@ tr.poin.utama:hover > td { background: #e6eef8; }
 td.no { text-align: center; white-space: nowrap; }
 
 .uraian .lbl { font-weight: 600; color: #333; margin-right: 4px; }
+.lbl-hp { display: none; }
 .ind-1 { padding-left: 18px !important; }
 .ind-2 { padding-left: 38px !important; }
 .ind-3 { padding-left: 58px !important; }
@@ -217,6 +262,7 @@ td.no { text-align: center; white-space: nowrap; }
     outline: none;
 }
 .ringkas-baris { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 18px; }
+.ringkas-baris:empty { display: none; }
 
 .badge {
     display: inline-block;
@@ -603,10 +649,206 @@ textarea.f { min-height: 80px; font-family: ui-monospace, Menlo, Consolas, monos
 
 /* --------------------------------------------------------------- login */
 
-.login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, #123a68, #2b6cb0); }
-.login-box { background: #fff; border-radius: 12px; padding: 30px 32px; width: 380px; box-shadow: 0 12px 40px rgba(0, 0, 0, .3); }
+.login-wrap {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: linear-gradient(160deg, #123a68, #2b6cb0);
+}
+.login-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px 32px;
+    width: min(380px, 100%);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .3);
+}
+@media screen and (max-width: 480px) {
+    .login-box { padding: 24px 20px; }
+    .login-box input.f { font-size: 16px; }
+}
 .login-box h1 { font-size: 19px; margin: 0 0 4px; color: var(--biru-tua); }
 .login-box p.sub { margin: 0 0 18px; font-size: 12.5px; color: #6b7481; line-height: 1.5; }
+
+/* ------------------------------------------------ layar sedang & ponsel */
+
+/* Semua aturan di bawah dibatasi ke media "screen" agar tidak ikut terpakai
+   saat mencetak — hasil cetak tetap mengikuti tata letak A4. */
+
+@media screen and (max-width: 1000px) {
+    /* bilah sisi menjadi laci geser */
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform .22s ease;
+        width: 282px;
+        box-shadow: 4px 0 22px rgba(0, 0, 0, .18);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    .sidebar.buka { transform: none; }
+    .konten { margin-left: 0; padding: 16px 12px 70px; }
+    .tombol-menu { display: flex; }
+
+    /* tabel dokumen digulir mendatar, bukan diperas */
+    .tabel-gulir {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        margin: 0 -2px;
+    }
+    .tabel-gulir table.w { min-width: 660px; margin-bottom: 10px; }
+    /* header lengket dimatikan karena berada di dalam wadah gulir */
+    table.w thead th { position: static; box-shadow: none; }
+
+    /* Safari iOS memperbesar halaman saat kolom isian berhuruf < 16px difokus */
+    input.f, select.f, textarea.f, #modal-ket, select.status, .sel { font-size: 16px; }
+}
+
+@media screen and (max-width: 720px) {
+    .topbar { height: 50px; gap: 8px; padding: 0 10px; }
+    .merek-panjang, .topbar .merek small, .topbar .akun { display: none; }
+    .merek-pendek { display: block; font-size: 14.5px; }
+    .topbar .periode { padding: 4px 6px; gap: 5px; min-width: 0; }
+    .topbar .periode > span { display: none; }
+    .topbar select { max-width: 44vw; font-size: 12px; padding: 5px; }
+    .topbar a.keluar { font-size: 12px; }
+
+    .sidebar { top: 50px; }
+    .konten { margin-top: 50px; padding: 12px 9px 80px; }
+
+    /* kertas mengikuti lebar layar */
+    .kertas {
+        width: auto;
+        min-height: 0;
+        margin: 0 0 14px;
+        padding: 16px 13px 22px;
+        border-radius: 8px;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, .12);
+    }
+    .judul-dok { font-size: 12pt; }
+    .judul-dok .sub { font-size: 11pt; }
+    .bab { font-size: 11.5pt; margin-top: 14px; }
+
+    /* data dasar menjadi bertumpuk agar tidak sempit */
+    table.data-dasar, table.data-dasar tbody, table.data-dasar tr, table.data-dasar td { display: block; width: auto; }
+    table.data-dasar tr { margin-bottom: 9px; }
+    table.data-dasar td.label { width: auto; font-weight: 600; font-size: 10.5pt; color: #4a5361; }
+    table.data-dasar td.pemisah { display: none; }
+
+    .kartu, .pesan, .aksi-atas { max-width: 100%; }
+    .kartu { padding: 14px; border-radius: 8px; }
+    .aksi-atas { gap: 7px; }
+    .aksi-atas .judul { font-size: 16px; width: 100%; margin-right: 0; }
+    .aksi-atas .f { width: 100% !important; }
+    .aksi-atas .btn { flex: 1 1 auto; justify-content: center; }
+
+    .grid.k3, .grid.k4 { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 12px; }
+    .stat .angka { font-size: 22px; }
+
+    /* tabel ringkasan pada kartu ikut digulir */
+    .kartu .tabel-gulir { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .kartu .tabel-gulir table.rapi { min-width: 560px; }
+
+    /* Baris penilaian ditumpuk agar tidak perlu digeser ke samping:
+       nomor + uraian di atas, kolom hasil menjadi bidang sentuh di bawahnya. */
+    .tabel-gulir table.w.poin-tabel { min-width: 0; }
+    table.w.poin-tabel thead { display: none; }
+    table.w.poin-tabel,
+    table.w.poin-tabel tbody,
+    table.w.poin-tabel tr,
+    table.w.poin-tabel td { display: block; width: auto; }
+
+    table.w.poin-tabel tr.poin {
+        border: 1px solid #000;
+        border-bottom: 0;
+    }
+    table.w.poin-tabel tr.poin:last-child { border-bottom: 1px solid #000; }
+    table.w.poin-tabel td { border: 0; padding: 8px 10px; }
+    table.w.poin-tabel td.no { display: none; }
+    table.w.poin-tabel .lbl-hp { display: inline; }
+
+    table.w.poin-tabel td.hasil {
+        border-top: 1px dashed #c2cad4;
+        background: #fbfcfe;
+        padding: 7px 10px;
+    }
+    table.w.poin-tabel tr.poin.utama td.hasil { background: #e9f0f8; }
+    table.w.poin-tabel .ind-1 { padding-left: 20px !important; }
+    table.w.poin-tabel .ind-2 { padding-left: 32px !important; }
+    table.w.poin-tabel .ind-3 { padding-left: 44px !important; }
+
+    /* petunjuk bahwa tabel profil dapat digeser ke samping */
+    .tabel-gulir.bisa-gulir { position: relative; }
+    .tabel-gulir.bisa-gulir::before {
+        content: '← geser untuk melihat kolom lain →';
+        display: block;
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 11px;
+        color: #8a929e;
+        padding: 2px 0 5px;
+        position: sticky;
+        left: 0;
+    }
+
+    /* sasaran sentuh minimal nyaman */
+    .btn { padding: 9px 13px; font-size: 13px; }
+    .btn.kecil { padding: 7px 10px; font-size: 12.5px; }
+    .sidebar a { padding: 12px 14px; font-size: 14px; }
+    .poin-sel { min-height: 34px; padding: 6px; }
+    .isi-hint { opacity: 1; }          /* di sentuh tidak ada keadaan hover */
+
+    /* jendela menjadi lembar yang muncul dari bawah */
+    .modal {
+        left: 0;
+        right: 0;
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        max-width: 100%;
+        max-height: 92dvh;
+        border-radius: 15px 15px 0 0;
+        transform: translateY(100%);
+    }
+    .modal.tampil { transform: none; }
+    .modal header { padding: 14px 46px 12px 16px; }
+    .modal header h3 { font-size: 15px; }
+    .modal .badan { padding: 6px 16px 16px; }
+    .modal footer {
+        padding: 11px 16px calc(11px + env(safe-area-inset-bottom));
+        border-radius: 0;
+        flex-wrap: wrap;
+    }
+    .modal-info { flex: 1 1 100%; margin: 0 0 6px; }
+    .modal footer .btn { flex: 1 1 auto; justify-content: center; }
+    .modal-tutup { width: 38px; height: 38px; }
+
+    .pilih-status button { flex: 1 1 45%; padding: 10px 8px; }
+    .zona-unggah { padding: 26px 14px; }
+
+    /* iOS memperbesar halaman bila huruf kolom isian di bawah 16px */
+    input.f, select.f, textarea.f, #modal-ket, .sel { font-size: 16px; }
+    .sel { min-height: 28px; }
+    select.status { font-size: 16px; }
+
+    .simpan-status { left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); text-align: center; }
+}
+
+@media screen and (max-width: 480px) {
+    .grid.k3, .grid.k4 { grid-template-columns: 1fr; }
+    .topbar select { max-width: 40vw; }
+    .kertas { padding: 14px 10px 18px; }
+    .unggah-daftar { max-height: 34dvh; }
+}
+
+/* perangkat sentuh: hilangkan efek arahkan-kursor yang menyesatkan */
+@media (hover: none) {
+    tr.poin:hover > td { background: #fff; }
+    tr.poin.utama:hover > td { background: #eef3f9; }
+    .poin-sel:hover { background: transparent; box-shadow: none; }
+    .poin-sel:active { background: #eef4fb; box-shadow: inset 0 0 0 1px #a9c7ea; }
+}
 
 /* --------------------------------------------------------------- cetak */
 
@@ -638,6 +880,9 @@ textarea.f { min-height: 80px; font-family: ui-monospace, Menlo, Consolas, monos
     a { color: #000; text-decoration: none; }
     .tautan-cetak { font-size: 8.5pt; color: #1a4f8a; word-break: break-all; }
     .halaman-baru { page-break-before: always; }
+
+    .tabel-gulir { overflow: visible !important; margin: 0 !important; }
+    .tabel-gulir table.w { min-width: 0 !important; }
 
     /* sel ringkas dicetak sebagai teks utuh */
     .poin-sel { padding: 0; margin: 0; cursor: auto; }

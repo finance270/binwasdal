@@ -8,7 +8,10 @@ $pesanKilat = flash();
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#123a68">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="csrf" content="<?= e(Auth::csrf()) ?>">
 <meta name="unggah-maks" content="<?= batasUnggah($CFG) ?>">
 <meta name="unggah-ext" content="<?= e(implode(',', $CFG['app']['allowed_ext'])) ?>">
@@ -19,8 +22,13 @@ $pesanKilat = flash();
 <body>
 
 <div class="topbar no-print">
+    <button type="button" class="tombol-menu" id="tombol-menu" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
     <div class="merek">
-        Self Assessment Binwasdal RS
+        <span class="merek-panjang">Self Assessment Binwasdal RS</span>
+        <span class="merek-pendek">Binwasdal RS</span>
         <small>Pembinaan &amp; Pengawasan Rumah Sakit — Jakarta Pusat</small>
     </div>
     <div class="spacer"></div>
@@ -43,7 +51,9 @@ $pesanKilat = flash();
     <a class="keluar" href="?p=logout">Keluar</a>
 </div>
 
-<div class="sidebar no-print">
+<div class="sidebar-latar no-print" id="sidebar-latar"></div>
+
+<div class="sidebar no-print" id="sidebar">
     <div class="grup">Dokumen</div>
     <a href="?p=beranda" class="<?= ($page ?? '') === 'beranda' ? 'aktif' : '' ?>">🏠 Beranda &amp; Rekapitulasi</a>
     <a href="?p=profil" class="<?= ($page ?? '') === 'profil' ? 'aktif' : '' ?>">

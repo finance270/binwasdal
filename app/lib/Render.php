@@ -102,7 +102,7 @@ class Render
         $cols = $def['cols'];
 
         $h = $tanpaJudul ? '' : '<div class="sub-bab">' . e($def['title']) . '</div>';
-        $h .= '<table class="w"><thead><tr>';
+        $h .= '<div class="tabel-gulir"><table class="w"><thead><tr>';
         foreach ($cols as $c => $label) {
             $w = $def['widths'][$c] ?? null;
             $judul = Assessment::headerLabel($code, $c, $assessmentId);
@@ -142,7 +142,7 @@ class Render
             }
             $h .= '</tr>';
         }
-        $h .= '</tbody></table>';
+        $h .= '</tbody></table></div>';
         if (!empty($def['note'])) {
             $h .= '<p style="font-size:10pt;font-style:italic">' . e($def['note']) . '</p>';
         }
@@ -160,7 +160,7 @@ class Render
         $cols = $def['cols'];
 
         $h = $tanpaJudul ? '' : '<div class="sub-bab">' . e($def['title']) . '</div>';
-        $h .= '<table class="w"><thead><tr>';
+        $h .= '<div class="tabel-gulir"><table class="w"><thead><tr>';
         foreach ($cols as $c => $label) {
             $w = $def['widths'][$c] ?? null;
             $kelasTh = ($def['align'][$c] ?? '') === 'center' ? ' class="tengah"' : '';
@@ -187,7 +187,7 @@ class Render
             }
             $h .= '</tr>';
         }
-        $h .= '</tbody></table>';
+        $h .= '</tbody></table></div>';
         return $h;
     }
 
@@ -229,6 +229,9 @@ class Render
             $h .= '<td class="uraian' . $ind . '">';
             if ($level > 0) {
                 $h .= '<span class="lbl">' . e($n['label']) . '</span>';
+            } else {
+                // hanya tampil pada tata letak ponsel, saat kolom "No" disembunyikan
+                $h .= '<span class="lbl lbl-hp">' . e($n['label']) . '</span>';
             }
             $h .= e($n['title']) . '</td>';
 

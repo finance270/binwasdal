@@ -100,7 +100,8 @@ require __DIR__ . '/partials/head.php';
         <?php if (!empty($s['subtitle'])): ?>
             <div class="sub-bab"><?= e($s['subtitle']) ?></div>
         <?php endif; ?>
-        <table class="w">
+        <div class="tabel-gulir">
+    <table class="w">
             <thead>
                 <tr>
                     <th style="width:40px">No</th>
@@ -110,6 +111,7 @@ require __DIR__ . '/partials/head.php';
             </thead>
             <tbody><?= Render::barisPoin($tree, true) ?></tbody>
         </table>
+        </div>
     </div>
 <?php endforeach; ?>
 

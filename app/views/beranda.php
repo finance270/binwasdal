@@ -67,7 +67,7 @@ require __DIR__ . '/partials/head.php';
 
 <div class="kartu">
     <h2>Kemajuan per Bagian</h2>
-    <table class="rapi">
+    <div class="tabel-gulir"><table class="rapi">
         <thead>
             <tr>
                 <th style="width:40px">No</th>
@@ -93,7 +93,7 @@ require __DIR__ . '/partials/head.php';
                 </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
+    </table></div>
 </div>
 
 <div class="kartu">

@@ -32,7 +32,7 @@ require __DIR__ . '/partials/head.php';
 
 <div class="kartu">
     <h2>Tautan per Poin (<?= count($daftar) ?> folder)</h2>
-    <table class="rapi" id="tabel-tautan">
+    <div class="tabel-gulir"><table class="rapi" id="tabel-tautan">
         <thead>
             <tr>
                 <th style="width:130px">Bagian</th>
@@ -62,7 +62,7 @@ require __DIR__ . '/partials/head.php';
             </tr>
         <?php endforeach; ?>
         </tbody>
-    </table>
+    </table></div>
 </div>
 
 <script>

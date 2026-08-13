@@ -28,7 +28,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
 ?>
 <div class="kartu">
     <h2>🧾 Versi Aplikasi</h2>
-    <table class="rapi">
+    <div class="tabel-gulir"><table class="rapi">
         <tr>
             <th style="width:230px">Versi</th>
             <td><b><?= e($v['versi']) ?></b> — <?= e($v['catatan']) ?> (<?= e($v['tanggal']) ?>)</td>
@@ -54,7 +54,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
                 <?php endif; ?>
             </td>
         </tr>
-    </table>
+    </table></div>
 
     <p style="font-size:13px;color:#59616d;line-height:1.7;margin-bottom:8px">
         Setelah mengunggah berkas hasil <b>Download ZIP</b> dari GitHub ke server, cocokkan
@@ -186,7 +186,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
 <!-- ---------------------------------------------------------- Periode -->
 <div class="kartu">
     <h2>🗓️ Periode Penilaian</h2>
-    <table class="rapi">
+    <div class="tabel-gulir"><table class="rapi">
         <thead><tr><th>Rumah Sakit</th><th style="width:80px">Tahun</th><th style="width:90px">Status</th><th style="width:230px">Folder Drive</th><th style="width:90px"></th></tr></thead>
         <tbody>
         <?php foreach ($periode as $p): ?>
@@ -209,7 +209,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
             </tr>
         <?php endforeach; ?>
         </tbody>
-    </table>
+    </table></div>
 
     <h3>Buat periode baru</h3>
     <form method="post" class="grid" style="grid-template-columns:2fr 1fr 2fr auto;align-items:end">
@@ -240,7 +240,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
 <?php if (Auth::isAdmin()): ?>
 <div class="kartu">
     <h2>👤 Pengguna</h2>
-    <table class="rapi">
+    <div class="tabel-gulir"><table class="rapi">
         <thead><tr><th>Nama Pengguna</th><th>Nama</th><th style="width:110px">Peran</th><th style="width:80px">Aktif</th><th style="width:90px"></th></tr></thead>
         <tbody>
         <?php foreach ($users as $u): ?>
@@ -262,7 +262,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
             </tr>
         <?php endforeach; ?>
         </tbody>
-    </table>
+    </table></div>
 
     <h3>Tambah pengguna</h3>
     <form method="post" class="grid" style="grid-template-columns:1fr 1fr 1fr 1fr auto;align-items:end">
@@ -286,7 +286,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
 <!-- ------------------------------------------------------------- Log -->
 <div class="kartu">
     <h2>📜 Aktivitas Terakhir</h2>
-    <table class="rapi">
+    <div class="tabel-gulir"><table class="rapi">
         <thead><tr><th style="width:150px">Waktu</th><th style="width:120px">Pengguna</th><th style="width:120px">Aksi</th><th>Keterangan</th></tr></thead>
         <tbody>
         <?php foreach ($log as $l): ?>
@@ -298,7 +298,7 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
             </tr>
         <?php endforeach; ?>
         </tbody>
-    </table>
+    </table></div>
 </div>
 
 <script>

@@ -21,6 +21,48 @@
     var BATAS_UNGGAH = parseInt(meta('unggah-maks', '0'), 10) || 0;
     var EKSTENSI_OK  = meta('unggah-ext', '').split(',').filter(Boolean);
 
+    // ------------------------------------------------- laci menu (ponsel)
+    (function () {
+        var tombol = document.getElementById('tombol-menu');
+        var laci   = document.getElementById('sidebar');
+        var kain   = document.getElementById('sidebar-latar');
+        if (!tombol || !laci || !kain) { return; }
+
+        function setel(buka) {
+            laci.classList.toggle('buka', buka);
+            kain.classList.toggle('tampil', buka);
+            tombol.setAttribute('aria-expanded', buka ? 'true' : 'false');
+            document.body.style.overflow = buka ? 'hidden' : '';
+        }
+        tombol.addEventListener('click', function () {
+            setel(laci.classList.contains('buka') === false);
+        });
+        kain.addEventListener('click', function () { setel(false); });
+        laci.addEventListener('click', function (ev) {
+            if (ev.target.closest('a')) { setel(false); }
+        });
+        document.addEventListener('keydown', function (ev) {
+            if (ev.key === 'Escape' && laci.classList.contains('buka')) { setel(false); }
+        });
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 1000 && laci.classList.contains('buka')) { setel(false); }
+        });
+    })();
+
+    // menandai tabel yang isinya lebih lebar dari layar (petunjuk geser)
+    function tandaiTabelGulir() {
+        document.querySelectorAll('.tabel-gulir').forEach(function (w) {
+            w.classList.toggle('bisa-gulir', w.scrollWidth > w.clientWidth + 2);
+        });
+    }
+    window.addEventListener('load', tandaiTabelGulir);
+    window.addEventListener('resize', debounceAwal(tandaiTabelGulir, 200));
+
+    function debounceAwal(fn, ms) {
+        var t;
+        return function () { clearTimeout(t); t = setTimeout(fn, ms); };
+    }
+
     // ------------------------------------------------------------- util
     var statusEl = null;
 
