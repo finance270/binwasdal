@@ -290,10 +290,64 @@ if ($page === 'berkas') {
         http_response_code(404);
         exit('Berkas tidak ada di penyimpanan.');
     }
-    header('Content-Type: ' . ($doc['mime'] ?: 'application/octet-stream'));
-    header('Content-Length: ' . filesize($full));
-    header('Content-Disposition: inline; filename="' . rawurlencode($doc['nama_file']) . '"');
-    readfile($full);
+    $mime = $doc['mime'] ?: 'application/octet-stream';
+    $ext  = strtolower(pathinfo($doc['nama_file'], PATHINFO_EXTENSION));
+
+    // Hanya jenis yang aman ditampilkan langsung di peramban. Sisanya diunduh,
+    // agar berkas yang diunggah tidak bisa dieksekusi atas nama aplikasi.
+    $bolehLangsung = in_array($ext, [
+        'pdf', 'txt',
+        'jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp',
+        'mp4', 'm4v', 'mov', 'webm', 'ogg', 'ogv', '3gp',
+        'mp3', 'm4a', 'wav', 'oga', 'aac',
+    ], true);
+
+    $namaAman = str_replace(['"', "\r", "\n"], '', $doc['nama_file']);
+    header('X-Content-Type-Options: nosniff');
+    header('Content-Type: ' . ($bolehLangsung ? $mime : 'application/octet-stream'));
+    header('Content-Disposition: ' . ($bolehLangsung ? 'inline' : 'attachment')
+        . '; filename="' . $namaAman . '"; '
+        . "filename*=UTF-8''" . rawurlencode($doc['nama_file']));
+
+    $ukuran = filesize($full);
+    $awal = 0;
+    $akhir = $ukuran - 1;
+
+    // Dukungan permintaan sebagian, supaya video dapat diputar dan digeser
+    // posisinya tanpa mengunduh seluruh berkas lebih dulu.
+    $rentang = $_SERVER['HTTP_RANGE'] ?? '';
+    if ($rentang !== '' && preg_match('/bytes=(\d*)-(\d*)/', $rentang, $m)) {
+        if ($m[1] !== '') {
+            $awal = (int) $m[1];
+        }
+        if ($m[2] !== '') {
+            $akhir = (int) $m[2];
+        }
+        if ($awal > $akhir || $awal >= $ukuran) {
+            http_response_code(416);
+            header('Content-Range: bytes */' . $ukuran);
+            exit;
+        }
+        $akhir = min($akhir, $ukuran - 1);
+        http_response_code(206);
+        header('Content-Range: bytes ' . $awal . '-' . $akhir . '/' . $ukuran);
+    }
+    header('Accept-Ranges: bytes');
+    header('Content-Length: ' . ($akhir - $awal + 1));
+
+    $fh = fopen($full, 'rb');
+    fseek($fh, $awal);
+    $sisa = $akhir - $awal + 1;
+    while ($sisa > 0 && !feof($fh)) {
+        $potongan = fread($fh, (int) min(512 * 1024, $sisa));
+        if ($potongan === false) {
+            break;
+        }
+        echo $potongan;
+        flush();
+        $sisa -= strlen($potongan);
+    }
+    fclose($fh);
     exit;
 }
 

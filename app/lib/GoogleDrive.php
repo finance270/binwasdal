@@ -193,7 +193,25 @@ class GoogleDrive
         return isset($res['id']) || isset($res['kind']);
     }
 
+    /** Ambang beralih ke metode resumable (berkas besar seperti video). */
+    private const BATAS_SEKALI_KIRIM = 5 * 1024 * 1024;
+
+    /**
+     * Mengunggah berkas ke sebuah folder Drive.
+     * Berkas kecil dikirim sekali jalan; berkas besar memakai metode
+     * "resumable" dengan aliran langsung dari disk, sehingga video berukuran
+     * ratusan MB tidak perlu dimuat seluruhnya ke memori PHP.
+     */
     public function uploadFile(string $localPath, string $name, string $mime, string $parentId): ?array
+    {
+        $ukuran = (int) @filesize($localPath);
+        if ($ukuran > 0 && $ukuran > self::BATAS_SEKALI_KIRIM) {
+            return $this->uploadResumable($localPath, $name, $mime, $parentId, $ukuran);
+        }
+        return $this->uploadSekaliKirim($localPath, $name, $mime, $parentId);
+    }
+
+    private function uploadSekaliKirim(string $localPath, string $name, string $mime, string $parentId): ?array
     {
         $token = $this->accessToken();
         if (!$token) {
@@ -207,7 +225,7 @@ class GoogleDrive
         $boundary = '----binwasdal' . bin2hex(random_bytes(8));
         $body  = "--$boundary\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n$meta\r\n";
         $body .= "--$boundary\r\nContent-Type: $mime\r\n\r\n";
-        $body .= file_get_contents($localPath);
+        $body .= (string) file_get_contents($localPath);
         $body .= "\r\n--$boundary--";
 
         $url = self::UPL . '/files?' . http_build_query([
@@ -239,6 +257,96 @@ class GoogleDrive
         $res = json_decode($out, true);
         if (!isset($res['id'])) {
             $this->lastError = 'Gagal mengunggah "' . $name . '": ' . $out;
+            return null;
+        }
+        return $res;
+    }
+
+    private function uploadResumable(string $localPath, string $name, string $mime, string $parentId, int $ukuran): ?array
+    {
+        $token = $this->accessToken();
+        if (!$token) {
+            return null;
+        }
+
+        // 1) Membuka sesi unggah dan mengambil alamat tujuan pengiriman.
+        $meta = json_encode([
+            'name'    => $this->safeName($name),
+            'parents' => [$parentId],
+        ], JSON_UNESCAPED_UNICODE);
+
+        $url = self::UPL . '/files?' . http_build_query([
+            'uploadType'        => 'resumable',
+            'fields'            => 'id,name,webViewLink,webContentLink,size,mimeType',
+            'supportsAllDrives' => 'true',
+        ]);
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_POST           => true,
+            CURLOPT_POSTFIELDS     => $meta,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => true,
+            CURLOPT_TIMEOUT        => 60,
+            CURLOPT_HTTPHEADER     => [
+                'Authorization: Bearer ' . $token,
+                'Content-Type: application/json; charset=UTF-8',
+                'X-Upload-Content-Type: ' . $mime,
+                'X-Upload-Content-Length: ' . $ukuran,
+            ],
+        ]);
+        $out = curl_exec($ch);
+        $err = curl_error($ch);
+        $kode = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        $panjangHeader = (int) curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        curl_close($ch);
+
+        if ($out === false) {
+            $this->lastError = 'cURL saat membuka sesi unggah: ' . $err;
+            return null;
+        }
+        $header = substr($out, 0, $panjangHeader);
+        if ($kode < 200 || $kode >= 300) {
+            $this->lastError = 'Gagal membuka sesi unggah "' . $name . '" (HTTP ' . $kode . '): '
+                . substr($out, $panjangHeader);
+            return null;
+        }
+        if (!preg_match('/^location:\s*(\S+)/mi', $header, $m)) {
+            $this->lastError = 'Google Drive tidak memberikan alamat tujuan unggahan.';
+            return null;
+        }
+        $tujuan = trim($m[1]);
+
+        // 2) Mengalirkan isi berkas langsung dari disk (hemat memori).
+        $fh = @fopen($localPath, 'rb');
+        if (!$fh) {
+            $this->lastError = 'Berkas sementara tidak dapat dibaca.';
+            return null;
+        }
+        $ch = curl_init($tujuan);
+        curl_setopt_array($ch, [
+            CURLOPT_PUT            => true,
+            CURLOPT_INFILE         => $fh,
+            CURLOPT_INFILESIZE     => $ukuran,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 0,      // tanpa batas: berkas besar butuh waktu
+            CURLOPT_HTTPHEADER     => [
+                'Content-Type: ' . $mime,
+                'Content-Length: ' . $ukuran,
+            ],
+        ]);
+        $out = curl_exec($ch);
+        $err = curl_error($ch);
+        $kode = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        curl_close($ch);
+        fclose($fh);
+
+        if ($out === false) {
+            $this->lastError = 'cURL saat mengirim isi berkas: ' . $err;
+            return null;
+        }
+        $res = json_decode($out, true);
+        if (!isset($res['id'])) {
+            $this->lastError = 'Gagal mengunggah "' . $name . '" (HTTP ' . $kode . '): ' . $out;
             return null;
         }
         return $res;

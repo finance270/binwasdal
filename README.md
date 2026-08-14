@@ -8,7 +8,9 @@ di Wilayah Kota Administrasi Jakarta Pusat**, lengkap dengan:
   seperti dokumen aslinya.
 - **Jendela popup per poin** untuk memilih status, menulis keterangan, mengunggah dokumen, dan melihat
   berkas yang sudah terkirim — dibuka dengan mengklik kolom hasil pada baris mana pun.
-- **Unggah banyak dokumen sekaligus** pada tiap poin penilaian (seperti aplikasi akreditasi).
+- **Unggah banyak dokumen sekaligus** pada tiap poin penilaian (seperti aplikasi akreditasi) —
+  **semua jenis berkas diterima**: dokumen, foto, **video** (mp4/mov/3gp dari ponsel), audio,
+  arsip, sampai 1 GB per berkas.
 - **Folder Google Drive dibuat otomatis** per poin, di dalam folder induk yang Anda tentukan.
   Tautan yang muncul di aplikasi adalah **tautan folder** yang dapat diakses siapa saja yang memilikinya.
 - **Status** per poin (Ada / Sesuai, Sebagian, Belum Ada, Tidak Berlaku) beserta keterangan bebas.
@@ -329,7 +331,38 @@ Penyesuaian khusus iOS:
 Tampilan layar lebar dan hasil cetak **tidak berubah** — seluruh aturan ponsel
 dibatasi ke media `screen` dengan lebar tertentu.
 
-## 9. Bila terjadi kesalahan
+## 9. Jenis dan ukuran berkas
+
+Semua jenis berkas diterima — termasuk **video** hasil rekaman ponsel (`.mp4`, `.mov`,
+`.3gp`), **audio** (`.m4a`, `.mp3`, `.amr`), foto (termasuk `.heic` dari iPhone), arsip,
+dan format apa pun lainnya. Batas bawaan **1 GB per berkas**.
+
+Yang **ditolak** hanyalah jenis yang dapat dijalankan di server atau dieksekusi peramban
+atas nama aplikasi — `.php`, `.sh`, `.exe`, `.html`, `.svg`, dan sejenisnya. Penolakan
+terjadi di peramban, sebelum berkas terkirim, jadi tidak membuang waktu.
+
+Daftar ini dapat diubah lewat environment variable:
+
+| Variabel | Arti |
+|---|---|
+| `ALLOWED_EXT` | `*` (bawaan) berarti semua jenis. Isi daftar dipisah koma bila ingin membatasi |
+| `BLOCKED_EXT` | Jenis yang selalu ditolak, apa pun isi `ALLOWED_EXT` |
+| `MAX_UPLOAD_SIZE` | Batas ukuran per berkas dalam byte |
+
+Batas yang benar-benar berlaku adalah nilai **terkecil** antara `MAX_UPLOAD_SIZE`,
+`PHP_UPLOAD_MAX_FILESIZE`, dan `PHP_POST_MAX_SIZE` — ketiganya perlu dinaikkan bersamaan
+bila ingin menerima berkas lebih besar. Nilainya ditampilkan di area unggah.
+
+**Video berukuran besar tidak membebani memori server.** Berkas di atas 5 MB dikirim ke
+Google Drive dengan metode *resumable*, mengalir langsung dari disk. Diuji dengan video
+300 MB: pemakaian memori puncak hanya 2 MB.
+
+Selama Google Drive belum aktif, berkas tersimpan di server dan **video tetap dapat
+diputar langsung** dari aplikasi — penyajiannya mendukung permintaan sebagian
+(*HTTP Range*), sehingga posisi putar dapat digeser tanpa mengunduh seluruh berkas.
+Jenis yang tidak aman ditampilkan sebagai unduhan, bukan dibuka di halaman.
+
+## 10. Bila terjadi kesalahan
 
 Kegagalan pada jendela pengisian (simpan, unggah, buat folder) selalu dijawab dengan
 **pesan yang menyebutkan sebabnya**, bukan sekadar kode kesalahan. Pesan yang sama juga
@@ -340,10 +373,13 @@ Nama folder Google Drive dipotong hingga 150 karakter (pada batas kata, ditandai
 karena beberapa judul poin pada dokumen resmi lebih dari 270 karakter — terlalu panjang
 untuk kolom nama di database dan menyulitkan saat dibaca di Google Drive.
 
-## 10. Catatan keamanan
+## 11. Catatan keamanan
 
 - Kata sandi disimpan dengan `password_hash()`; seluruh aksi POST diperiksa token CSRF.
-- Ekstensi berkas yang boleh diunggah dibatasi (`ALLOWED_EXT`), berkas `.php` ditolak.
+- Semua jenis berkas diterima kecuali yang dapat dijalankan di server atau dieksekusi
+  peramban (`BLOCKED_EXT`); pemeriksaan dilakukan di peramban dan diulang di server.
+- Berkas lokal disajikan dengan `X-Content-Type-Options: nosniff`, dan hanya jenis aman
+  (PDF, gambar, video, audio, teks) yang ditampilkan langsung — sisanya dipaksa diunduh.
 - Folder `app/`, `db/`, dan `data/uploads/` diberi `.htaccess` penolak akses langsung;
   berkas lokal hanya dapat dibuka melalui aplikasi setelah login.
 - Ganti `ADMIN_PASS`, `MYSQL_ROOT_PASSWORD`, dan `MYSQL_PASSWORD` sebelum dipakai di jaringan

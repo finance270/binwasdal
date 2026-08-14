@@ -244,8 +244,9 @@ class Storage
         }
         $nama = $this->bersihkanNamaFile($file['name']);
         $ext  = strtolower(pathinfo($nama, PATHINFO_EXTENSION));
-        if ($ext === '' || !in_array($ext, $this->cfg['app']['allowed_ext'], true)) {
-            return ['ok' => false, 'pesan' => 'Jenis berkas .' . $ext . ' tidak diizinkan.'];
+        $tolak = self::alasanTolak($ext, $this->cfg);
+        if ($tolak !== null) {
+            return ['ok' => false, 'pesan' => $tolak];
         }
 
         $folder = $this->pointFolder($assessment, $ownerType, $ownerKey);
@@ -382,6 +383,27 @@ class Storage
 
     // -----------------------------------------------------------------
 
+    /**
+     * Alasan sebuah jenis berkas ditolak, atau null bila boleh diunggah.
+     * Semua jenis diterima kecuali yang dapat dijalankan di server atau
+     * dieksekusi peramban atas nama aplikasi (lihat blocked_ext).
+     */
+    public static function alasanTolak(string $ext, array $cfg): ?string
+    {
+        $ext = strtolower(ltrim($ext, '.'));
+        if ($ext === '') {
+            return 'Berkas tanpa ekstensi tidak dapat diunggah.';
+        }
+        if (in_array($ext, $cfg['app']['blocked_ext'], true)) {
+            return 'Jenis berkas .' . $ext . ' tidak diizinkan demi keamanan server.';
+        }
+        $izin = $cfg['app']['allowed_ext'];
+        if ($izin && !in_array('*', $izin, true) && !in_array($ext, $izin, true)) {
+            return 'Jenis berkas .' . $ext . ' tidak termasuk daftar yang diizinkan.';
+        }
+        return null;
+    }
+
     public static function formatUkuran(int $bytes): string
     {
         $units = ['B', 'KB', 'MB', 'GB'];
@@ -404,13 +426,16 @@ class Storage
 
     private function deteksiMime(string $path, string $ext): string
     {
+        $terdeteksi = '';
         if (function_exists('finfo_open')) {
             $fi = finfo_open(FILEINFO_MIME_TYPE);
-            $m = finfo_file($fi, $path);
+            $terdeteksi = (string) finfo_file($fi, $path);
             finfo_close($fi);
-            if ($m) {
-                return $m;
-            }
+        }
+        // Bila isi berkas tidak dikenali (sering terjadi pada video/audio dari
+        // ponsel), jenisnya ditentukan dari ekstensi agar tetap dapat diputar.
+        if ($terdeteksi !== '' && $terdeteksi !== 'application/octet-stream') {
+            return $terdeteksi;
         }
         $peta = [
             'pdf' => 'application/pdf',
@@ -418,7 +443,20 @@ class Storage
             'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'xls' => 'application/vnd.ms-excel',
             'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'ppt' => 'application/vnd.ms-powerpoint',
+            'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
             'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg', 'png' => 'image/png',
+            'gif' => 'image/gif', 'webp' => 'image/webp', 'heic' => 'image/heic', 'heif' => 'image/heif',
+            // video — termasuk hasil rekaman iPhone (.mov) dan Android (.mp4/.3gp)
+            'mp4' => 'video/mp4', 'm4v' => 'video/x-m4v', 'mov' => 'video/quicktime',
+            'webm' => 'video/webm', 'mkv' => 'video/x-matroska', 'avi' => 'video/x-msvideo',
+            'wmv' => 'video/x-ms-wmv', 'flv' => 'video/x-flv', '3gp' => 'video/3gpp',
+            'mpg' => 'video/mpeg', 'mpeg' => 'video/mpeg',
+            // audio
+            'mp3' => 'audio/mpeg', 'm4a' => 'audio/mp4', 'wav' => 'audio/wav',
+            'ogg' => 'audio/ogg', 'oga' => 'audio/ogg', 'aac' => 'audio/aac', 'amr' => 'audio/amr',
+            'zip' => 'application/zip', 'rar' => 'application/vnd.rar',
+            'txt' => 'text/plain', 'csv' => 'text/csv',
         ];
         return $peta[$ext] ?? 'application/octet-stream';
     }

@@ -20,12 +20,28 @@ return [
         'debug'     => filter_var(env('APP_DEBUG', 'false'), FILTER_VALIDATE_BOOL),
         'root'      => dirname(__DIR__),
         'upload_dir' => env('UPLOAD_DIR', dirname(__DIR__) . '/data/uploads'),
-        // batas ukuran per berkas (byte). Default 50 MB.
-        'max_upload' => (int) env('MAX_UPLOAD_SIZE', 50 * 1024 * 1024),
-        'allowed_ext' => array_map('trim', explode(',', env(
-            'ALLOWED_EXT',
-            'pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,webp,zip,rar,txt,csv'
+        // batas ukuran per berkas (byte). Default 1 GB agar video termuat.
+        'max_upload' => (int) env('MAX_UPLOAD_SIZE', 1024 * 1024 * 1024),
+        // Daftar jenis berkas yang diizinkan. Nilai "*" berarti semua jenis
+        // diterima — termasuk video, audio, dan gambar dari ponsel.
+        'allowed_ext' => array_values(array_filter(array_map(
+            'trim',
+            explode(',', env('ALLOWED_EXT', '*'))
         ))),
+        // Jenis berkas yang selalu ditolak karena dapat dijalankan di server
+        // atau dieksekusi di peramban atas nama aplikasi.
+        'blocked_ext' => array_values(array_filter(array_map('strtolower', array_map(
+            'trim',
+            explode(',', env(
+                'BLOCKED_EXT',
+                'php,php3,php4,php5,php7,php8,phtml,phps,pht,phar,inc,'
+                . 'cgi,pl,py,rb,sh,bash,zsh,ksh,'
+                . 'exe,com,bat,cmd,msi,scr,vbs,vbe,ws,wsf,wsh,ps1,psm1,'
+                . 'jar,war,dll,so,dylib,app,apk,deb,rpm,'
+                . 'htaccess,htpasswd,ini,conf,'
+                . 'html,htm,xhtml,shtml,svg,xml,xsl,swf'
+            ))
+        )))),
     ],
     'db' => [
         'host' => env('DB_HOST', 'mariadb'),

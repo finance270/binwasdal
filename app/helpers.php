@@ -187,8 +187,10 @@ function ikonBerkas(string $nama): string
         in_array($ext, ['doc', 'docx'], true) => '📘',
         in_array($ext, ['xls', 'xlsx', 'csv'], true) => '📗',
         in_array($ext, ['ppt', 'pptx'], true) => '📙',
-        in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true) => '🖼️',
-        in_array($ext, ['zip', 'rar'], true) => '🗜️',
+        in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'heic', 'heif', 'bmp', 'tif', 'tiff'], true) => '🖼️',
+        in_array($ext, ['mp4', 'm4v', 'mov', 'webm', 'mkv', 'avi', 'wmv', 'flv', '3gp', 'mpg', 'mpeg'], true) => '🎬',
+        in_array($ext, ['mp3', 'm4a', 'wav', 'ogg', 'oga', 'aac', 'amr', 'flac'], true) => '🎵',
+        in_array($ext, ['zip', 'rar', '7z', 'tar', 'gz'], true) => '🗜️',
         default => '📄',
     };
 }

@@ -6,7 +6,7 @@
  * berkas yang berjalan di server benar-benar sudah yang terbaru.
  */
 return [
-    'versi'   => '1.6.0',
+    'versi'   => '1.7.0',
     'tanggal' => '2026-08-12',
-    'catatan' => 'Tampilan menyesuaikan ponsel (Android & iOS)',
+    'catatan' => 'Menerima video dan semua jenis berkas',
 ];

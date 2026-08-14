@@ -16,9 +16,10 @@ services:
       PHP_DATE_TIMEZONE: Asia/Jakarta
       PHP_DISPLAY_ERRORS: 0
       PHP_MEMORY_LIMIT: 512M
-      PHP_POST_MAX_SIZE: 220M
-      PHP_UPLOAD_MAX_FILESIZE: 200M
-      PHP_MAX_EXECUTION_TIME: 300
+      PHP_POST_MAX_SIZE: 1100M
+      PHP_UPLOAD_MAX_FILESIZE: 1024M
+      PHP_MAX_INPUT_TIME: 3600
+      PHP_MAX_EXECUTION_TIME: 3600
       PHP_MAX_FILE_UPLOADS: 40
       # Wajib untuk pemasangan manual (unggah berkas lewat code-server):
       # tanpa ini, berkas PHP yang baru diunggah tidak berlaku sampai container di-restart.
@@ -44,7 +45,7 @@ services:
       # GDRIVE_CLIENT_SECRET: ""
       # GDRIVE_REFRESH_TOKEN: ""
 
-      MAX_UPLOAD_SIZE: 209715200   # 200 MB per berkas
+      MAX_UPLOAD_SIZE: 1073741824  # 1 GB per berkas (cukup untuk video)
       APP_TIMEZONE: Asia/Jakarta
       APP_DEBUG: "false"
     depends_on:

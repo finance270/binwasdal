@@ -18,8 +18,10 @@
         var m = document.querySelector('meta[name="' + nama + '"]');
         return m ? m.content : bawaan;
     }
-    var BATAS_UNGGAH = parseInt(meta('unggah-maks', '0'), 10) || 0;
-    var EKSTENSI_OK  = meta('unggah-ext', '').split(',').filter(Boolean);
+    var BATAS_UNGGAH  = parseInt(meta('unggah-maks', '0'), 10) || 0;
+    var EKSTENSI_OK   = meta('unggah-ext', '').split(',').filter(Boolean);
+    var EKSTENSI_TOLAK = meta('unggah-blokir', '').split(',').filter(Boolean);
+    var SEMUA_JENIS   = EKSTENSI_OK.length === 0 || EKSTENSI_OK.indexOf('*') >= 0;
 
     // ------------------------------------------------- laci menu (ponsel)
     (function () {
@@ -534,9 +536,15 @@
 
     /** Alasan berkas ditolak sebelum dikirim, atau null bila lolos. */
     function periksaBerkas(f) {
-        var ext = (f.name.split('.').pop() || '').toLowerCase();
-        if (EKSTENSI_OK.length && EKSTENSI_OK.indexOf(ext) < 0) {
-            return 'jenis berkas .' + ext + ' tidak diizinkan';
+        var ext = (f.name.indexOf('.') >= 0 ? f.name.split('.').pop() : '').toLowerCase();
+        if (!ext) {
+            return 'berkas tanpa ekstensi tidak dapat diunggah';
+        }
+        if (EKSTENSI_TOLAK.indexOf(ext) >= 0) {
+            return 'jenis berkas .' + ext + ' tidak diizinkan demi keamanan server';
+        }
+        if (!SEMUA_JENIS && EKSTENSI_OK.indexOf(ext) < 0) {
+            return 'jenis berkas .' + ext + ' tidak termasuk daftar yang diizinkan';
         }
         if (BATAS_UNGGAH && f.size > BATAS_UNGGAH) {
             return 'melebihi batas ' + ukuranTeks(BATAS_UNGGAH);
@@ -651,9 +659,12 @@
     // keterangan batas ukuran pada area unggah
     (function () {
         var kecil = elZona ? elZona.querySelector('.zona-kecil') : null;
-        if (kecil && BATAS_UNGGAH) {
-            kecil.textContent = 'atau seret dan lepas berkas ke area ini — maksimal '
-                + ukuranTeks(BATAS_UNGGAH) + ' per berkas';
+        if (kecil) {
+            var teks = SEMUA_JENIS
+                ? 'Dokumen, foto, video, audio — semua jenis berkas diterima'
+                : 'Jenis yang diterima: ' + EKSTENSI_OK.join(', ');
+            if (BATAS_UNGGAH) { teks += ' · maksimal ' + ukuranTeks(BATAS_UNGGAH) + ' per berkas'; }
+            kecil.textContent = teks;
         }
     })();
 
