@@ -23,9 +23,13 @@ require __DIR__ . '/lib/GoogleDrive.php';
 require __DIR__ . '/lib/Storage.php';
 require __DIR__ . '/lib/DocxWriter.php';
 require __DIR__ . '/lib/Assessment.php';
+require __DIR__ . '/lib/Naskah.php';
+require __DIR__ . '/lib/Dokumen.php';
 require __DIR__ . '/helpers.php';
 require __DIR__ . '/lib/Render.php';
+require __DIR__ . '/lib/RenderNaskah.php';
 require __DIR__ . '/lib/EksporWord.php';
+require __DIR__ . '/lib/EksporNaskah.php';
 
 DB::init($CFG['db']);
 Auth::start();

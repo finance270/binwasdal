@@ -6,7 +6,7 @@
  * berkas yang berjalan di server benar-benar sudah yang terbaru.
  */
 return [
-    'versi'   => '1.7.0',
-    'tanggal' => '2026-08-12',
-    'catatan' => 'Menerima video dan semua jenis berkas',
+    'versi'   => '1.8.0',
+    'tanggal' => '2026-08-19',
+    'catatan' => 'Modul Dokumen Internal: SK, SPO, formulir & naskah dinas',
 ];

@@ -1,6 +1,20 @@
-# Aplikasi Self Assessment Pembinaan & Pengawasan Rumah Sakit (Binwasdal)
+# Aplikasi Dokumen Rumah Sakit — Binwasdal & Dokumen Internal
 
-Aplikasi PHP untuk mengisi **Dokumen Self Assessment Pembinaan dan Pengawasan Rumah Sakit
+Aplikasi PHP untuk RS Khusus THT SS Medika yang terdiri dari **dua modul terpisah**,
+dipilih lewat tombol di bilah atas:
+
+| Modul | Isi |
+|---|---|
+| 📊 **Binwasdal** | Pengisian Dokumen Self Assessment Pembinaan dan Pengawasan Rumah Sakit di Wilayah Kota Administrasi Jakarta Pusat |
+| 📁 **Dokumen Internal** | Pembuatan, pengubahan, pencetakan, dan penyimpanan hasil scan regulasi & naskah dinas rumah sakit — Peraturan/Surat Keputusan Direktur, Pedoman, SPO, Formulir, sampai surat tugas dan notulen |
+
+Kedua modul memakai satu basis data, satu akun pengguna, dan satu folder induk Google Drive.
+
+---
+
+## Modul 📊 Binwasdal
+
+Untuk mengisi **Dokumen Self Assessment Pembinaan dan Pengawasan Rumah Sakit
 di Wilayah Kota Administrasi Jakarta Pusat**, lengkap dengan:
 
 - Tampilan **menyerupai dokumen Word** (kertas A4, Arial 11pt, tabel bergaris) — bukan formulir web biasa.
@@ -27,6 +41,44 @@ langsung dari dokumen Word resmi. **Penomoran tiap poin dibaca dari definisi pen
 dokumen aslinya** (`word/numbering.xml`), sehingga daftar yang di dokumen bernomor
 `1) 2) 3)` tidak berubah menjadi `a. b. c.` — termasuk daftar berbutir `-` dan
 penomoran yang berlanjut lintas halaman.
+
+---
+
+## Modul 📁 Dokumen Internal
+
+Untuk menyusun regulasi dan naskah dinas rumah sakit sesuai **Pedoman Tata Naskah
+RS Khusus THT SS Medika**:
+
+- **16 jenis naskah siap pakai** — Peraturan Direktur, Surat Keputusan Direktur,
+  Pedoman/Panduan, SPO, Instruksi Kerja, Formulir, Instruksi & Surat Edaran Direktur,
+  Surat Tugas, Nota Dinas, Surat Dinas, Undangan, Berita Acara, Surat Keterangan,
+  Pengumuman, Surat Pernyataan, dan Notulen Rapat.
+- **Nomor dibuat otomatis** mengikuti rumus penomoran pedoman
+  (`001/SK/DIR/SSM/2026`, `001/SPO/KEP/2026`, `F: 001/SSM/2026`, …), direset tiap tahun
+  dan dihitung terpisah per bagian untuk jenis yang memakai kode bagian.
+- **Isian per blok** sesuai susunan naskah masing-masing — Menimbang, Mengingat, diktum
+  KESATU/KEDUA/… untuk naskah penetapan; Pengertian, Tujuan, Kebijakan, Prosedur,
+  Unit Terkait untuk SPO. Semuanya tersimpan otomatis saat berhenti mengetik.
+- **Kerangka baku pedoman** (BAB I–IX Pelayanan, BAB I–XI Pengorganisasian) dapat
+  dimasukkan sekali klik.
+- **Cetak / simpan PDF** dengan tata letak naskah sesungguhnya — kop surat, konsiderans,
+  diktum bertabel, kaki tanda tangan; kepala SPO memakai tabel identitas seperti formulir aslinya.
+- **Unduh Word (.docx)** per naskah, memakai huruf sesuai jenisnya (Bookman Old Style 12
+  untuk naskah pengaturan/penetapan, Arial 12 untuk naskah penugasan/korespondensi/khusus).
+- **Simpan hasil scan** naskah yang sudah ditandatangani dan dicap — otomatis diunggah ke
+  folder Google Drive naskah tersebut, dengan jendela progres berpersentase.
+- **Pengendalian dokumen**: status (Draf → Diperiksa → Disahkan → Tidak Berlaku),
+  klasifikasi salinan (Master / Terkendali / Tidak Terkendali / Absolute), pencatatan
+  distribusi salinan, riwayat perubahan, dan **revisi** yang otomatis menandai naskah
+  lama sebagai tidak berlaku.
+- **Daftar Induk Dokumen** siap cetak, dikelompokkan per jenis naskah.
+- Naskah yang belum disahkan atau sudah dicabut dicetak dengan **cap DRAF /
+  BELUM DISAHKAN / TIDAK BERLAKU**, agar tidak keliru dipakai sebagai acuan kerja.
+
+Halaman **Pedoman Tata Naskah** di dalam aplikasi memuat seluruh acuan yang dipakai —
+tingkatan regulasi, rumus penomoran, kewenangan pengesahan, klasifikasi salinan,
+sistematika baku, serta perbandingan dengan ketentuan tata naskah terbaru
+(lihat bagian 12 di bawah).
 
 ---
 
@@ -189,6 +241,11 @@ Pengaturan akan memindahkan berkas-berkas tersebut (25 berkas per klik).
 
 ## 4. Cara pakai
 
+Tombol **📊 Binwasdal / 📁 Dokumen Internal** di bilah atas memindahkan aplikasi antar modul.
+Menu samping ikut berganti mengikuti modul yang sedang dibuka.
+
+### Menu modul 📊 Binwasdal
+
 | Menu | Isi |
 |---|---|
 | **Beranda & Rekapitulasi** | Persentase kelengkapan, jumlah dokumen, tautan folder utama |
@@ -198,7 +255,40 @@ Pengaturan akan memindahkan berkas-berkas tersebut (25 berkas per klik).
 | **Cetak / Simpan PDF** | Pratinjau dokumen utuh siap cetak |
 | **Unduh Word (.docx)** | Berkas Word asli — seluruh dokumen atau per bagian |
 | **Daftar Tautan Folder** | Rekap seluruh tautan folder Drive, bisa disalin sekaligus |
-| **Pengaturan** | Versi aplikasi &amp; muat ulang kode, Google Drive, periode penilaian, pengguna, log aktivitas |
+| **Pengaturan** | Versi aplikasi &amp; muat ulang kode, identitas kop naskah, Google Drive, periode penilaian, pengguna, log aktivitas |
+
+### Menu modul 📁 Dokumen Internal
+
+| Menu | Isi |
+|---|---|
+| **Daftar Dokumen** | Rekap, penapis (jenis/bagian/status/tahun/pencarian), formulir buat naskah baru |
+| **Daftar Induk Dokumen** | Rekaman pengendalian dokumen siap cetak, dikelompokkan per jenis |
+| **Jenis Naskah** | Pintasan penapis ke satu jenis naskah tertentu |
+| **Pedoman Tata Naskah** | Acuan yang dipakai aplikasi + perbandingan dengan ketentuan terbaru |
+
+### Membuat sebuah naskah internal
+
+1. Buka **Dokumen Internal → Daftar Dokumen**, isi **Buat Naskah Baru**
+   (jenis, bagian penerbit, tahun, judul), lalu klik **Buat & Isi Naskah**.
+   Nomor terbentuk sendiri — misalnya `002/SPO/KEP/2026`.
+2. Lengkapi **isian kepala** (tanggal ditetapkan, mulai berlaku, rencana peninjauan,
+   penyiap/pemeriksa/pengesah) dan **blok isi** sesuai jenis naskahnya.
+   Semua tersimpan otomatis; tidak ada tombol Simpan yang perlu ditekan.
+   Aturan penulisan tiap blok muncul sebagai petunjuk di atas kotak isian:
+   - blok **daftar** → satu baris satu butir, penomoran dibuat saat dicetak;
+   - blok **diktum** → satu baris satu diktum, label KESATU/KEDUA/… otomatis
+     (tulis `LABEL : isi` bila ingin menentukan sendiri);
+   - blok **tabel** → baris pertama menjadi judul kolom, kolom dipisah tanda `|`.
+3. **Pratinjau** naskah tampil di bagian bawah halaman; tekan **🔄 Perbarui pratinjau**
+   setelah mengubah isi.
+4. **Cetak / Simpan PDF** atau **Unduh Word** untuk ditandatangani.
+5. Setelah ditandatangani dan dicap, unggah hasil pemindaian pada
+   **Hasil Scan & Lampiran** — berkas masuk ke folder Drive naskah itu.
+6. Ubah **status** menjadi *Disahkan* pada **Pengendalian Dokumen**, lalu catat
+   unit penerima salinan terkendali.
+7. Bila kelak berubah, tekan **🔁 Buat revisi baru** — naskah lama otomatis menjadi
+   *Tidak Berlaku (Absolute)* dan seluruh isinya disalin ke naskah baru dengan
+   nomor revisi bertambah satu.
 
 ### Mengisi sebuah poin
 
@@ -290,9 +380,14 @@ app/
     Render.php         Komponen tampilan (sel ringkas, tabel, baris poin)
     DocxWriter.php     Penulis berkas .docx (OOXML) tanpa pustaka luar
     EksporWord.php     Menyusun dokumen Word dari data periode penilaian
+    Naskah.php         Master jenis naskah: penomoran, huruf, pengesahan, susunan blok
+    Dokumen.php        Dokumen internal: penomoran otomatis, isi, revisi, distribusi
+    RenderNaskah.php   Merender naskah menjadi tampilan siap cetak
+    EksporNaskah.php   Menyusun berkas Word (.docx) satu naskah internal
   views/               Halaman
 db/
-  schema.sql           Skema MariaDB
+  schema.sql           Skema MariaDB (modul Binwasdal)
+  schema_dokumen.sql   Skema MariaDB (modul Dokumen Internal)
   master.json          Struktur dokumen hasil ekstraksi dokumen Word resmi
   ekstrak_dokumen.py   Skrip yang menghasilkan master.json dari berkas .docx asli
 data/uploads/          Penyimpanan lokal (cadangan bila Drive nonaktif)
@@ -300,8 +395,14 @@ data/uploads/          Penyimpanan lokal (cadangan bila Drive nonaktif)
 
 ## 7. Basis data
 
-Tabel utama: `users`, `settings`, `sections`, `items`, `form_rows`, `assessments`,
+Modul Binwasdal: `users`, `settings`, `sections`, `items`, `form_rows`, `assessments`,
 `profil_values`, `form_values`, `answers`, `drive_folders`, `documents`, `activity_log`.
+
+Modul Dokumen Internal: `dokumen`, `dokumen_isi`, `dokumen_riwayat`, `dokumen_distribusi`,
+`dokumen_folder`, `dokumen_berkas`. Tabel-tabel ini dibuat sendiri saat aplikasi pertama
+kali dibuka setelah pembaruan — **tidak ada tabel lama yang diubah**, sehingga data
+Binwasdal yang sudah ada tetap utuh.
+
 Semuanya dapat dilihat/diedit lewat phpMyAdmin pada database `binwasdal`.
 
 Membuat **periode penilaian baru** (misalnya tahun berikutnya, atau rumah sakit lain)
@@ -384,3 +485,58 @@ untuk kolom nama di database dan menyulitkan saat dibaca di Google Drive.
   berkas lokal hanya dapat dibuka melalui aplikasi setelah login.
 - Ganti `ADMIN_PASS`, `MYSQL_ROOT_PASSWORD`, dan `MYSQL_PASSWORD` sebelum dipakai di jaringan
   yang lebih luas, dan jangan mengekspos port phpMyAdmin ke internet.
+
+---
+
+## 12. Acuan tata naskah dan penyempurnaannya
+
+Acuan utama modul Dokumen Internal adalah **Pedoman Tata Naskah RS Khusus THT SS Medika**.
+Dari pedoman itu diambil apa adanya: tingkatan regulasi (1 Peraturan Direktur,
+2 Surat Keputusan, 3 Pedoman, 4 Prosedur), rumus penomoran, singkatan bagian
+(DIR, SDM, KEP, RM, FAR, KEU, MKT, UM), kewenangan penyiapan–pemeriksaan–pengesahan,
+susunan batang tubuh SPO, sistematika baku pedoman, dan klasifikasi salinan
+(Master, Terkendali, Tidak Terkendali, Absolute).
+
+**RS Khusus THT SS Medika adalah rumah sakit swasta**, sehingga ketentuan tata naskah dinas
+pemerintah tidak mengikat secara hukum. Pedoman internal dan standar pengendalian dokumen
+akreditasi (STARKES) tetap menjadi acuan yang berlaku. Ketentuan pemerintah di bawah ini
+**diadopsi sebagai praktik baik** untuk melengkapi hal yang belum diatur pedoman internal:
+
+| Belum diatur pedoman internal | Acuan yang dipakai | Penyempurnaan pada aplikasi |
+|---|---|---|
+| Jenis huruf, ukuran, dan kertas | Permendagri 1/2023: Bookman Old Style 12 untuk naskah pengaturan & penetapan; Arial 12 untuk naskah penugasan, korespondensi, dan naskah khusus; kertas A4 HVS | Tiap jenis naskah membawa ketentuan hurufnya sendiri, dipakai pada tampilan cetak maupun berkas Word |
+| Naskah korespondensi & naskah khusus | Permendagri 1/2023 dan Pergub DKI Jakarta 99/2021 | Ditambahkan surat tugas, nota dinas, surat dinas, undangan, berita acara, surat keterangan, pengumuman, surat pernyataan, dan notulen — dengan penomoran memakai bulan angka Romawi |
+| Naskah arahan selain Peraturan & Keputusan | Instruksi dan Surat Edaran termasuk naskah arahan | Ditambahkan sebagai jenis tersendiri dengan konsiderans dan diktum |
+| Penomoran diulang setiap tahun | Kelaziman tata naskah dinas | Nomor urut direset per tahun, per jenis, dan per bagian penerbit |
+| Daftar induk & bukti distribusi salinan | Standar pengendalian dokumen akreditasi RS | Menu **Daftar Induk Dokumen** siap cetak + pencatatan penerima salinan terkendali |
+| Peninjauan berkala naskah | Regulasi RS ditinjau paling lama setiap 3 tahun | Kolom rencana peninjauan; naskah yang lewat tanggalnya ditandai di halaman daftar |
+
+Sumber rujukan:
+
+1. Pedoman Tata Naskah RS Khusus THT SS Medika (dokumen internal — acuan utama).
+2. [Permendagri No. 1 Tahun 2023](https://peraturan.bpk.go.id/Details/245536/permendagri-no-1-tahun-2023)
+   tentang Tata Naskah Dinas di Lingkungan Kemendagri dan Pemerintah Daerah.
+3. [Pergub DKI Jakarta No. 99 Tahun 2021](https://peraturan.bpk.go.id/Details/189336/pergub-prov-dki-jakarta-no-99-tahun-2021)
+   tentang Tata Naskah Dinas.
+4. [Pergub DKI Jakarta No. 123 Tahun 2016](https://peraturan.bpk.go.id/Details/326652/pergub-prov-dki-jakarta-no-123-tahun-2016)
+   dan [No. 184 Tahun 2016](https://peraturan.bpk.go.id/Details/327179/pergub-prov-dki-jakarta-no-184-tahun-2016).
+5. Standar Akreditasi Rumah Sakit (STARKES) — bab Tata Kelola Rumah Sakit,
+   khususnya pengendalian dokumen regulasi.
+
+Ringkasan yang sama tersedia di dalam aplikasi pada menu **Pedoman Tata Naskah**
+dan dapat langsung dicetak.
+
+### Menyesuaikan kop naskah
+
+Buka **Pengaturan → Identitas Kop Naskah**. Isian di sana dipakai pada kop surat,
+kaki tanda tangan, dan penomoran:
+
+| Isian | Dipakai untuk |
+|---|---|
+| Nama rumah sakit | Baris besar pada kop dan baris jabatan di kaki naskah |
+| Singkatan | Penanda `{rs}` pada nomor naskah, mis. `001/SK/DIR/**SSM**/2026` |
+| Badan hukum / yayasan | Baris di atas nama rumah sakit (opsional) |
+| Alamat, telepon, surel, situs | Baris kecil di bawah nama rumah sakit |
+| Kota penetapan | Baris “Ditetapkan di …” pada kaki naskah |
+| Nama direktur & jabatan | Nama penanda tangan bawaan tiap naskah baru |
+| Alamat gambar logo | Logo pada kop; bila kosong, tempatnya tetap disediakan |

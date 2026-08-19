@@ -22,6 +22,10 @@ class DocxWriter
     private array $tautan = [];   // rId => URL
     private int $rid = 10;
 
+    /** Huruf & ukuran bawaan seluruh dokumen (dapat diubah per naskah). */
+    public string $hurufBawaan = 'Arial';
+    public float $ukuranBawaan = 11;
+
     // -----------------------------------------------------------------
     // Paragraf
     // -----------------------------------------------------------------
@@ -58,6 +62,16 @@ class DocxWriter
         return $this->paragraf($teks, ['tebal' => true, 'spasiSebelum' => 200, 'spasiSesudah' => 60]);
     }
 
+    /** Garis mendatar selebar halaman (pemisah kop naskah). */
+    public function garis(int $tebal = 12): self
+    {
+        $this->isi .= '<w:p><w:pPr>'
+            . '<w:pBdr><w:bottom w:val="single" w:sz="' . $tebal . '" w:space="1" w:color="000000"/></w:pBdr>'
+            . '<w:spacing w:before="0" w:after="120" w:line="240" w:lineRule="auto"/>'
+            . '</w:pPr></w:p>';
+        return $this;
+    }
+
     public function kosong(int $tinggi = 1): self
     {
         for ($i = 0; $i < $tinggi; $i++) {
@@ -83,7 +97,7 @@ class DocxWriter
      *                          'baris'=>[..] (beberapa paragraf), 'tautan'=>URL]
      * @param bool    $ulangHeader baris pertama diulang di tiap halaman
      */
-    public function tabel(array $lebar, array $baris, bool $ulangHeader = true, bool $garis = true): self
+    public function tabel(array $lebar, array $baris, bool $ulangHeader = true, bool $garis = true, bool $jagaUtuh = false): self
     {
         $total = array_sum($lebar);
         // Urutan elemen mengikuti skema OOXML (CT_TblPrBase):
@@ -111,10 +125,20 @@ class DocxWriter
             $t .= '<w:tr>';
             if ($i === 0 && $ulangHeader) {
                 $t .= '<w:trPr><w:cantSplit/><w:tblHeader/></w:trPr>';
+            } elseif ($jagaUtuh) {
+                $t .= '<w:trPr><w:cantSplit/></w:trPr>';
             }
-            foreach (array_values($sel) as $k => $isiSel) {
-                $w = $lebar[$k] ?? end($lebar);
-                $t .= $this->sel($isiSel, (int) $w);
+            // posisi kolom dihitung sendiri agar sel gabungan (kolom => n)
+            // tetap mendapat lebar yang benar
+            $kolomKe = 0;
+            foreach (array_values($sel) as $isiSel) {
+                $span = is_array($isiSel) ? max(1, (int) ($isiSel['kolom'] ?? 1)) : 1;
+                $w = 0;
+                for ($j = 0; $j < $span; $j++) {
+                    $w += (int) ($lebar[$kolomKe + $j] ?? end($lebar));
+                }
+                $t .= $this->sel($isiSel, $w);
+                $kolomKe += $span;
             }
             $t .= '</w:tr>';
         }
@@ -128,7 +152,15 @@ class DocxWriter
     private function sel($isiSel, int $lebar): string
     {
         $o = is_array($isiSel) ? $isiSel : ['teks' => (string) $isiSel];
+        // Urutan elemen mengikuti skema OOXML (CT_TcPr):
+        // tcW -> gridSpan -> vMerge -> shd -> vAlign
         $s = '<w:tc><w:tcPr><w:tcW w:w="' . $lebar . '" w:type="dxa"/>';
+        if (!empty($o['kolom']) && (int) $o['kolom'] > 1) {
+            $s .= '<w:gridSpan w:val="' . (int) $o['kolom'] . '"/>';
+        }
+        if (!empty($o['gabung'])) {
+            $s .= '<w:vMerge' . ($o['gabung'] === 'mulai' ? ' w:val="restart"' : '') . '/>';
+        }
         if (!empty($o['arsir'])) {
             $s .= '<w:shd w:val="clear" w:color="auto" w:fill="' . $o['arsir'] . '"/>';
         }
@@ -165,8 +197,11 @@ class DocxWriter
             . ' w:before="' . (int) ($o['spasiSebelum'] ?? 0) . '"'
             . ' w:after="' . (int) ($o['spasiSesudah'] ?? 40) . '"'
             . ' w:line="240" w:lineRule="auto"/>';
-        if (!empty($o['indentKiri'])) {
-            $p .= '<w:ind w:left="' . (int) $o['indentKiri'] . '"/>';
+        if (!empty($o['indentKiri']) || !empty($o['gantung'])) {
+            // "gantung" membuat baris kedua dan seterusnya sejajar di bawah teks,
+            // bukan di bawah nomor — seperti daftar bernomor pada naskah dinas.
+            $p .= '<w:ind w:left="' . (int) ($o['indentKiri'] ?? 0) . '"'
+                . (!empty($o['gantung']) ? ' w:hanging="' . (int) $o['gantung'] . '"' : '') . '/>';
         }
         if (!empty($o['rata']) && $o['rata'] !== 'left') {
             $p .= '<w:jc w:val="' . $o['rata'] . '"/>';
@@ -288,8 +323,10 @@ class DocxWriter
         return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
             . '<w:styles ' . self::NS . '>'
             . '<w:docDefaults><w:rPrDefault><w:rPr>'
-            . '<w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:eastAsia="Arial" w:cs="Arial"/>'
-            . '<w:sz w:val="22"/><w:szCs w:val="22"/><w:lang w:val="id-ID"/>'
+            . '<w:rFonts w:ascii="' . $this->esc($this->hurufBawaan) . '" w:hAnsi="' . $this->esc($this->hurufBawaan)
+            . '" w:eastAsia="' . $this->esc($this->hurufBawaan) . '" w:cs="' . $this->esc($this->hurufBawaan) . '"/>'
+            . '<w:sz w:val="' . (int) round($this->ukuranBawaan * 2) . '"/>'
+            . '<w:szCs w:val="' . (int) round($this->ukuranBawaan * 2) . '"/><w:lang w:val="id-ID"/>'
             . '</w:rPr></w:rPrDefault>'
             . '<w:pPrDefault><w:pPr><w:spacing w:after="40" w:line="240" w:lineRule="auto"/></w:pPr></w:pPrDefault>'
             . '</w:docDefaults>'

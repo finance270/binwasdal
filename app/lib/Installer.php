@@ -40,6 +40,10 @@ class Installer
             $log[] = 'Pengguna default dibuat: ' . $cfg['auth']['default_user'];
         }
 
+        // --- modul dokumen internal ---------------------------------
+        self::pasangModulDokumen($cfg);
+        $log[] = 'Tabel modul Dokumen Internal dibuat.';
+
         $master = json_decode(file_get_contents($cfg['app']['root'] . '/db/master.json'), true);
         if (!$master) {
             throw new RuntimeException('db/master.json tidak dapat dibaca.');
@@ -337,6 +341,29 @@ class Installer
 
     /** Dinaikkan bila penomoran master berubah, memicu penyelarasan otomatis. */
     public const PENOMORAN_VERSI = '3';
+
+    /**
+     * Dinaikkan bila skema modul Dokumen Internal berubah, sehingga pemasangan
+     * yang sudah berjalan ikut diperbarui tanpa perlu memasang ulang.
+     */
+    public const DOKUMEN_VERSI = '1';
+
+    /**
+     * Membuat/menyelaraskan tabel modul Dokumen Internal.
+     * Semua pernyataan memakai CREATE TABLE IF NOT EXISTS, jadi aman dijalankan
+     * berulang kali dan tidak menyentuh data modul Binwasdal.
+     */
+    public static function pasangModulDokumen(array $cfg): void
+    {
+        $berkas = $cfg['app']['root'] . '/db/schema_dokumen.sql';
+        if (!is_file($berkas)) {
+            throw new RuntimeException('db/schema_dokumen.sql tidak ditemukan.');
+        }
+        foreach (self::splitStatements((string) file_get_contents($berkas)) as $stmt) {
+            DB::pdo()->exec($stmt);
+        }
+        Settings::set('modul_dokumen', self::DOKUMEN_VERSI);
+    }
 
     private static function splitStatements(string $sql): array
     {

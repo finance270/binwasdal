@@ -183,6 +183,86 @@ $ocValidasi = (bool) ini_get('opcache.validate_timestamps');
     <?php endif; ?>
 </div>
 
+<!-- ------------------------------------------------ Kop naskah internal -->
+<div class="kartu">
+    <h2>🏥 Identitas Kop Naskah (Dokumen Internal)</h2>
+    <p style="font-size:12.5px;color:#6b7481;margin:0 0 12px;line-height:1.6">
+        Isian ini dipakai pada kop surat, kaki tanda tangan, dan penomoran naskah di
+        menu <a href="?p=dokumen">Dokumen Internal</a>. Singkatan rumah sakit muncul pada
+        nomor naskah, misalnya <code>001/SK/DIR/<b><?= e(Settings::get('naskah_singkatan_rs', 'SSM')) ?></b>/<?= (int) date('Y') ?></code>.
+    </p>
+
+    <?php if (Auth::isAdmin()): ?>
+    <form method="post" action="?p=pengaturan">
+        <input type="hidden" name="csrf" value="<?= e(Auth::csrf()) ?>">
+        <input type="hidden" name="aksi" value="simpan_identitas_naskah">
+
+        <div class="grid k3">
+            <div>
+                <label class="f" for="n-nama">Nama rumah sakit</label>
+                <input class="f" id="n-nama" name="naskah_nama_rs"
+                       value="<?= e(Settings::get('naskah_nama_rs', 'RUMAH SAKIT KHUSUS THT SS MEDIKA')) ?>">
+            </div>
+            <div>
+                <label class="f" for="n-singkat">Singkatan (untuk nomor naskah)</label>
+                <input class="f" id="n-singkat" name="naskah_singkatan_rs" maxlength="16"
+                       value="<?= e(Settings::get('naskah_singkatan_rs', 'SSM')) ?>">
+            </div>
+            <div>
+                <label class="f" for="n-induk">Badan hukum / yayasan (opsional)</label>
+                <input class="f" id="n-induk" name="naskah_nama_induk"
+                       value="<?= e(Settings::get('naskah_nama_induk', '')) ?>">
+            </div>
+        </div>
+
+        <label class="f" for="n-alamat">Alamat</label>
+        <input class="f" id="n-alamat" name="naskah_alamat"
+               value="<?= e(Settings::get('naskah_alamat', 'Jl. Salemba Satu No. 11-13, Jakarta Pusat 10430')) ?>">
+
+        <div class="grid k3">
+            <div>
+                <label class="f" for="n-telp">Telepon</label>
+                <input class="f" id="n-telp" name="naskah_telepon" value="<?= e(Settings::get('naskah_telepon', '')) ?>">
+            </div>
+            <div>
+                <label class="f" for="n-email">Surel</label>
+                <input class="f" id="n-email" name="naskah_email" value="<?= e(Settings::get('naskah_email', '')) ?>">
+            </div>
+            <div>
+                <label class="f" for="n-web">Situs web</label>
+                <input class="f" id="n-web" name="naskah_website" value="<?= e(Settings::get('naskah_website', '')) ?>">
+            </div>
+        </div>
+
+        <div class="grid k3">
+            <div>
+                <label class="f" for="n-kota">Kota penetapan</label>
+                <input class="f" id="n-kota" name="naskah_kota" value="<?= e(Settings::get('naskah_kota', 'Jakarta')) ?>">
+            </div>
+            <div>
+                <label class="f" for="n-dir">Nama direktur</label>
+                <input class="f" id="n-dir" name="naskah_nama_direktur" value="<?= e(Settings::get('naskah_nama_direktur', '')) ?>">
+            </div>
+            <div>
+                <label class="f" for="n-jab">Jabatan penanda tangan</label>
+                <input class="f" id="n-jab" name="naskah_jabatan_direktur" value="<?= e(Settings::get('naskah_jabatan_direktur', 'Direktur')) ?>">
+            </div>
+        </div>
+
+        <label class="f" for="n-logo">Alamat gambar logo (URL atau data URI)</label>
+        <input class="f" id="n-logo" name="naskah_logo" value="<?= e(Settings::get('naskah_logo', '')) ?>"
+               placeholder="mis. assets/img/logo.png">
+        <p style="font-size:12px;color:#6b7481;margin:6px 0 12px">
+            Kosongkan bila logo belum tersedia — tempatnya tetap disediakan pada kop naskah.
+        </p>
+
+        <button class="btn utama" type="submit">💾 Simpan identitas kop</button>
+    </form>
+    <?php else: ?>
+        <p style="color:#6b7481;font-size:13px">Hanya admin yang dapat mengubah identitas kop naskah.</p>
+    <?php endif; ?>
+</div>
+
 <!-- ---------------------------------------------------------- Periode -->
 <div class="kartu">
     <h2>🗓️ Periode Penilaian</h2>

@@ -70,6 +70,17 @@ if (Settings::get('master_penomoran') !== Installer::PENOMORAN_VERSI) {
     }
 }
 
+// Pemasangan / penyelarasan tabel modul Dokumen Internal. Aman dijalankan
+// berulang kali karena seluruh pernyataan memakai CREATE TABLE IF NOT EXISTS.
+if (Settings::get('modul_dokumen') !== Installer::DOKUMEN_VERSI) {
+    try {
+        Installer::pasangModulDokumen($CFG);
+        Log::write('sistem', 'modul_dokumen', 'Tabel modul Dokumen Internal disiapkan.');
+    } catch (Throwable $e) {
+        // jangan menggagalkan permintaan halaman; pesan muncul saat modul dibuka
+    }
+}
+
 $assessment = Assessment::current();
 $storage    = new Storage($CFG);
 
@@ -246,6 +257,92 @@ if (str_starts_with($page, 'api_')) {
             }
             json_out(GoogleDrive::fromSettings($CFG)->testConnection());
 
+        // =============================================================
+        //  Modul Dokumen Internal
+        // =============================================================
+
+        // --- simpan satu blok isi naskah ----------------------------
+        case 'api_dok_isi':
+            $dok = Dokumen::ambil((int) ($_POST['id'] ?? 0));
+            if (!$dok || !$dok['def']) {
+                json_out(['ok' => false, 'pesan' => 'Dokumen tidak ditemukan.'], 404);
+            }
+            if ($dok['status'] === 'dicabut') {
+                json_out(['ok' => false, 'pesan' => 'Dokumen sudah tidak berlaku — buat revisi baru untuk mengubahnya.'], 422);
+            }
+            $blok = (string) ($_POST['blok'] ?? '');
+            if (!in_array($blok, array_column($dok['def']['blok'], 'kode'), true)) {
+                json_out(['ok' => false, 'pesan' => 'Blok isi tidak dikenal.'], 422);
+            }
+            Dokumen::simpanIsi((int) $dok['id'], $blok, (string) ($_POST['isi'] ?? ''));
+            json_out(['ok' => true, 'waktu' => date('H:i:s')]);
+
+        // --- simpan satu kolom kepala naskah -------------------------
+        case 'api_dok_kepala':
+            $dok = Dokumen::ambil((int) ($_POST['id'] ?? 0));
+            if (!$dok || !$dok['def']) {
+                json_out(['ok' => false, 'pesan' => 'Dokumen tidak ditemukan.'], 404);
+            }
+            if ($dok['status'] === 'dicabut') {
+                json_out(['ok' => false, 'pesan' => 'Dokumen sudah tidak berlaku — buat revisi baru untuk mengubahnya.'], 422);
+            }
+            if (!Dokumen::simpanKepala((int) $dok['id'], (string) ($_POST['k'] ?? ''), (string) ($_POST['v'] ?? ''))) {
+                json_out(['ok' => false, 'pesan' => 'Isian tidak dapat diubah.'], 422);
+            }
+            json_out(['ok' => true, 'waktu' => date('H:i:s')]);
+
+        // --- unggah hasil scan / lampiran naskah ---------------------
+        case 'api_dok_unggah':
+            $dok = Dokumen::ambil((int) ($_POST['id'] ?? 0));
+            if (!$dok || !$dok['def']) {
+                json_out(['ok' => false, 'pesan' => 'Dokumen tidak ditemukan.'], 404);
+            }
+            if (empty($_FILES['berkas'])) {
+                json_out(['ok' => false, 'pesan' => 'Tidak ada berkas yang dikirim.'], 422);
+            }
+            $kategori = ($_POST['kategori'] ?? 'scan') === 'lampiran' ? 'lampiran' : 'scan';
+            $files = $_FILES['berkas'];
+            $jml = is_array($files['name']) ? count($files['name']) : 0;
+            $berhasil = [];
+            $gagal = [];
+            for ($i = 0; $i < $jml; $i++) {
+                $res = $storage->simpanBerkasDokumen($dok, [
+                    'name'     => $files['name'][$i],
+                    'tmp_name' => $files['tmp_name'][$i],
+                    'size'     => $files['size'][$i],
+                    'error'    => $files['error'][$i],
+                ], $kategori);
+                if ($res['ok']) {
+                    $b = $res['berkas'];
+                    $berhasil[] = [
+                        'id'       => (int) $b['id'],
+                        'nama'     => $b['nama_file'],
+                        'kategori' => $b['kategori'],
+                        'ukuran'   => Storage::formatUkuran((int) $b['ukuran']),
+                        'link'     => $b['drive_link'] ?: url(['p' => 'dokumen_berkas', 'id' => $b['id']]),
+                        'ikon'     => ikonBerkas($b['nama_file']),
+                    ];
+                } else {
+                    $gagal[] = $files['name'][$i] . ': ' . $res['pesan'];
+                }
+            }
+            $folder = DB::one("SELECT * FROM dokumen_folder WHERE owner_type = 'dokumen' AND owner_key = ?", [(string) $dok['id']]);
+            json_out([
+                'ok'     => count($berhasil) > 0,
+                'berkas' => $berhasil,
+                'gagal'  => $gagal,
+                'pesan'  => count($berhasil) . ' berkas tersimpan' . ($gagal ? ', ' . count($gagal) . ' gagal' : '') . '.',
+                'folder' => $folder ? [
+                    'nama'  => $folder['nama'],
+                    'link'  => $folder['drive_link'],
+                    'lokal' => $folder['drive_id'] ? false : true,
+                ] : null,
+            ]);
+
+        case 'api_dok_hapus_berkas':
+            $res = $storage->hapusBerkasDokumen((int) ($_POST['id'] ?? 0));
+            json_out($res, $res['ok'] ? 200 : 404);
+
         default:
             json_out(['ok' => false, 'pesan' => 'Endpoint tidak dikenal.'], 404);
     }
@@ -277,10 +374,41 @@ if ($page === 'unduh') {
 }
 
 // ---------------------------------------------------------------------
+// Unduh satu naskah internal sebagai Word (.docx)
+// ---------------------------------------------------------------------
+if ($page === 'dokumen_unduh') {
+    $dok = Dokumen::ambil((int) ($_GET['id'] ?? 0));
+    if (!$dok || !$dok['def']) {
+        http_response_code(404);
+        exit('Dokumen tidak ditemukan.');
+    }
+    if (!class_exists('ZipArchive')) {
+        http_response_code(500);
+        exit('Ekstensi PHP "zip" belum aktif di server, sehingga berkas Word tidak dapat dibuat.');
+    }
+    try {
+        $hasil = EksporNaskah::buat($dok);
+    } catch (Throwable $e) {
+        http_response_code(500);
+        exit('Gagal membuat dokumen Word: ' . e($e->getMessage()));
+    }
+    Log::write(Auth::username(), 'unduh_naskah', $dok['nomor']);
+    header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    header('Content-Length: ' . strlen($hasil['isi']));
+    header('Content-Disposition: attachment; filename="' . str_replace('"', '', $hasil['nama']) . '"; '
+        . "filename*=UTF-8''" . rawurlencode($hasil['nama']));
+    header('Cache-Control: no-store');
+    echo $hasil['isi'];
+    exit;
+}
+
+// ---------------------------------------------------------------------
 // Unduh berkas lokal
 // ---------------------------------------------------------------------
-if ($page === 'berkas') {
-    $doc = DB::one('SELECT * FROM documents WHERE id = ? AND assessment_id = ?', [(int) ($_GET['id'] ?? 0), $assessment['id']]);
+if ($page === 'berkas' || $page === 'dokumen_berkas') {
+    $doc = $page === 'dokumen_berkas'
+        ? DB::one('SELECT * FROM dokumen_berkas WHERE id = ?', [(int) ($_GET['id'] ?? 0)])
+        : DB::one('SELECT * FROM documents WHERE id = ? AND assessment_id = ?', [(int) ($_GET['id'] ?? 0), $assessment['id']]);
     if (!$doc || !$doc['local_path']) {
         http_response_code(404);
         exit('Berkas tidak ditemukan.');
@@ -535,6 +663,115 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !str_starts_with($page, 'api_')) {
         }
         redirect(url(['p' => 'pengaturan']));
     }
+
+    // ----------------------------------------------------------------
+    // Modul Dokumen Internal
+    // ----------------------------------------------------------------
+
+    if ($aksi === 'simpan_identitas_naskah') {
+        if (!Auth::isAdmin()) {
+            http_response_code(403);
+            exit('Hanya admin.');
+        }
+        foreach ([
+            'naskah_nama_rs', 'naskah_nama_induk', 'naskah_singkatan_rs', 'naskah_alamat',
+            'naskah_telepon', 'naskah_email', 'naskah_website', 'naskah_logo',
+            'naskah_kota', 'naskah_nama_direktur', 'naskah_jabatan_direktur',
+        ] as $k) {
+            Settings::set($k, trim((string) ($_POST[$k] ?? '')));
+        }
+        flash('Identitas kop naskah disimpan.');
+        redirect(url(['p' => 'pengaturan']));
+    }
+
+    if ($aksi === 'dokumen_buat') {
+        Auth::requireEdit();
+        $jenis  = (string) ($_POST['jenis'] ?? '');
+        $bagian = (string) ($_POST['bagian'] ?? 'DIR');
+        $judul  = trim((string) ($_POST['judul'] ?? ''));
+        $tahun  = (int) ($_POST['tahun'] ?? date('Y'));
+        if (!Naskah::get($jenis) || !array_key_exists($bagian, Naskah::bagian())) {
+            flash('Jenis naskah atau bagian tidak dikenal.', 'galat');
+            redirect(url(['p' => 'dokumen']));
+        }
+        if ($judul === '') {
+            flash('Judul naskah wajib diisi.', 'galat');
+            redirect(url(['p' => 'dokumen', 'jenis' => $jenis]));
+        }
+        if ($tahun < 2000 || $tahun > 2100) {
+            $tahun = (int) date('Y');
+        }
+        $id = Dokumen::buat($jenis, $bagian, $judul, $tahun);
+        Log::write(Auth::username(), 'naskah_baru', $jenis . ' — ' . $judul);
+        flash('Naskah baru dibuat. Silakan lengkapi isinya.');
+        redirect(url(['p' => 'dokumen_edit', 'id' => $id]));
+    }
+
+    if ($aksi === 'dokumen_status') {
+        Auth::requireEdit();
+        $id = (int) ($_POST['id'] ?? 0);
+        if (Dokumen::ubahStatus($id, (string) ($_POST['status'] ?? ''), trim((string) ($_POST['catatan'] ?? '')))) {
+            flash('Status dokumen diperbarui.');
+        } else {
+            flash('Status tidak dapat diubah.', 'galat');
+        }
+        redirect(url(['p' => 'dokumen_edit', 'id' => $id]));
+    }
+
+    if ($aksi === 'dokumen_revisi') {
+        Auth::requireEdit();
+        $baru = Dokumen::revisi((int) ($_POST['id'] ?? 0), trim((string) ($_POST['catatan'] ?? '')));
+        if ($baru) {
+            flash('Revisi baru dibuat. Naskah lama ditandai tidak berlaku (absolute).');
+            redirect(url(['p' => 'dokumen_edit', 'id' => $baru]));
+        }
+        flash('Dokumen tidak ditemukan.', 'galat');
+        redirect(url(['p' => 'dokumen']));
+    }
+
+    if ($aksi === 'dokumen_hapus') {
+        if (!Auth::isAdmin()) {
+            http_response_code(403);
+            exit('Hanya admin.');
+        }
+        $id = (int) ($_POST['id'] ?? 0);
+        foreach (Dokumen::berkas($id) as $b) {
+            $storage->hapusBerkasDokumen((int) $b['id']);
+        }
+        Dokumen::hapus($id);
+        Log::write(Auth::username(), 'naskah_hapus', 'Dokumen #' . $id);
+        flash('Dokumen dihapus.');
+        redirect(url(['p' => 'dokumen']));
+    }
+
+    if ($aksi === 'dokumen_distribusi') {
+        Auth::requireEdit();
+        $id = (int) ($_POST['id'] ?? 0);
+        $unit = trim((string) ($_POST['unit'] ?? ''));
+        if ($unit !== '') {
+            Dokumen::tambahDistribusi($id, $unit, trim((string) ($_POST['salinan_ke'] ?? '')), trim((string) ($_POST['penerima'] ?? '')));
+            Dokumen::catat($id, 'distribusi', 'Salinan diserahkan ke ' . $unit);
+            flash('Distribusi salinan dicatat.');
+        }
+        redirect(url(['p' => 'dokumen_edit', 'id' => $id]));
+    }
+
+    if ($aksi === 'dokumen_kerangka') {
+        Auth::requireEdit();
+        $id = (int) ($_POST['id'] ?? 0);
+        $dok = Dokumen::ambil($id);
+        $pilih = (string) ($_POST['kerangka'] ?? '');
+        $daftar = $dok['def']['kerangka'][$pilih] ?? null;
+        if ($dok && $daftar) {
+            $lama = trim((string) ($dok['isi']['bab']['isi'] ?? ''));
+            $isi = ($lama !== '' ? $lama . "\n" : '') . implode("\n", $daftar);
+            Dokumen::simpanIsi($id, 'bab', $isi);
+            flash('Kerangka baku "' . $pilih . '" ditambahkan.');
+        } else {
+            flash('Kerangka tidak dikenal untuk jenis naskah ini.', 'galat');
+        }
+        redirect(url(['p' => 'dokumen_edit', 'id' => $id]));
+    }
 }
 
 // ---------------------------------------------------------------------
@@ -592,6 +829,63 @@ switch ($page) {
         $data['log']      = DB::all('SELECT * FROM activity_log ORDER BY id DESC LIMIT 30');
         $data['drive']    = GoogleDrive::fromSettings($CFG);
         view('pengaturan', $data);
+        break;
+
+    // ---------------------------------------------------------------
+    // Modul Dokumen Internal
+    // ---------------------------------------------------------------
+
+    case 'dokumen':
+        $data['saring'] = [
+            'jenis'  => (string) ($_GET['jenis'] ?? ''),
+            'bagian' => (string) ($_GET['bagian'] ?? ''),
+            'status' => (string) ($_GET['status'] ?? ''),
+            'tahun'  => (string) ($_GET['tahun'] ?? ''),
+            'cari'   => trim((string) ($_GET['cari'] ?? '')),
+        ];
+        $data['daftar']    = Dokumen::daftar($data['saring']);
+        $data['ringkasan'] = Dokumen::ringkasan();
+        $data['tahun']     = Dokumen::tahunTersedia();
+        view('dokumen', $data);
+        break;
+
+    case 'dokumen_edit':
+        $dok = Dokumen::ambil((int) ($_GET['id'] ?? 0));
+        if (!$dok || !$dok['def']) {
+            http_response_code(404);
+            view('galat', $data + ['pesan' => 'Dokumen internal tidak ditemukan.']);
+            break;
+        }
+        $data['dok']        = $dok;
+        $data['riwayat']    = Dokumen::riwayat((int) $dok['id']);
+        $data['distribusi'] = Dokumen::distribusi((int) $dok['id']);
+        $data['folder']     = DB::one(
+            "SELECT * FROM dokumen_folder WHERE owner_type = 'dokumen' AND owner_key = ?",
+            [(string) $dok['id']]
+        );
+        view('dokumen_edit', $data);
+        break;
+
+    case 'dokumen_cetak':
+        $dok = Dokumen::ambil((int) ($_GET['id'] ?? 0));
+        if (!$dok || !$dok['def']) {
+            http_response_code(404);
+            view('galat', $data + ['pesan' => 'Dokumen internal tidak ditemukan.']);
+            break;
+        }
+        $data['dok'] = $dok;
+        view('dokumen_cetak', $data);
+        break;
+
+    case 'dokumen_induk':
+        $data['saring'] = ['tahun' => (string) ($_GET['tahun'] ?? '')];
+        $data['daftar'] = Dokumen::daftar($data['saring']);
+        $data['tahun']  = Dokumen::tahunTersedia();
+        view('dokumen_induk', $data);
+        break;
+
+    case 'dokumen_tata':
+        view('dokumen_tata', $data);
         break;
 
     default:

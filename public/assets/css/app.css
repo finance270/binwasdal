@@ -122,6 +122,7 @@ a { color: var(--biru); }
 .sidebar-latar.tampil { display: block; }
 
 .sidebar .grup { padding: 12px 14px 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: #7a8390; font-weight: 700; }
+.sidebar .grup.kecil { padding: 9px 14px 2px; font-size: 10px; letter-spacing: .4px; text-transform: none; color: #9aa2ad; font-weight: 600; }
 .sidebar a {
     display: block;
     padding: 9px 14px;
@@ -218,6 +219,8 @@ table.w thead th {
     box-shadow: inset 0 -1px 0 #000, inset 0 1px 0 #000;
 }
 table.w td.tengah, table.w th.tengah { text-align: center; white-space: nowrap; }
+/* rata tengah namun tetap boleh berpindah baris (mis. kolom tanggal) */
+table.w td.tengah-bungkus, table.w th.tengah-bungkus { text-align: center; }
 /* isian pada kolom angka jangan ikut dipenggal */
 table.w td.tengah .sel { white-space: nowrap; text-align: center; }
 
@@ -672,6 +675,243 @@ textarea.f { min-height: 80px; font-family: ui-monospace, Menlo, Consolas, monos
 .login-box h1 { font-size: 19px; margin: 0 0 4px; color: var(--biru-tua); }
 .login-box p.sub { margin: 0 0 18px; font-size: 12.5px; color: #6b7481; line-height: 1.5; }
 
+/* ============================================================ MODUL =====
+   Pemilih modul di bilah atas: Binwasdal / Dokumen Internal
+   ===================================================================== */
+
+.modul-pilih {
+    display: flex;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 3px;
+}
+.modul-pilih a {
+    color: #dbe7f5;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.modul-pilih a:hover { background: rgba(255, 255, 255, .14); color: #fff; }
+.modul-pilih a.aktif { background: #fff; color: var(--biru-tua); }
+.modul-pilih .m-pendek { display: none; }
+
+/* ==================================================== DOKUMEN INTERNAL ==
+   Naskah dinas & regulasi — tata letak mengikuti Pedoman Tata Naskah
+   ===================================================================== */
+
+/* ------------------------------------------------------- kertas naskah */
+
+.kertas.naskah {
+    font-family: "Bookman Old Style", Bookman, "URW Bookman L", Georgia, "Times New Roman", serif;
+    font-size: 12pt;
+    line-height: 1.45;
+}
+.kertas.naskah.huruf-arial { font-family: Arial, Helvetica, sans-serif; }
+.kertas.naskah p { margin: 0 0 7px; }
+.kertas.naskah .kosong { color: #b6bcc6; }
+.kertas.naskah .tebal { font-weight: 700; }
+
+/* kop surat */
+.kop-naskah { display: flex; align-items: center; gap: 14px; }
+.kop-logo { flex: 0 0 66px; text-align: center; }
+.kop-logo img { max-width: 66px; max-height: 66px; }
+.kop-logo-kosong {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 58px;
+    border: 1px dashed #a8afba;
+    border-radius: 50%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 9px;
+    color: #a8afba;
+    letter-spacing: 1px;
+}
+.kop-teks { flex: 1; text-align: center; }
+.kop-induk { font-size: 11pt; }
+.kop-nama { font-size: 15pt; font-weight: 700; text-transform: uppercase; line-height: 1.2; }
+.kop-alamat { font-size: 9pt; line-height: 1.35; }
+.kop-garis { border: 0; border-top: 2.5px solid #000; margin: 5px 0 16px; }
+
+/* kepala naskah */
+.naskah-kepala { text-align: center; margin: 0 0 16px; }
+.n-jenis { font-weight: 700; text-transform: uppercase; line-height: 1.35; }
+.n-nomor { margin-top: 2px; }
+.n-nomor-kecil { font-size: 9.5pt; margin-top: 3px; }
+.n-tentang { margin-top: 12px; }
+.n-judul { font-weight: 700; text-transform: uppercase; margin-top: 3px; line-height: 1.35; }
+.n-judul-surat { font-weight: 700; text-transform: uppercase; font-size: 13pt; }
+.n-perihal-judul { font-weight: 700; margin-top: 6px; }
+.n-jabatan { font-weight: 700; text-transform: uppercase; margin-top: 14px; }
+.n-memutuskan { text-align: center; font-weight: 700; margin: 14px 0 10px; letter-spacing: .5px; }
+.n-batang { margin-top: 4px; }
+.n-penutup { margin-top: 10px; }
+.n-dasar { font-size: 10pt; font-style: italic; margin-bottom: 14px; }
+
+/* konsiderans & diktum — label sejajar, isi menjorok */
+table.konsiderans, table.diktum {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 8px;
+}
+table.konsiderans td, table.diktum td { vertical-align: top; padding: 1px 0 5px; }
+.k-label { width: 4.2cm; }
+.k-titik, .d-titik { width: 0.5cm; }
+.k-isi, .d-isi { text-align: justify; }
+.d-label { width: 4.2cm; font-weight: 700; }
+table.konsiderans ol, .kertas.naskah ol { margin: 0; padding-left: 1.5em; }
+.daftar-angka { list-style: decimal; }
+.daftar-huruf { list-style: lower-alpha; }
+.daftar-polos { list-style: none; padding-left: 0 !important; }
+.kertas.naskah ol li { margin-bottom: 4px; text-align: justify; }
+
+/* kaki naskah */
+.kaki-naskah { margin-top: 26px; display: flex; justify-content: flex-end; }
+.kaki-kanan { min-width: 8cm; text-align: left; }
+.kaki-jabatan { margin-top: 2px; }
+.kaki-ruang { height: 2.1cm; }
+.kaki-nama { font-weight: 700; text-decoration: underline; }
+
+/* ------------------------------------------------------------- SPO ---- */
+
+table.spo-kepala, table.spo-badan {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+table.spo-kepala td, table.spo-badan td {
+    border: 1px solid #000;
+    padding: 5px 7px;
+    vertical-align: top;
+}
+.spo-logo { width: 25%; text-align: center; vertical-align: middle; }
+.spo-logo img { max-width: 52px; max-height: 52px; display: block; margin: 0 auto 4px; }
+.spo-nama-rs { font-weight: 700; font-size: 10pt; line-height: 1.25; }
+.spo-alamat { font-size: 7.5pt; line-height: 1.25; }
+.spo-judul { text-align: center; font-weight: 700; font-size: 12pt; vertical-align: middle; }
+.spo-sel { text-align: center; font-size: 9pt; }
+.spo-sel span, .spo-ttd span { display: block; font-size: 8.5pt; }
+.spo-sel b { display: block; font-size: 10pt; margin-top: 2px; }
+.spo-jenis { text-align: center; font-weight: 700; font-size: 10pt; vertical-align: middle; }
+.spo-ttd { text-align: center; }
+.spo-ttd b { display: block; text-decoration: underline; margin-top: 2px; }
+.spo-ruang { height: 1.5cm; }
+table.spo-badan { margin-top: -1px; }
+.spo-b-label { width: 25%; font-weight: 700; }
+.spo-b-isi { text-align: justify; }
+.spo-b-isi p { margin: 0 0 5px; }
+.spo-b-isi ol { margin: 0; padding-left: 1.4em; }
+
+/* --------------------------------------------------- pedoman & formulir */
+
+.naskah-bab { font-weight: 700; margin: 16px 0 6px; }
+table.naskah-tabel { margin: 8px 0 12px; font-size: 10.5pt; }
+
+table.form-isian { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+table.form-isian td { padding: 4px 0; vertical-align: bottom; }
+.fi-label { width: 5.5cm; }
+.fi-titik { width: .5cm; }
+.fi-garis { border-bottom: 1px dotted #555; }
+.form-catatan { font-size: 9.5pt; font-style: italic; margin-top: 10px; }
+
+/* ------------------------------------------------------------- surat -- */
+
+table.surat-baris { width: 100%; border-collapse: collapse; margin: 0 0 6px; }
+table.surat-baris td { vertical-align: top; padding: 1px 0; }
+.s-label { width: 3.6cm; }
+.s-titik { width: .5cm; }
+.s-isi { text-align: justify; }
+
+/* ------------------------------------------------ status & klasifikasi */
+
+.badge.s-draft     { background: #eef0f3; color: #4b5563; border: 1px solid #cfd4dc; }
+.badge.s-diperiksa { background: #fdf4e3; color: #7c4a03; border: 1px solid #e2bd76; }
+.badge.s-disahkan  { background: #e7f6ec; color: #14532d; border: 1px solid #7fc59a; }
+.badge.s-dicabut   { background: #fdecea; color: #7f1d1d; border: 1px solid #e59b95; }
+
+.cap-naskah {
+    position: absolute;
+    top: 34%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-22deg);
+    border: 5px solid var(--merah);
+    color: var(--merah);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 34pt;
+    letter-spacing: 4px;
+    padding: 6px 22px;
+    border-radius: 8px;
+    opacity: .28;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.kertas.naskah { position: relative; }
+
+/* --------------------------------------------------- editor & daftar -- */
+
+.dok-tapis {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    max-width: 21cm;
+    margin: 0 auto 14px;
+}
+.dok-tapis label.f { margin: 0 0 3px; }
+.dok-tapis .kolom { flex: 1 1 150px; min-width: 0; }
+.dok-tapis .kolom.lebar { flex: 2 1 240px; }
+
+table.rapi td .nomor-dok { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; }
+table.rapi tr.dicabut td { opacity: .62; }
+table.rapi td .judul-dok-kecil { font-weight: 600; }
+table.rapi td .meta { font-size: 11.5px; color: #6b7481; margin-top: 2px; }
+table.daftar-naskah { table-layout: fixed; }
+table.daftar-naskah td { overflow-wrap: break-word; }
+table.daftar-naskah td.tindakan .btn { margin: 0 4px 4px 0; }
+
+.blok-edit { border-top: 1px solid var(--garis); padding-top: 12px; margin-top: 14px; }
+.blok-edit:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.blok-edit h3 { margin: 0 0 3px; font-size: 14px; }
+.blok-edit .petunjuk { font-size: 12px; color: #6b7481; margin: 0 0 6px; line-height: 1.5; }
+.blok-edit textarea.f {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.55;
+    min-height: 110px;
+}
+
+.dok-kepala-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 14px; }
+@media (max-width: 760px) { .dok-kepala-grid { grid-template-columns: 1fr; } }
+
+.dok-berkas { list-style: none; margin: 8px 0 0; padding: 0; font-size: 13px; }
+.dok-berkas li {
+    display: block;
+    border: 1px solid var(--garis);
+    border-radius: 6px;
+    padding: 7px 10px;
+    margin-bottom: 6px;
+    overflow-wrap: break-word;
+}
+.dok-berkas li .nb { font-weight: 600; }
+.dok-berkas li .meta { font-size: 11.5px; color: #6b7481; }
+
+.riwayat-naskah { list-style: none; margin: 0; padding: 0; font-size: 12.5px; }
+.riwayat-naskah li { padding: 6px 0; border-bottom: 1px solid var(--garis); }
+.riwayat-naskah li:last-child { border-bottom: 0; }
+.riwayat-naskah .waktu { color: #6b7481; font-size: 11.5px; }
+
+.catatan-regulasi { font-size: 12.5px; line-height: 1.65; color: #3a4150; }
+.catatan-regulasi li { margin-bottom: 5px; }
+.catatan-regulasi h3 { margin: 16px 0 6px; }
+
 /* ------------------------------------------------ layar sedang & ponsel */
 
 /* Semua aturan di bawah dibatasi ke media "screen" agar tidak ikut terpakai
@@ -842,6 +1082,69 @@ textarea.f { min-height: 80px; font-family: ui-monospace, Menlo, Consolas, monos
     .unggah-daftar { max-height: 34dvh; }
 }
 
+/* naskah dinas pada layar kecil: kolom label dipersempit agar isi lega */
+@media screen and (max-width: 720px) {
+    .modul-pilih a { padding: 6px 9px; font-size: 12px; }
+    .modul-pilih .m-panjang { display: none; }
+    .modul-pilih .m-pendek { display: inline; }
+
+    .kertas.naskah { font-size: 11pt; }
+    .kop-naskah { gap: 9px; }
+    .kop-logo { flex: 0 0 46px; }
+    .kop-logo img, .kop-logo-kosong { max-width: 46px; width: 44px; height: 44px; line-height: 42px; }
+    .kop-nama { font-size: 12.5pt; }
+    .k-label, .d-label { width: 2.9cm; }
+    .s-label { width: 2.6cm; }
+    .fi-label { width: 3.6cm; }
+    .kaki-naskah { justify-content: flex-start; }
+    .kaki-kanan { min-width: 0; width: 100%; }
+    .cap-naskah { font-size: 22pt; border-width: 3px; }
+
+    /* tabel SPO tetap terbaca dengan menggulir mendatar bila perlu */
+    .spo-gulir { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; }
+    .spo-gulir::before {
+        content: '← geser untuk melihat kolom lain →';
+        display: block;
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 11px;
+        color: #8a929e;
+        padding: 0 0 5px;
+        position: sticky;
+        left: 0;
+    }
+    .spo-gulir table.spo-kepala { min-width: 430px; }
+
+    /* batang tubuh SPO ditumpuk: judul blok di atas, isinya di bawah */
+    table.spo-badan, table.spo-badan tbody, table.spo-badan tr, table.spo-badan td { display: block; width: auto; }
+    table.spo-badan tr { border: 1px solid #000; border-top: 0; }
+    table.spo-badan tr:first-child { border-top: 1px solid #000; }
+    table.spo-badan td { border: 0; }
+    .spo-b-label { padding-bottom: 0; }
+    .spo-b-isi { padding-top: 2px; }
+
+    /* daftar naskah ditumpuk menjadi kartu agar terbaca tanpa menggulir */
+    table.daftar-naskah, table.daftar-naskah tbody,
+    table.daftar-naskah tr, table.daftar-naskah td { display: block; width: auto; }
+    table.daftar-naskah thead { display: none; }
+    table.daftar-naskah tr {
+        border: 1px solid var(--garis);
+        border-radius: 8px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+    }
+    table.daftar-naskah td { border: 0; padding: 3px 0; }
+    table.daftar-naskah td[data-l]::before {
+        content: attr(data-l) ': ';
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #59616d;
+    }
+    table.daftar-naskah td[data-l] { font-size: 13px; }
+    table.daftar-naskah td[data-l] .badge, table.daftar-naskah td[data-l] .meta { display: inline-block; }
+    table.daftar-naskah td.tindakan { margin-top: 6px; }
+    table.daftar-naskah td.tindakan .btn { margin: 0 6px 6px 0; }
+}
+
 /* perangkat sentuh: hilangkan efek arahkan-kursor yang menyesatkan */
 @media (hover: none) {
     tr.poin:hover > td { background: #fff; }
@@ -898,4 +1201,19 @@ textarea.f { min-height: 80px; font-family: ui-monospace, Menlo, Consolas, monos
     }
     .badge { border: 1px solid #888 !important; }
     .sel { border: 0 !important; background: transparent !important; padding: 0 !important; }
+
+    /* --- naskah dinas ------------------------------------------------ */
+    .kertas.naskah { font-size: 12pt; }
+    .spo-gulir { overflow: visible !important; }
+    .spo-gulir table.spo-kepala, .spo-gulir table.spo-badan { min-width: 0 !important; }
+    table.spo-kepala, table.spo-badan { page-break-inside: auto; }
+    table.spo-kepala tr, table.spo-badan tr { page-break-inside: avoid; }
+    .kaki-naskah { page-break-inside: avoid; }
+    .naskah-bab { page-break-after: avoid; }
+    .cap-naskah {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        opacity: .22;
+    }
+    .kop-garis { border-top: 2.5px solid #000 !important; }
 }

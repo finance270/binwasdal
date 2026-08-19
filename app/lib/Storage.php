@@ -382,6 +382,178 @@ class Storage
     }
 
     // -----------------------------------------------------------------
+    // Dokumen internal (regulasi & naskah dinas)
+    //
+    //   <Folder Induk>
+    //     └── Dokumen Internal - RS Khusus THT SS Medika
+    //           └── Surat Keputusan Direktur
+    //                 └── 001-SK-DIR-SSM-2026 Panduan Identifikasi Pasien
+    // -----------------------------------------------------------------
+
+    /** Folder utama seluruh dokumen internal. */
+    public function folderNaskahRoot(): ?array
+    {
+        $nama = $this->potongNama('Dokumen Internal - '
+            . Settings::get('naskah_nama_rs', 'RS Khusus THT SS Medika'));
+        return $this->folderNaskah('root', 'root', $nama, null);
+    }
+
+    /** Folder per jenis naskah. */
+    public function folderNaskahJenis(string $jenis): ?array
+    {
+        $def = Naskah::get($jenis);
+        if (!$def) {
+            $this->lastError = 'Jenis naskah tidak dikenal.';
+            return null;
+        }
+        $induk = $this->folderNaskahRoot();
+        if (!$induk) {
+            return null;
+        }
+        return $this->folderNaskah('jenis', $jenis, $this->potongNama($def['nama']), $induk);
+    }
+
+    /** Folder satu dokumen internal, dibuat otomatis saat pertama dipakai. */
+    public function folderDokumen(array $d): ?array
+    {
+        $induk = $this->folderNaskahJenis((string) $d['jenis']);
+        if (!$induk) {
+            return null;
+        }
+        $nomor = str_replace(['/', '\\', ':'], '-', trim((string) $d['nomor']));
+        $nama  = $this->potongNama(trim($nomor . ' ' . $d['judul']));
+        return $this->folderNaskah('dokumen', (string) $d['id'], $nama, $induk);
+    }
+
+    /** Pembuat folder umum untuk modul dokumen internal. */
+    private function folderNaskah(string $type, string $key, string $nama, ?array $induk): ?array
+    {
+        $ada = DB::one('SELECT * FROM dokumen_folder WHERE owner_type = ? AND owner_key = ?', [$type, $key]);
+        if ($ada && ($ada['drive_id'] || !$this->driveAktif())) {
+            return $ada;
+        }
+
+        if (!$this->driveAktif()) {
+            $rel = ($induk['local_path'] ?? 'dokumen-internal') . '/' . $this->slug($nama);
+            if ($type === 'root') {
+                $rel = 'dokumen-internal';
+            }
+            $full = rtrim($this->cfg['app']['upload_dir'], '/') . '/' . $rel;
+            if (!is_dir($full)) {
+                @mkdir($full, 0775, true);
+            }
+            DB::q(
+                'INSERT INTO dokumen_folder (owner_type, owner_key, nama, local_path) VALUES (?,?,?,?)
+                 ON DUPLICATE KEY UPDATE nama = VALUES(nama), local_path = VALUES(local_path)',
+                [$type, $key, $nama, $rel]
+            );
+        } else {
+            $indukId = $type === 'root' ? $this->drive->rootFolderId() : (string) ($induk['drive_id'] ?? '');
+            $res = $this->drive->ensureFolder($nama, $indukId);
+            if (!$res) {
+                $this->lastError = $this->drive->lastError;
+                return null;
+            }
+            DB::q(
+                'INSERT INTO dokumen_folder (owner_type, owner_key, nama, drive_id, drive_link) VALUES (?,?,?,?,?)
+                 ON DUPLICATE KEY UPDATE nama = VALUES(nama), drive_id = VALUES(drive_id), drive_link = VALUES(drive_link)',
+                [$type, $key, $nama, $res['id'], $res['link']]
+            );
+        }
+        return DB::one('SELECT * FROM dokumen_folder WHERE owner_type = ? AND owner_key = ?', [$type, $key]);
+    }
+
+    /**
+     * Menyimpan hasil scan atau lampiran sebuah dokumen internal.
+     *
+     * @param array $file satu entri dari $_FILES (name, tmp_name, size, error)
+     * @return array{ok:bool,pesan:string,berkas?:array}
+     */
+    public function simpanBerkasDokumen(array $d, array $file, string $kategori = 'scan'): array
+    {
+        if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+            return ['ok' => false, 'pesan' => $this->uploadErrorText((int) ($file['error'] ?? 4))];
+        }
+        if ($file['size'] > $this->cfg['app']['max_upload']) {
+            return ['ok' => false, 'pesan' => 'Ukuran berkas melebihi batas ' . self::formatUkuran($this->cfg['app']['max_upload']) . '.'];
+        }
+        $nama = $this->bersihkanNamaFile($file['name']);
+        $ext  = strtolower(pathinfo($nama, PATHINFO_EXTENSION));
+        $tolak = self::alasanTolak($ext, $this->cfg);
+        if ($tolak !== null) {
+            return ['ok' => false, 'pesan' => $tolak];
+        }
+        $kategori = $kategori === 'lampiran' ? 'lampiran' : 'scan';
+
+        $folder = $this->folderDokumen($d);
+        if (!$folder) {
+            return ['ok' => false, 'pesan' => 'Gagal menyiapkan folder: ' . ($this->lastError ?: 'tidak diketahui')];
+        }
+
+        $mime = $this->deteksiMime($file['tmp_name'], $ext);
+        $namaUnik = date('Ymd-His') . '_' . $nama;
+        $baris = [
+            'dokumen_id'  => (int) $d['id'],
+            'kategori'    => $kategori,
+            'folder_id'   => (int) $folder['id'],
+            'nama_file'   => $nama,
+            'mime'        => $mime,
+            'ukuran'      => (int) $file['size'],
+            'uploaded_by' => Auth::username(),
+        ];
+
+        if ($this->driveAktif() && $folder['drive_id']) {
+            $res = $this->drive->uploadFile($file['tmp_name'], $namaUnik, $mime, $folder['drive_id']);
+            if (!$res) {
+                return ['ok' => false, 'pesan' => 'Gagal mengunggah ke Google Drive: ' . $this->drive->lastError];
+            }
+            $baris['drive_id']   = $res['id'];
+            $baris['drive_link'] = $res['webViewLink'] ?? $this->drive->fileLink($res['id']);
+        } else {
+            $base = rtrim($this->cfg['app']['upload_dir'], '/');
+            $rel  = $folder['local_path'] . '/' . $namaUnik;
+            $full = $base . '/' . $rel;
+            if (!is_dir(dirname($full))) {
+                @mkdir(dirname($full), 0775, true);
+            }
+            if (!@move_uploaded_file($file['tmp_name'], $full) && !@rename($file['tmp_name'], $full)) {
+                return ['ok' => false, 'pesan' => 'Gagal menyimpan berkas ke penyimpanan lokal.'];
+            }
+            $baris['local_path'] = $rel;
+        }
+
+        $id = DB::insert('dokumen_berkas', $baris);
+        Dokumen::catat((int) $d['id'], 'unggah', ($kategori === 'scan' ? 'Hasil scan' : 'Lampiran') . ': ' . $nama);
+        Log::write(Auth::username(), 'unggah_naskah', $d['nomor'] . ' → ' . $nama);
+        return [
+            'ok' => true,
+            'pesan' => 'Berkas tersimpan.',
+            'berkas' => DB::one('SELECT * FROM dokumen_berkas WHERE id = ?', [$id]),
+        ];
+    }
+
+    public function hapusBerkasDokumen(int $berkasId): array
+    {
+        $b = DB::one('SELECT * FROM dokumen_berkas WHERE id = ?', [$berkasId]);
+        if (!$b) {
+            return ['ok' => false, 'pesan' => 'Berkas tidak ditemukan.'];
+        }
+        if ($b['drive_id'] && $this->driveAktif()) {
+            $this->drive->deleteFile($b['drive_id']);
+        }
+        if ($b['local_path']) {
+            $full = rtrim($this->cfg['app']['upload_dir'], '/') . '/' . $b['local_path'];
+            if (is_file($full)) {
+                @unlink($full);
+            }
+        }
+        DB::q('DELETE FROM dokumen_berkas WHERE id = ?', [$berkasId]);
+        Dokumen::catat((int) $b['dokumen_id'], 'hapus_berkas', $b['nama_file']);
+        Log::write(Auth::username(), 'hapus_berkas_naskah', $b['nama_file']);
+        return ['ok' => true, 'pesan' => 'Berkas dihapus.'];
+    }
+
+    // -----------------------------------------------------------------
 
     /**
      * Alasan sebuah jenis berkas ditolak, atau null bila boleh diunggah.

@@ -84,7 +84,9 @@ function berkasProgram(): array
         'public/index.php',
         'public/assets/css/app.css',
         'public/assets/js/app.js',
+        'public/assets/js/dokumen.js',
         'app/lib/Render.php',
+        'app/lib/RenderNaskah.php',
         'app/version.php',
     ];
     $out = [];
